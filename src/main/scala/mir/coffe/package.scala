@@ -7,7 +7,7 @@ import mir.coffe.transaction.ValidationError.GenericError
 import mir.coffe.transaction.{BlockchainUpdater, ValidationError}
 import mir.coffe.utils.ScorexLogging
 
-package object coffeplatform extends ScorexLogging {
+package object coffe extends ScorexLogging {
   private def checkOrAppend(block: Block, blockchainUpdater: BlockchainUpdater with NG): Either[ValidationError, Unit] = {
     if (blockchainUpdater.isEmpty) {
       blockchainUpdater.processBlock(block).right.map { _ =>

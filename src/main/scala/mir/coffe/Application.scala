@@ -420,7 +420,7 @@ object Application extends ScorexLogging {
     val time             = new NTP(settings.ntpServer)
     val isMetricsStarted = Metrics.start(settings.metrics, time)
 
-    RootActorSystem.start("coffeplatform", config) { actorSystem =>
+    RootActorSystem.start("coffe", config) { actorSystem =>
       import actorSystem.dispatcher
       isMetricsStarted.foreach { started =>
         if (started) {

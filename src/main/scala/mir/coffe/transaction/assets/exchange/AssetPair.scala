@@ -14,7 +14,7 @@ import scala.util.{Success, Try}
 case class AssetPair(@(ApiModelProperty @field)(
                        value = "Base58 encoded amount asset id",
                        dataType = "string",
-                       example = "WAVES"
+                       example = "COFFE"
                      ) amountAsset: Option[AssetId],
                      @(ApiModelProperty @field)(
                        value = "Base58 encoded amount price id",
@@ -41,7 +41,7 @@ case class AssetPair(@(ApiModelProperty @field)(
 }
 
 object AssetPair {
-  val CoffeName = "WAVES"
+  val CoffeName = "COFFE"
 
   def assetIdStr(aid: Option[AssetId]): String = aid.fold(CoffeName)(_.base58)
 
