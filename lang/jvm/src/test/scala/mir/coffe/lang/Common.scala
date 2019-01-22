@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 import cats.data.EitherT
 import com.wavesplatform.lang.ScriptVersion.Versions.V1

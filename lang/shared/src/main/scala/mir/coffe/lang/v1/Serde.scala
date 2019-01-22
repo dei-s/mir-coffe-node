@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1
+package mir.coffe.lang.v1
 
 import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer

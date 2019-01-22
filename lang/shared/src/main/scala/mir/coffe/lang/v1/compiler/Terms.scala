@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.compiler
+package mir.coffe.lang.v1.compiler
 
 import com.wavesplatform.lang.v1.compiler.Types.CASETYPEREF
 

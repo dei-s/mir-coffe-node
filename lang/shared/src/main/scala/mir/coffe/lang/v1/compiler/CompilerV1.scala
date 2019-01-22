@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.compiler
+package mir.coffe.lang.v1.compiler
 
 import cats.Show
 import cats.implicits._

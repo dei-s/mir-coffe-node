@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.compiler
+package mir.coffe.lang.v1.compiler
 
 import cats.Monoid
 import com.wavesplatform.lang.v1.FunctionHeader

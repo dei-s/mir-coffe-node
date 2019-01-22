@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1
+package mir.coffe.lang.v1
 
 import cats.data.EitherT
 import com.wavesplatform.lang.v1.evaluator.ctx.LoggedEvaluationContext

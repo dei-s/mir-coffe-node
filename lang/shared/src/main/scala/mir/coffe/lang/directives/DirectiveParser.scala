@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.directives
+package mir.coffe.lang.directives
 
 import fastparse.WhitespaceApi
 import fastparse.core.Parsed.Success

@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang.v1
 
 import com.wavesplatform.lang.v1.BaseGlobal
 

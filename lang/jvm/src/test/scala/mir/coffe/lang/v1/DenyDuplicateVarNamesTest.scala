@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1
+package mir.coffe.lang.v1
 
 import com.wavesplatform.lang.Common._
 import com.wavesplatform.lang.ScriptVersion.Versions.V1

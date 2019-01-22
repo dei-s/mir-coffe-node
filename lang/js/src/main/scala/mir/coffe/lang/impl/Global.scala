@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.impl
+package mir.coffe.lang.impl
 
 import scala.scalajs.js.annotation.JSGlobalScope
 import scala.scalajs.js.typedarray.ArrayBuffer

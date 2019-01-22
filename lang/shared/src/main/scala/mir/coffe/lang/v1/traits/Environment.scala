@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.traits
+package mir.coffe.lang.v1.traits
 
 import com.wavesplatform.lang.v1.traits.domain._
 import shapeless._

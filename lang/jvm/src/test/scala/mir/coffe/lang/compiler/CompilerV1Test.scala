@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.compiler
+package mir.coffe.lang.compiler
 
 import com.wavesplatform.lang.Common
 import com.wavesplatform.lang.Common._

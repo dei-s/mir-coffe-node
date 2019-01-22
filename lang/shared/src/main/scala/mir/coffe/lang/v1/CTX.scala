@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1
+package mir.coffe.lang.v1
 
 import cats.Monoid
 import com.wavesplatform.lang.v1.compiler.CompilerContext

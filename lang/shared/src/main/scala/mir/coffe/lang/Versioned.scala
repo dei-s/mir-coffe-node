@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 trait Versioned {
   type Ver <: ScriptVersion

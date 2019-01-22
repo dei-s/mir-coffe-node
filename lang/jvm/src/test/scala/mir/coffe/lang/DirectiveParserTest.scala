@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 import com.wavesplatform.lang.directives.DirectiveKey.LANGUAGE_VERSION
 import com.wavesplatform.lang.directives.{Directive, DirectiveParser}

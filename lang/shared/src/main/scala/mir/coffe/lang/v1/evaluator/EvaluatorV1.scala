@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.evaluator
+package mir.coffe.lang.v1.evaluator
 
 import cats.Monad
 import cats.implicits._

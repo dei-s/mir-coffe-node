@@ -1,4 +1,4 @@
-package com.wavesplatform
+package mir.coffe
 
 import cats.data.EitherT
 import monix.eval.Coeval

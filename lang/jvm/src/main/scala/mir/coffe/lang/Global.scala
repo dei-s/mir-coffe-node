@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 import com.wavesplatform.lang.v1.BaseGlobal
 import com.wavesplatform.utils.{Base58, Base64}

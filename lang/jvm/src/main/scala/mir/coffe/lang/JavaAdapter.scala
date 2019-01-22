@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 import cats.kernel.Monoid
 import com.wavesplatform.lang.ScriptVersion.Versions.V1

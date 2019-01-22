@@ -1,4 +1,5 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
+
 import com.wavesplatform.lang.v1.compiler.Terms.EVALUATED
 
 trait ExprEvaluator extends Versioned {

@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.parser
+package mir.coffe.lang.v1.parser
 
 import com.wavesplatform.lang.v1.parser.BinaryOperation._
 import com.wavesplatform.lang.v1.parser.Expressions._

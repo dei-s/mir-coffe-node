@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.task
+package mir.coffe.lang.v1.task
 
 import cats.data.Kleisli
 import monix.eval.Coeval

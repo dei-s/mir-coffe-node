@@ -1,4 +1,4 @@
-package com.wavesplatform.lang;
+package mir.coffe.lang;
 
 import com.wavesplatform.lang.v1.Serde;
 import com.wavesplatform.lang.v1.compiler.Terms;

@@ -1,4 +1,4 @@
-package com.wavesplatform.lang
+package mir.coffe.lang
 
 import com.wavesplatform.lang.v1.compiler.Terms
 import com.wavesplatform.lang.v1.evaluator.ctx.EvaluationContext

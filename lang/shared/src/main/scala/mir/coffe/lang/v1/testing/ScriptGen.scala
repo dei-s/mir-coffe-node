@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.v1.testing
+package mir.coffe.lang.v1.testing
 
 import com.wavesplatform.lang.v1.parser.Parser.keywords
 import com.wavesplatform.lang.v1.parser.BinaryOperation

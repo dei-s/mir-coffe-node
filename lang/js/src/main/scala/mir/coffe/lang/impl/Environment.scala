@@ -1,4 +1,4 @@
-package com.wavesplatform.lang.impl
+package mir.coffe.lang.impl
 
 import com.wavesplatform.lang.v1.traits.DataType
 import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
