@@ -1,24 +1,24 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
 import cats.kernel.Monoid
 import com.google.common.cache.CacheBuilder
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.database.patch.DisableHijackedAliases
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.state.reader.LeaseDetails
-import com.wavesplatform.transaction.Transaction.Type
-import com.wavesplatform.transaction.ValidationError.{AliasDoesNotExist, AliasIsDisabled, GenericError}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.assets.exchange.ExchangeTransaction
-import com.wavesplatform.transaction.lease.{LeaseCancelTransaction, LeaseTransaction}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils.{Paged, ScorexLogging}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.database.patch.DisableHijackedAliases
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.state.reader.LeaseDetails
+import mir.coffe.transaction.Transaction.Type
+import mir.coffe.transaction.ValidationError.{AliasDoesNotExist, AliasIsDisabled, GenericError}
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.assets.exchange.ExchangeTransaction
+import mir.coffe.transaction.lease.{LeaseCancelTransaction, LeaseTransaction}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils.{Paged, ScorexLogging}
 import org.iq80.leveldb.DB
 
 import scala.annotation.tailrec
@@ -127,7 +127,7 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
     addressId(address).fold(0L) { addressId =>
       mayBeAssetId match {
         case Some(assetId) => db.fromHistory(Keys.assetBalanceHistory(addressId, assetId), Keys.assetBalance(addressId, assetId)).getOrElse(0L)
-        case None          => db.fromHistory(Keys.wavesBalanceHistory(addressId), Keys.wavesBalance(addressId)).getOrElse(0L)
+        case None          => db.fromHistory(Keys.coffeBalanceHistory(addressId), Keys.coffeBalance(addressId)).getOrElse(0L)
       }
     }
   }
@@ -142,7 +142,7 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
   }
 
   private def loadLposPortfolio(db: ReadOnlyDB, addressId: BigInt) = Portfolio(
-    db.fromHistory(Keys.wavesBalanceHistory(addressId), Keys.wavesBalance(addressId)).getOrElse(0L),
+    db.fromHistory(Keys.coffeBalanceHistory(addressId), Keys.coffeBalance(addressId)).getOrElse(0L),
     loadLeaseBalance(db, addressId),
     Map.empty
   )
@@ -188,7 +188,7 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
   override protected def doAppend(block: Block,
                                   carry: Long,
                                   newAddresses: Map[Address, BigInt],
-                                  wavesBalances: Map[BigInt, Long],
+                                  coffeBalances: Map[BigInt, Long],
                                   assetBalances: Map[BigInt, Map[ByteStr, Long]],
                                   leaseBalances: Map[BigInt, LeaseBalance],
                                   leaseStates: Map[ByteStr, Boolean],
@@ -227,24 +227,24 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
     val threshold        = height - maxRollbackDepth
     val balanceThreshold = height - balanceSnapshotMaxRollbackDepth
 
-    val newAddressesForWaves = ArrayBuffer.empty[BigInt]
-    val updatedBalanceAddresses = for ((addressId, balance) <- wavesBalances) yield {
-      val kwbh = Keys.wavesBalanceHistory(addressId)
+    val newAddressesForCoffe = ArrayBuffer.empty[BigInt]
+    val updatedBalanceAddresses = for ((addressId, balance) <- coffeBalances) yield {
+      val kwbh = Keys.coffeBalanceHistory(addressId)
       val wbh  = rw.get(kwbh)
       if (wbh.isEmpty) {
-        newAddressesForWaves += addressId
+        newAddressesForCoffe += addressId
       }
-      rw.put(Keys.wavesBalance(addressId)(height), balance)
-      expiredKeys ++= updateHistory(rw, wbh, kwbh, balanceThreshold, Keys.wavesBalance(addressId))
+      rw.put(Keys.coffeBalance(addressId)(height), balance)
+      expiredKeys ++= updateHistory(rw, wbh, kwbh, balanceThreshold, Keys.coffeBalance(addressId))
       addressId
     }
 
     val changedAddresses = addressTransactions.keys ++ updatedBalanceAddresses
 
-    if (newAddressesForWaves.nonEmpty) {
-      val newSeqNr = rw.get(Keys.addressesForWavesSeqNr) + 1
-      rw.put(Keys.addressesForWavesSeqNr, newSeqNr)
-      rw.put(Keys.addressesForWaves(newSeqNr), newAddressesForWaves)
+    if (newAddressesForCoffe.nonEmpty) {
+      val newSeqNr = rw.get(Keys.addressesForCoffeSeqNr) + 1
+      rw.put(Keys.addressesForCoffeSeqNr, newSeqNr)
+      rw.put(Keys.addressesForCoffe(newSeqNr), newAddressesForCoffe)
     }
 
     for ((addressId, leaseBalance) <- leaseBalances) {
@@ -397,8 +397,8 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
               rw.filterHistory(Keys.assetBalanceHistory(addressId, assetId), currentHeight)
             }
 
-            rw.delete(Keys.wavesBalance(addressId)(currentHeight))
-            rw.filterHistory(Keys.wavesBalanceHistory(addressId), currentHeight)
+            rw.delete(Keys.coffeBalance(addressId)(currentHeight))
+            rw.filterHistory(Keys.coffeBalanceHistory(addressId), currentHeight)
 
             rw.delete(Keys.leaseBalance(addressId)(currentHeight))
             rw.filterHistory(Keys.leaseBalanceHistory(addressId), currentHeight)
@@ -610,11 +610,11 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
 
   override def balanceSnapshots(address: Address, from: Int, to: Int): Seq[BalanceSnapshot] = readOnly { db =>
     db.get(Keys.addressId(address)).fold(Seq(BalanceSnapshot(1, 0, 0, 0))) { addressId =>
-      val wbh = slice(db.get(Keys.wavesBalanceHistory(addressId)), from, to)
+      val wbh = slice(db.get(Keys.coffeBalanceHistory(addressId)), from, to)
       val lbh = slice(db.get(Keys.leaseBalanceHistory(addressId)), from, to)
       for {
         (wh, lh) <- merge(wbh, lbh)
-        wb = balanceAtHeightCache.get((wh, addressId), () => db.get(Keys.wavesBalance(addressId)(wh)))
+        wb = balanceAtHeightCache.get((wh, addressId), () => db.get(Keys.coffeBalance(addressId)(wh)))
         lb = leaseBalanceAtHeightCache.get((lh, addressId), () => db.get(Keys.leaseBalance(addressId)(lh)))
       } yield BalanceSnapshot(wh.max(lh), wb, lb.in, lb.out)
     }
@@ -824,13 +824,13 @@ class LevelDBWriter(writableDB: DB, fs: FunctionalitySettings, val maxCacheSize:
       )
   }
 
-  override def wavesDistribution(height: Int): Map[Address, Long] = readOnly { db =>
+  override def coffeDistribution(height: Int): Map[Address, Long] = readOnly { db =>
     (for {
-      seqNr     <- (1 to db.get(Keys.addressesForWavesSeqNr)).par
-      addressId <- db.get(Keys.addressesForWaves(seqNr)).par
-      history = db.get(Keys.wavesBalanceHistory(addressId))
+      seqNr     <- (1 to db.get(Keys.addressesForCoffeSeqNr)).par
+      addressId <- db.get(Keys.addressesForCoffe(seqNr)).par
+      history = db.get(Keys.coffeBalanceHistory(addressId))
       actualHeight <- history.partition(_ > height)._2.headOption
-      balance = db.get(Keys.wavesBalance(addressId)(actualHeight))
+      balance = db.get(Keys.coffeBalance(addressId)(actualHeight))
       if balance > 0
     } yield db.get(Keys.idToAddress(addressId)) -> balance).toMap.seq
   }

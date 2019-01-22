@@ -1,7 +1,7 @@
-package com.wavesplatform.metrics
+package mir.coffe.metrics
 
 import com.google.common.base.CaseFormat
-import com.wavesplatform.transaction.TransactionParsers
+import mir.coffe.transaction.TransactionParsers
 import kamon.Kamon
 import kamon.metric.TimerMetric
 import supertagged._

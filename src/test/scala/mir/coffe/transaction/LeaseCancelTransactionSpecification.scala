@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.state.{ByteStr, EitherExt2}
+import mir.coffe.TransactionGen
+import mir.coffe.state.{ByteStr, EitherExt2}
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json.Json
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.transaction.lease.{LeaseCancelTransaction, LeaseCancelTransactionV1, LeaseCancelTransactionV2}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.transaction.lease.{LeaseCancelTransaction, LeaseCancelTransactionV1, LeaseCancelTransactionV2}
 
 class LeaseCancelTransactionSpecification extends PropSpec with PropertyChecks with Matchers with TransactionGen {
 

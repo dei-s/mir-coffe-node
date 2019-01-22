@@ -1,15 +1,15 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.state.{Blockchain, Diff, LeaseBalance, Portfolio}
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.smart.SetScriptTransaction
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.state.{Blockchain, Diff, LeaseBalance, Portfolio}
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.smart.SetScriptTransaction
 
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.lang.v1.DenyDuplicateVarNames
-import com.wavesplatform.utils.varNames
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.lang.v1.DenyDuplicateVarNames
+import mir.coffe.utils.varNames
 
 import scala.util.Right
 

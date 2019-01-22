@@ -1,8 +1,8 @@
-package com.wavesplatform
+package mir.coffe
 
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.transaction.Proofs
-import com.wavesplatform.transaction.assets.exchange._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.transaction.Proofs
+import mir.coffe.transaction.assets.exchange._
 
 class OrderOps(val o: Order) extends AnyVal {
   @inline def copy(withV1: OrderV1 => OrderV1, withV2: OrderV2 => OrderV2): Order = {

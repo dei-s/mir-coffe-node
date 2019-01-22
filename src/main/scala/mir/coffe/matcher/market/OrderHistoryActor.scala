@@ -1,14 +1,14 @@
-package com.wavesplatform.matcher.market
+package mir.coffe.matcher.market
 
 import akka.actor.{Actor, Props}
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.api.BatchCancel
-import com.wavesplatform.matcher.market.OrderHistoryActor._
-import com.wavesplatform.matcher.model.Events.{OrderAdded, OrderCanceled, OrderExecuted}
-import com.wavesplatform.matcher.model._
-import com.wavesplatform.metrics.TimerExt
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.api.BatchCancel
+import mir.coffe.matcher.market.OrderHistoryActor._
+import mir.coffe.matcher.model.Events.{OrderAdded, OrderCanceled, OrderExecuted}
+import mir.coffe.matcher.model._
+import mir.coffe.metrics.TimerExt
+import mir.coffe.state.ByteStr
+import mir.coffe.utils.ScorexLogging
 import kamon.Kamon
 import org.iq80.leveldb.DB
 

@@ -1,8 +1,8 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.util.concurrent.ConcurrentHashMap
 
-import com.wavesplatform.{TransactionGen, Version}
+import mir.coffe.{TransactionGen, Version}
 import io.netty.buffer.{ByteBuf, Unpooled}
 import io.netty.channel.Channel
 import io.netty.channel.embedded.EmbeddedChannel
@@ -16,7 +16,7 @@ import scala.util.Random
 class ClientSpec extends FreeSpec with Matchers with MockFactory with TransactionGen {
 
   private val clientHandshake = new Handshake(
-    applicationName = "wavesI",
+    applicationName = "coffeI",
     applicationVersion = Version.VersionTuple,
     nodeName = "test",
     nodeNonce = Random.nextInt(),

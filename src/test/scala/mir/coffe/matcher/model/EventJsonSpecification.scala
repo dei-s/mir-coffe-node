@@ -1,16 +1,16 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
-import com.wavesplatform.NoShrink
-import com.wavesplatform.matcher.MatcherTestData
-import com.wavesplatform.matcher.market.MatcherActor.OrderBookCreated
-import com.wavesplatform.matcher.market.OrderBookActor.Snapshot
-import com.wavesplatform.matcher.model.EventSerializers._
-import com.wavesplatform.matcher.model.MatcherModel.{Level, Price}
+import mir.coffe.NoShrink
+import mir.coffe.matcher.MatcherTestData
+import mir.coffe.matcher.market.MatcherActor.OrderBookCreated
+import mir.coffe.matcher.market.OrderBookActor.Snapshot
+import mir.coffe.matcher.model.EventSerializers._
+import mir.coffe.matcher.model.MatcherModel.{Level, Price}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 import play.api.libs.json.Json
-import com.wavesplatform.transaction.assets.exchange.AssetPair
+import mir.coffe.transaction.assets.exchange.AssetPair
 
 import scala.collection.immutable.TreeMap
 

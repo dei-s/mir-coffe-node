@@ -1,4 +1,4 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
 import net.ceedubs.ficus.Ficus._
@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 class MinerSettingsSpecification extends FlatSpec with Matchers {
   "MinerSettings" should "read values" in {
     val config = ConfigFactory.parseString("""
-        |waves {
+        |coffe {
         |  miner {
         |    enable: yes
         |    quorum: 1
@@ -24,7 +24,7 @@ class MinerSettingsSpecification extends FlatSpec with Matchers {
         |}
       """.stripMargin).resolve()
 
-    val settings = config.as[MinerSettings]("waves.miner")
+    val settings = config.as[MinerSettings]("coffe.miner")
 
     settings.enable should be(true)
     settings.quorum should be(1)

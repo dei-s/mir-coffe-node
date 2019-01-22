@@ -1,21 +1,21 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.api.http.{InvalidAddress, InvalidSignature, TooBigArrayAllocation, TransactionsApiRoute}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.http.ApiMarshallers._
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.Terms.TRUE
-import com.wavesplatform.settings.{TestFunctionalitySettings, WalletSettings}
-import com.wavesplatform.state.{AssetDescription, Blockchain, ByteStr}
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
-import com.wavesplatform.{BlockGen, NoShrink, TestTime, TransactionGen}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.api.http.{InvalidAddress, InvalidSignature, TooBigArrayAllocation, TransactionsApiRoute}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.http.ApiMarshallers._
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.Terms.TRUE
+import mir.coffe.settings.{TestFunctionalitySettings, WalletSettings}
+import mir.coffe.state.{AssetDescription, Blockchain, ByteStr}
+import mir.coffe.transaction.Transaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.utils.Base58
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
+import mir.coffe.{BlockGen, NoShrink, TestTime, TransactionGen}
 import io.netty.channel.group.ChannelGroup
 import org.scalacheck.Gen
 import org.scalacheck.Gen._
@@ -43,7 +43,7 @@ class TransactionsRouteSpec
   private val invalidBase58Gen = alphaNumStr.map(_ + "0")
 
   routePath("/calculateFee") - {
-    "transfer with Waves fee" - {
+    "transfer with Coffe fee" - {
       "TransferTransaction" in {
         val sender: PublicKeyAccount = accountGen.sample.get
         val transferTx = Json.obj(

@@ -1,17 +1,17 @@
-package com.wavesplatform.state.diffs.smart.scenarios
+package mir.coffe.state.diffs.smart.scenarios
 
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.smart.smartEnabledFS
-import com.wavesplatform.state.diffs.{ENOUGH_AMT, assertDiffEi, produce}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.state._
+import mir.coffe.state.diffs.smart.smartEnabledFS
+import mir.coffe.state.diffs.{ENOUGH_AMT, assertDiffEi, produce}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.{GenesisTransaction, Proofs}
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.{GenesisTransaction, Proofs}
 
 class OneProofForNonScriptedAccountTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
 

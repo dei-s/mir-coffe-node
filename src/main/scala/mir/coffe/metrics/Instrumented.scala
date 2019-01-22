@@ -1,6 +1,6 @@
-package com.wavesplatform.metrics
+package mir.coffe.metrics
 
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.utils.ScorexLogging
 import kamon.metric.{Counter, Histogram}
 
 trait Instrumented {

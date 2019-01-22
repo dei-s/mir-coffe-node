@@ -1,9 +1,9 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
 import java.nio.ByteBuffer
 
 import com.google.common.primitives.{Ints, Shorts}
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 
 object KeyHelpers {
   def h(prefix: Short, height: Int): Array[Byte] =

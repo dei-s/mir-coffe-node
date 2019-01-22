@@ -1,9 +1,9 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.network.RxExtensionLoader.ExtensionBlocks
-import com.wavesplatform.network.RxScoreObserver.{BestChannel, ChannelClosedAndSyncWith}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.{BlockGen, RxScheduler, TransactionGen}
+import mir.coffe.network.RxExtensionLoader.ExtensionBlocks
+import mir.coffe.network.RxScoreObserver.{BestChannel, ChannelClosedAndSyncWith}
+import mir.coffe.state.ByteStr
+import mir.coffe.{BlockGen, RxScheduler, TransactionGen}
 import io.netty.channel.Channel
 import io.netty.channel.embedded.EmbeddedChannel
 import io.netty.channel.local.LocalChannel
@@ -11,9 +11,9 @@ import monix.eval.{Coeval, Task}
 import monix.reactive.Observable
 import monix.reactive.subjects.{PublishSubject => PS}
 import org.scalatest.{FreeSpec, Matchers}
-import com.wavesplatform.block.Block
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.block.Block
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
 
 import scala.concurrent.duration._
 

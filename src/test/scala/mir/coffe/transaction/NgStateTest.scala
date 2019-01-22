@@ -1,13 +1,13 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.history._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.state.{Diff, EitherExt2, NgState}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.history._
+import mir.coffe.state.diffs._
+import mir.coffe.state.{Diff, EitherExt2, NgState}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.transaction.transfer._
 
 class NgStateTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
 
@@ -17,7 +17,7 @@ class NgStateTest extends PropSpec with PropertyChecks with Matchers with Transa
       recipient <- accountGen
       ts        <- positiveIntGen
       genesis: GenesisTransaction = GenesisTransaction.create(master, ENOUGH_AMT, ts).explicitGet()
-      payments: Seq[TransferTransactionV1] <- Gen.listOfN(amt, wavesTransferGeneratorP(master, recipient))
+      payments: Seq[TransferTransactionV1] <- Gen.listOfN(amt, coffeTransferGeneratorP(master, recipient))
     } yield (genesis, payments)
 
   property("can forge correctly signed blocks") {

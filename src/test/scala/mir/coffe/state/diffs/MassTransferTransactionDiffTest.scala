@@ -1,17 +1,17 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.state.{EitherExt2, LeaseBalance, Portfolio}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.state.{EitherExt2, LeaseBalance, Portfolio}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.lagonaki.mocks.TestBlock.{create => block}
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.assets.IssueTransactionV1
-import com.wavesplatform.transaction.transfer.MassTransferTransaction.ParsedTransfer
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.lagonaki.mocks.TestBlock.{create => block}
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.assets.IssueTransactionV1
+import mir.coffe.transaction.transfer.MassTransferTransaction.ParsedTransfer
 
 class MassTransferTransactionDiffTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
 
@@ -63,7 +63,7 @@ class MassTransferTransactionDiffTest extends PropSpec with PropertyChecks with 
       }
     }
 
-    import com.wavesplatform.transaction.transfer.MassTransferTransaction.{MaxTransferCount => Max}
+    import mir.coffe.transaction.transfer.MassTransferTransaction.{MaxTransferCount => Max}
     Seq(0, 1, Max) foreach testDiff // test edge cases
     Gen.choose(2, Max - 1) map testDiff
   }

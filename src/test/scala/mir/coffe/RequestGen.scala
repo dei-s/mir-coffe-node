@@ -1,16 +1,16 @@
-package com.wavesplatform
+package mir.coffe
 
 import org.scalacheck.Gen.{alphaNumChar, choose, listOfN, oneOf}
 import org.scalacheck.{Arbitrary, Gen => G}
 import org.scalatest.Suite
-import com.wavesplatform.account.Alias
-import com.wavesplatform.api.http.alias.SignedCreateAliasV1Request
-import com.wavesplatform.api.http.assets._
-import com.wavesplatform.api.http.leasing.{SignedLeaseCancelV1Request, SignedLeaseV1Request}
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.crypto._
+import mir.coffe.account.Alias
+import mir.coffe.api.http.alias.SignedCreateAliasV1Request
+import mir.coffe.api.http.assets._
+import mir.coffe.api.http.leasing.{SignedLeaseCancelV1Request, SignedLeaseV1Request}
+import mir.coffe.utils.Base58
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.transfer._
+import mir.coffe.crypto._
 
 trait RequestGen extends TransactionGen { _: Suite =>
   val nonPositiveLong: G[Long] = choose(Long.MinValue, 0).label("non-positive value")

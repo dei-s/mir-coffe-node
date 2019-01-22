@@ -1,8 +1,8 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
-import com.wavesplatform.crypto
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.crypto
+import mir.coffe.utils.Base58
+import mir.coffe.transaction.ValidationError.GenericError
 
 import scala.util.{Failure, Success}
 

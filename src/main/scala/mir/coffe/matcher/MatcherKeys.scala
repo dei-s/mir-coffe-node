@@ -1,17 +1,17 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import java.nio.ByteBuffer
 
 import com.google.common.primitives.{Ints, Longs, Shorts}
-import com.wavesplatform.account.Address
-import com.wavesplatform.database.Key
-import com.wavesplatform.matcher.model.OrderInfo
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.AssetId
-import com.wavesplatform.transaction.assets.exchange._
+import mir.coffe.account.Address
+import mir.coffe.database.Key
+import mir.coffe.matcher.model.OrderInfo
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.AssetId
+import mir.coffe.transaction.assets.exchange._
 
 object MatcherKeys {
-  import com.wavesplatform.database.KeyHelpers._
+  import mir.coffe.database.KeyHelpers._
 
   private def assetIdToBytes(assetId: Option[AssetId]): Array[Byte] = assetId.fold(Array.emptyByteArray)(_.arr)
 

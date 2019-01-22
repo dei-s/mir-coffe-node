@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.primitives.Bytes
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
-import com.wavesplatform.account._
-import com.wavesplatform.crypto._
+import mir.coffe.account._
+import mir.coffe.crypto._
 import scala.util.{Failure, Success, Try}
 
 case class CreateAliasTransactionV1 private (sender: PublicKeyAccount, alias: Alias, fee: Long, timestamp: Long, signature: ByteStr)

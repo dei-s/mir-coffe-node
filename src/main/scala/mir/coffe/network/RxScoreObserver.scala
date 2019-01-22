@@ -1,11 +1,11 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.util.concurrent.TimeUnit
 
 import cats._
 import cats.implicits._
 import com.google.common.cache.CacheBuilder
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.utils.ScorexLogging
 import io.netty.channel._
 import monix.eval.Coeval
 import monix.execution.Scheduler

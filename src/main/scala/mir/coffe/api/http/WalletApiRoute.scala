@@ -1,13 +1,13 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import javax.ws.rs.Path
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.settings.RestAPISettings
+import mir.coffe.settings.RestAPISettings
 import io.swagger.annotations._
 import play.api.libs.json.Json
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.utils.Base58
+import mir.coffe.wallet.Wallet
 
 @Path("/wallet")
 @Api(value = "/wallet")

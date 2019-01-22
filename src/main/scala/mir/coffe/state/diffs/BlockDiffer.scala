@@ -1,21 +1,21 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.Monoid
 import cats.implicits._
 import cats.syntax.either.catsSyntaxEitherId
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.metrics.Instrumented
-import com.wavesplatform.mining.MiningConstraint
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.state.patch.{CancelAllLeases, CancelInvalidLeaseIn, CancelLeaseOverflow}
-import com.wavesplatform.state.reader.CompositeBlockchain.composite
-import com.wavesplatform.account.Address
-import com.wavesplatform.utils.ScorexLogging
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.transaction.ValidationError.ActivationError
-import com.wavesplatform.transaction.{Transaction, ValidationError}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.metrics.Instrumented
+import mir.coffe.mining.MiningConstraint
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.state.patch.{CancelAllLeases, CancelInvalidLeaseIn, CancelLeaseOverflow}
+import mir.coffe.state.reader.CompositeBlockchain.composite
+import mir.coffe.account.Address
+import mir.coffe.utils.ScorexLogging
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.transaction.ValidationError.ActivationError
+import mir.coffe.transaction.{Transaction, ValidationError}
 
 object BlockDiffer extends ScorexLogging with Instrumented {
 
@@ -116,7 +116,7 @@ object BlockDiffer extends ScorexLogging with Instrumented {
               portfolio.assets.map {
                 case (assetId, assetFee) =>
                   val baseFee = blockchain.assetDescription(assetId).get.sponsorship
-                  Sponsorship.toWaves(assetFee, baseFee)
+                  Sponsorship.toCoffe(assetFee, baseFee)
               }.sum)
         else portfolio
 

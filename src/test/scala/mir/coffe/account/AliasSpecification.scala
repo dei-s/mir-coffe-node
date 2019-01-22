@@ -1,6 +1,6 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 

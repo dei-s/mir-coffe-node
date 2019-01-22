@@ -1,16 +1,16 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
 import java.io.NotSerializableException
 import java.nio.ByteBuffer
 
 import akka.serialization._
-import com.wavesplatform.matcher.market.MatcherActor.OrderBookCreated
-import com.wavesplatform.matcher.market.OrderBookActor.Snapshot
-import com.wavesplatform.matcher.market.{MatcherActor, OrderBookActor}
-import com.wavesplatform.matcher.model.Events._
-import com.wavesplatform.matcher.model.MatcherModel.{Level, Price}
-import com.wavesplatform.metrics.TimerExt
-import com.wavesplatform.transaction.assets.exchange._
+import mir.coffe.matcher.market.MatcherActor.OrderBookCreated
+import mir.coffe.matcher.market.OrderBookActor.Snapshot
+import mir.coffe.matcher.market.{MatcherActor, OrderBookActor}
+import mir.coffe.matcher.model.Events._
+import mir.coffe.matcher.model.MatcherModel.{Level, Price}
+import mir.coffe.metrics.TimerExt
+import mir.coffe.transaction.assets.exchange._
 import kamon.Kamon
 import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._

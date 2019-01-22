@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction.transfer
+package mir.coffe.transaction.transfer
 
 import com.google.common.primitives.Bytes
-import com.wavesplatform.account.{AddressOrAlias, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction._
+import mir.coffe.account.{AddressOrAlias, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction._
 import monix.eval.Coeval
-import com.wavesplatform.crypto._
+import mir.coffe.crypto._
 
 import scala.util.{Failure, Success, Try}
 

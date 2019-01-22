@@ -1,4 +1,4 @@
-package com.wavesplatform.database
+package mir.coffe.database
 import java.util
 
 trait Key[V] {

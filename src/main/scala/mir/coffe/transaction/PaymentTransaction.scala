@@ -1,15 +1,15 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import java.util
 
 import com.google.common.primitives.{Bytes, Ints, Longs}
-import com.wavesplatform.crypto
-import com.wavesplatform.state._
+import mir.coffe.crypto
+import mir.coffe.state._
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.{Address, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.transaction.TransactionParsers._
-import com.wavesplatform.crypto._
+import mir.coffe.account.{Address, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.transaction.TransactionParsers._
+import mir.coffe.crypto._
 import scala.util.{Failure, Success, Try}
 
 case class PaymentTransaction private (sender: PublicKeyAccount, recipient: Address, amount: Long, fee: Long, timestamp: Long, signature: ByteStr)
@@ -65,7 +65,7 @@ object PaymentTransaction extends TransactionParserFor[PaymentTransaction] with 
              timestamp: Long,
              signature: ByteStr): Either[ValidationError, TransactionT] = {
     if (amount <= 0) {
-      Left(ValidationError.NegativeAmount(amount, "waves")) //CHECK IF AMOUNT IS POSITIVE
+      Left(ValidationError.NegativeAmount(amount, "coffe")) //CHECK IF AMOUNT IS POSITIVE
     } else if (fee <= 0) {
       Left(ValidationError.InsufficientFee()) //CHECK IF FEE IS POSITIVE
     } else if (Try(Math.addExact(amount, fee)).isFailure) {

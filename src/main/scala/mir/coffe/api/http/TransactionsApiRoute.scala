@@ -1,27 +1,27 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.account.Address
-import com.wavesplatform.api.http.DataRequest._
-import com.wavesplatform.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request}
-import com.wavesplatform.api.http.assets.SponsorFeeRequest._
-import com.wavesplatform.api.http.assets._
-import com.wavesplatform.api.http.leasing._
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.settings.{FunctionalitySettings, RestAPISettings}
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.state.{Blockchain, ByteStr}
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.lease._
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils.Time
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.Address
+import mir.coffe.api.http.DataRequest._
+import mir.coffe.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request}
+import mir.coffe.api.http.assets.SponsorFeeRequest._
+import mir.coffe.api.http.assets._
+import mir.coffe.api.http.leasing._
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.settings.{FunctionalitySettings, RestAPISettings}
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.state.{Blockchain, ByteStr}
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.lease._
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils.Time
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
 import io.netty.channel.group.ChannelGroup
 import io.swagger.annotations._
 import javax.ws.rs.Path
@@ -173,7 +173,7 @@ case class TransactionsApiRoute(settings: RestAPISettings,
           )
           createTransaction(senderPk, enrichedJsv) { tx =>
             CommonValidation.getMinFee(blockchain, functionalitySettings, blockchain.height, tx).map {
-              case (assetId, assetAmount, wavesAmount) =>
+              case (assetId, assetAmount, coffeAmount) =>
                 Json.obj(
                   "feeAssetId" -> assetId,
                   "feeAmount"  -> assetAmount
@@ -286,10 +286,10 @@ case class TransactionsApiRoute(settings: RestAPISettings,
   }
 
   private def txToExtendedJson(tx: Transaction): JsObject = {
-    import com.wavesplatform.transaction.lease.LeaseTransaction
+    import mir.coffe.transaction.lease.LeaseTransaction
     tx match {
       case lease: LeaseTransaction =>
-        import com.wavesplatform.transaction.lease.LeaseTransaction.Status._
+        import mir.coffe.transaction.lease.LeaseTransaction.Status._
         lease.json() ++ Json.obj("status" -> (if (blockchain.leaseDetails(lease.id()).exists(_.isActive)) Active else Canceled))
       case leaseCancel: LeaseCancelTransaction =>
         leaseCancel.json() ++ Json.obj("lease" -> blockchain.transactionInfo(leaseCancel.leaseId).map(_._2.json()).getOrElse[JsValue](JsNull))
@@ -302,7 +302,7 @@ case class TransactionsApiRoute(settings: RestAPISettings,
     * Currently implemented for MassTransfer transaction only.
     */
   private def txToCompactJson(address: Address, tx: Transaction): JsObject = {
-    import com.wavesplatform.transaction.transfer._
+    import mir.coffe.transaction.transfer._
     tx match {
       case mtt: MassTransferTransaction if mtt.sender.toAddress != address =>
         val addresses = blockchain.aliasesOfAddress(address) :+ address

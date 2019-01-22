@@ -1,7 +1,7 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.Config
-import com.wavesplatform.mining.Miner
+import mir.coffe.mining.Miner
 
 import scala.concurrent.duration.FiniteDuration
 
@@ -18,7 +18,7 @@ case class MinerSettings(enable: Boolean,
 }
 
 object MinerSettings {
-  val configPath = "waves.miner"
+  val configPath = "coffe.miner"
   def fromConfig(c: Config): MinerSettings = {
     import net.ceedubs.ficus.Ficus._
 

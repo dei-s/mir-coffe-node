@@ -1,16 +1,16 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
 import java.util
 
 import cats.syntax.monoid._
 import com.google.common.cache.{CacheBuilder, CacheLoader, LoadingCache}
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.{AssetId, Transaction}
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.utils.ScorexLogging
-import com.wavesplatform.metrics.LevelDBStats
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.state._
+import mir.coffe.transaction.{AssetId, Transaction}
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.utils.ScorexLogging
+import mir.coffe.metrics.LevelDBStats
 
 import scala.collection.JavaConverters._
 import scala.concurrent.duration._
@@ -183,7 +183,7 @@ trait Caches extends Blockchain with ScorexLogging {
   protected def doAppend(block: Block,
                          carryFee: Long,
                          addresses: Map[Address, BigInt],
-                         wavesBalances: Map[BigInt, Long],
+                         coffeBalances: Map[BigInt, Long],
                          assetBalances: Map[BigInt, Map[ByteStr, Long]],
                          leaseBalances: Map[BigInt, LeaseBalance],
                          leaseStates: Map[ByteStr, Boolean],
@@ -217,7 +217,7 @@ trait Caches extends Blockchain with ScorexLogging {
     log.trace(s"CACHE newAddressIds = $newAddressIds")
     log.trace(s"CACHE lastAddressId = $lastAddressId")
 
-    val wavesBalances        = Map.newBuilder[BigInt, Long]
+    val coffeBalances        = Map.newBuilder[BigInt, Long]
     val assetBalances        = Map.newBuilder[BigInt, Map[ByteStr, Long]]
     val leaseBalances        = Map.newBuilder[BigInt, LeaseBalance]
     val updatedLeaseBalances = Map.newBuilder[Address, LeaseBalance]
@@ -226,7 +226,7 @@ trait Caches extends Blockchain with ScorexLogging {
     for ((address, portfolioDiff) <- diff.portfolios) {
       val newPortfolio = portfolioCache.get(address).combine(portfolioDiff)
       if (portfolioDiff.balance != 0) {
-        wavesBalances += addressId(address) -> newPortfolio.balance
+        coffeBalances += addressId(address) -> newPortfolio.balance
       }
 
       if (portfolioDiff.lease != LeaseBalance.empty) {
@@ -260,7 +260,7 @@ trait Caches extends Blockchain with ScorexLogging {
       block,
       carryFee,
       newAddressIds,
-      wavesBalances.result(),
+      coffeBalances.result(),
       assetBalances.result(),
       leaseBalances.result(),
       diff.leaseState,

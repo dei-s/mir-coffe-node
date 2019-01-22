@@ -1,20 +1,20 @@
-package com.wavesplatform.matcher.smart
+package mir.coffe.matcher.smart
 
 import cats.data.EitherT
 import cats.implicits._
 import cats.kernel.Monoid
-import com.wavesplatform.lang.v1.compiler.Terms.{CONST_LONG, CaseObj}
-import com.wavesplatform.lang.v1.compiler.Types.FINAL
-import com.wavesplatform.lang.v1.evaluator.FunctionIds._
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.Bindings.{ordType, orderObject}
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext, _}
-import com.wavesplatform.lang.v1.traits.domain.OrdType
-import com.wavesplatform.lang.v1.{CTX, FunctionHeader}
-import com.wavesplatform.lang.{Global, ScriptVersion}
-import com.wavesplatform.transaction.assets.exchange.Order
-import com.wavesplatform.transaction.smart.RealTransactionWrapper
+import mir.coffe.lang.v1.compiler.Terms.{CONST_LONG, CaseObj}
+import mir.coffe.lang.v1.compiler.Types.FINAL
+import mir.coffe.lang.v1.evaluator.FunctionIds._
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.Bindings.{ordType, orderObject}
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.Types._
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext, _}
+import mir.coffe.lang.v1.traits.domain.OrdType
+import mir.coffe.lang.v1.{CTX, FunctionHeader}
+import mir.coffe.lang.{Global, ScriptVersion}
+import mir.coffe.transaction.assets.exchange.Order
+import mir.coffe.transaction.smart.RealTransactionWrapper
 import monix.eval.Coeval
 
 object MatcherContext {
@@ -34,7 +34,7 @@ object MatcherContext {
     val matcherTypes        = Seq(addressType, orderType, assetPairType)
 
     val matcherVars: Map[String, ((FINAL, String), LazyVal)] = Map(
-      ("height", ((com.wavesplatform.lang.v1.compiler.Types.LONG, "undefined height placeholder"), LazyVal(EitherT(heightCoeval)))),
+      ("height", ((mir.coffe.lang.v1.compiler.Types.LONG, "undefined height placeholder"), LazyVal(EitherT(heightCoeval)))),
       ("tx", ((orderType.typeRef, "Processing order"), LazyVal(EitherT(inputEntityCoeval)))),
       ("Sell", ((ordTypeType, "Sell OrderType"), LazyVal(EitherT(sellOrdTypeCoeval)))),
       ("Buy", ((ordTypeType, "Buy OrderType"), LazyVal(EitherT(buyOrdTypeCoeval))))
@@ -67,7 +67,7 @@ object MatcherContext {
     val addressFromStringF: BaseFunction    = inaccessibleUserFunction("addressFromStringF")
     val addressFromRecipientF: BaseFunction = inaccessibleFunction("addressFromRecipientF", ADDRESSFROMRECIPIENT)
     val assetBalanceF: BaseFunction         = inaccessibleFunction("assetBalanceF", ACCOUNTASSETBALANCE)
-    val wavesBalanceF: BaseFunction         = inaccessibleUserFunction("wavesBalanceF")
+    val coffeBalanceF: BaseFunction         = inaccessibleUserFunction("coffeBalanceF")
 
     val functions = Array(
       txByIdF,
@@ -80,7 +80,7 @@ object MatcherContext {
       addressFromStringF,
       addressFromRecipientF,
       assetBalanceF,
-      wavesBalanceF
+      coffeBalanceF
     )
 
     val matcherContext = CTX(matcherTypes, matcherVars, functions).evaluationContext

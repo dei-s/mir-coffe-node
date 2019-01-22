@@ -1,15 +1,15 @@
-package com.wavesplatform.transaction.assets
+package mir.coffe.transaction.assets
 
 import java.nio.charset.StandardCharsets
 
 import cats.implicits._
 import com.google.common.primitives.{Bytes, Longs}
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.crypto._
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.validation._
-import com.wavesplatform.transaction.{AssetId, ProvenTransaction, ValidationError, VersionedTransaction}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.crypto._
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.validation._
+import mir.coffe.transaction.{AssetId, ProvenTransaction, ValidationError, VersionedTransaction}
 import monix.eval.Coeval
 import play.api.libs.json.Json
 

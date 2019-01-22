@@ -1,24 +1,24 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.base.Charsets
-import com.wavesplatform.account._
-import com.wavesplatform.api.http.DataRequest._
-import com.wavesplatform.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request, SignedCreateAliasV1Request, SignedCreateAliasV2Request}
-import com.wavesplatform.api.http.assets.SponsorFeeRequest._
-import com.wavesplatform.api.http.assets._
-import com.wavesplatform.api.http.leasing.{LeaseCancelV1Request, LeaseCancelV2Request, LeaseV1Request, LeaseV2Request, _}
-import com.wavesplatform.api.http.{DataRequest, SignedDataRequest, versionReads}
-import com.wavesplatform.crypto.SignatureLength
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.assets.exchange.{ExchangeTransactionV1, ExchangeTransactionV2}
-import com.wavesplatform.transaction.lease.{LeaseCancelTransactionV1, LeaseCancelTransactionV2, LeaseTransactionV1, LeaseTransactionV2}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils.{Base58, Time}
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account._
+import mir.coffe.api.http.DataRequest._
+import mir.coffe.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request, SignedCreateAliasV1Request, SignedCreateAliasV2Request}
+import mir.coffe.api.http.assets.SponsorFeeRequest._
+import mir.coffe.api.http.assets._
+import mir.coffe.api.http.leasing.{LeaseCancelV1Request, LeaseCancelV2Request, LeaseV1Request, LeaseV2Request, _}
+import mir.coffe.api.http.{DataRequest, SignedDataRequest, versionReads}
+import mir.coffe.crypto.SignatureLength
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.assets.exchange.{ExchangeTransactionV1, ExchangeTransactionV2}
+import mir.coffe.transaction.lease.{LeaseCancelTransactionV1, LeaseCancelTransactionV2, LeaseTransactionV1, LeaseTransactionV2}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils.{Base58, Time}
+import mir.coffe.wallet.Wallet
 import play.api.libs.json.JsValue
 
 object TransactionFactory {

@@ -1,8 +1,8 @@
-package com.wavesplatform.transaction.api.http.leasing
+package mir.coffe.transaction.api.http.leasing
 
 import org.scalatest.{FunSuite, Matchers}
 import play.api.libs.json.Json
-import com.wavesplatform.api.http.leasing.{LeaseCancelV1Request, LeaseV1Request, SignedLeaseCancelV1Request, SignedLeaseV1Request}
+import mir.coffe.api.http.leasing.{LeaseCancelV1Request, LeaseV1Request, SignedLeaseCancelV1Request, SignedLeaseV1Request}
 
 class LeaseV1RequestsTests extends FunSuite with Matchers {
 

@@ -1,23 +1,23 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
 import cats.implicits._
-import com.wavesplatform.account.{Address, PublicKeyAccount}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.lang.v1.compiler.Terms.{EVALUATED, FALSE, TRUE}
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.api.DBUtils
-import com.wavesplatform.matcher.api.DBUtils.indexes.active.MaxElements
-import com.wavesplatform.matcher.model.Events.OrderExecuted
-import com.wavesplatform.matcher.model.OrderHistory.OrderInfoChange
-import com.wavesplatform.matcher.smart.MatcherScriptRunner
-import com.wavesplatform.metrics.TimerExt
-import com.wavesplatform.state._
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.smart.Verifier
-import com.wavesplatform.transaction.smart.script.ScriptRunner
-import com.wavesplatform.utils.Time
+import mir.coffe.account.{Address, PublicKeyAccount}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.lang.v1.compiler.Terms.{EVALUATED, FALSE, TRUE}
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.api.DBUtils
+import mir.coffe.matcher.api.DBUtils.indexes.active.MaxElements
+import mir.coffe.matcher.model.Events.OrderExecuted
+import mir.coffe.matcher.model.OrderHistory.OrderInfoChange
+import mir.coffe.matcher.smart.MatcherScriptRunner
+import mir.coffe.metrics.TimerExt
+import mir.coffe.state._
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.smart.Verifier
+import mir.coffe.transaction.smart.script.ScriptRunner
+import mir.coffe.utils.Time
 import kamon.Kamon
 import org.iq80.leveldb.DB
 import shapeless.Coproduct

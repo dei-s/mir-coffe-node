@@ -1,12 +1,12 @@
-package com.wavesplatform.matcher.smart
+package mir.coffe.matcher.smart
 
 import cats.implicits._
-import com.wavesplatform.account.AddressScheme
-import com.wavesplatform.lang.ExprEvaluator.Log
-import com.wavesplatform.lang.v1.compiler.Terms.EVALUATED
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.transaction.assets.exchange.Order
-import com.wavesplatform.transaction.smart.script.Script
+import mir.coffe.account.AddressScheme
+import mir.coffe.lang.ExprEvaluator.Log
+import mir.coffe.lang.v1.compiler.Terms.EVALUATED
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.transaction.assets.exchange.Order
+import mir.coffe.transaction.smart.script.Script
 import monix.eval.Coeval
 
 object MatcherScriptRunner {

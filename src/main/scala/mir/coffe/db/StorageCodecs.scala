@@ -1,8 +1,8 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
 import com.google.common.primitives.Ints
-import com.wavesplatform.network.{BlockCheckpoint, Checkpoint}
-import com.wavesplatform.state.EitherExt2
+import mir.coffe.network.{BlockCheckpoint, Checkpoint}
+import mir.coffe.state.EitherExt2
 
 import scala.collection.generic.CanBuildFrom
 import scala.util.Try

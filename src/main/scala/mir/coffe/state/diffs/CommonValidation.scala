@@ -1,18 +1,18 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats._
-import com.wavesplatform.account.Address
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.features.{BlockchainFeature, BlockchainFeatures}
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.ValidationError._
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.lease._
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.Address
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.features.{BlockchainFeature, BlockchainFeatures}
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.transaction.ValidationError._
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.lease._
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.transfer._
 
 import scala.concurrent.duration._
 import scala.util.{Left, Right}
@@ -58,15 +58,15 @@ object CommonValidation {
         }
 
         val spendings       = Monoid.combine(amountDiff, feeDiff)
-        val oldWavesBalance = blockchain.portfolio(sender).balance
+        val oldCoffeBalance = blockchain.portfolio(sender).balance
 
-        val newWavesBalance = oldWavesBalance + spendings.balance
-        if (newWavesBalance < 0) {
+        val newCoffeBalance = oldCoffeBalance + spendings.balance
+        if (newCoffeBalance < 0) {
           Left(
             GenericError(
               "Attempt to transfer unavailable funds: Transaction application leads to " +
-                s"negative waves balance to (at least) temporary negative state, current balance equals $oldWavesBalance, " +
-                s"spends equals ${spendings.balance}, result is $newWavesBalance"))
+                s"negative coffe balance to (at least) temporary negative state, current balance equals $oldCoffeBalance, " +
+                s"spends equals ${spendings.balance}, result is $newCoffeBalance"))
         } else if (spendings.assets.nonEmpty) {
           val oldAssetBalances = blockchain.portfolio(sender).assets
           val balanceError = spendings.assets.collectFirst {
@@ -199,12 +199,12 @@ object CommonValidation {
             case Some(assetId) =>
               for {
                 assetInfo <- blockchain.assetDescription(assetId).toRight(GenericError(s"Asset $assetId does not exist, cannot be used to pay fees"))
-                wavesFee <- Either.cond(
+                coffeFee <- Either.cond(
                   assetInfo.sponsorship > 0,
                   feeInUnits * FeeUnit,
                   GenericError(s"Asset $assetId is not sponsored, cannot be used to pay fees")
                 )
-              } yield (Some((assetId, assetInfo)), wavesFee)
+              } yield (Some((assetId, assetInfo)), coffeFee)
           }
         } yield r
 
@@ -239,9 +239,9 @@ object CommonValidation {
       .flatMap(feeAfterSmartTokens)
       .flatMap(feeAfterSmartAccounts)
       .map {
-        case (Some((assetId, assetInfo)), amountInWaves) =>
-          (Some(assetId), Sponsorship.fromWaves(amountInWaves, assetInfo.sponsorship), amountInWaves)
-        case (None, amountInWaves) => (None, amountInWaves, amountInWaves)
+        case (Some((assetId, assetInfo)), amountInCoffe) =>
+          (Some(assetId), Sponsorship.fromCoffe(amountInCoffe, assetInfo.sponsorship), amountInCoffe)
+        case (None, amountInCoffe) => (None, amountInCoffe, amountInCoffe)
       }
   }
 
@@ -249,14 +249,14 @@ object CommonValidation {
     if (height >= Sponsorship.sponsoredFeesSwitchHeight(blockchain, fs)) {
       for {
         minAFee <- getMinFee(blockchain, fs, height, tx)
-        minWaves   = minAFee._3
+        minCoffe   = minAFee._3
         minFee     = minAFee._2
         feeAssetId = minAFee._1
         _ <- Either.cond(
           minFee <= tx.assetFee._2,
           (),
           GenericError(
-            s"Fee in ${feeAssetId.fold("WAVES")(_.toString)} for ${tx.builder.classTag} does not exceed minimal value of $minWaves WAVES: ${tx.assetFee._2}")
+            s"Fee in ${feeAssetId.fold("WAVES")(_.toString)} for ${tx.builder.classTag} does not exceed minimal value of $minCoffe WAVES: ${tx.assetFee._2}")
         )
       } yield ()
     } else {

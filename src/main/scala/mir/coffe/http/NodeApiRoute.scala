@@ -1,16 +1,16 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import java.time.Instant
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.Shutdownable
-import com.wavesplatform.settings.{Constants, RestAPISettings}
-import com.wavesplatform.state.Blockchain
+import mir.coffe.Shutdownable
+import mir.coffe.settings.{Constants, RestAPISettings}
+import mir.coffe.state.Blockchain
 import io.swagger.annotations._
 import javax.ws.rs.Path
 import play.api.libs.json.Json
-import com.wavesplatform.api.http.{ApiRoute, CommonApiFunctions}
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.api.http.{ApiRoute, CommonApiFunctions}
+import mir.coffe.utils.ScorexLogging
 
 @Path("/node")
 @Api(value = "node")
@@ -24,10 +24,10 @@ case class NodeApiRoute(settings: RestAPISettings, blockchain: Blockchain, appli
   }
 
   @Path("/version")
-  @ApiOperation(value = "Version", notes = "Get Waves node version", httpMethod = "GET")
+  @ApiOperation(value = "Version", notes = "Get Coffe node version", httpMethod = "GET")
   @ApiResponses(
     Array(
-      new ApiResponse(code = 200, message = "Json Waves node version")
+      new ApiResponse(code = 200, message = "Json Coffe node version")
     ))
   def version: Route = (get & path("version")) {
     complete(Json.obj("version" -> Constants.AgentName))

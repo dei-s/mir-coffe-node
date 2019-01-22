@@ -1,4 +1,4 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import scala.concurrent.duration.FiniteDuration
 

@@ -1,12 +1,12 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.implicits._
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.account.Address
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.account.Address
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.transfer._
 
 import scala.util.Right
 
@@ -39,8 +39,8 @@ object TransferTransactionDiff {
                 .assetDescription(aid)
                 .collect {
                   case desc if desc.sponsorship > 0 =>
-                    val feeInWaves = Sponsorship.toWaves(tx.fee, desc.sponsorship)
-                    Map(desc.issuer.toAddress -> Portfolio(-feeInWaves, LeaseBalance.empty, Map(aid -> tx.fee)))
+                    val feeInCoffe = Sponsorship.toCoffe(tx.fee, desc.sponsorship)
+                    Map(desc.issuer.toAddress -> Portfolio(-feeInCoffe, LeaseBalance.empty, Map(aid -> tx.fee)))
                 }
                 .getOrElse(Map.empty)
               senderPf.combine(sponsorPf)

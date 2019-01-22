@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.base.Throwables
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.lang.ExprEvaluator.Log
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.assets.exchange.Order
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.lang.ExprEvaluator.Log
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.assets.exchange.Order
 
 import scala.util.Either
 

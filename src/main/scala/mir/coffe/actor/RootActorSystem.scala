@@ -1,8 +1,8 @@
-package com.wavesplatform.actor
+package mir.coffe.actor
 
 import akka.actor.{ActorSystem, AllForOneStrategy, SupervisorStrategy, SupervisorStrategyConfigurator}
 import com.typesafe.config.Config
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.utils.ScorexLogging
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration

@@ -1,13 +1,13 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.net.InetSocketAddress
 
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.transaction.{Signed, Transaction}
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.transaction.{Signed, Transaction}
 
 sealed trait Message
 

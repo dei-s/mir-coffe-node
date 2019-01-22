@@ -1,11 +1,11 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import java.io.File
 
 import com.typesafe.config.Config
-import com.wavesplatform.account.Address
-import com.wavesplatform.matcher.api.OrderBookSnapshotHttpCache
-import com.wavesplatform.state.EitherExt2
+import mir.coffe.account.Address
+import mir.coffe.matcher.api.OrderBookSnapshotHttpCache
+import mir.coffe.state.EitherExt2
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader.arbitraryTypeValueReader
 import net.ceedubs.ficus.readers.{NameMapper, ValueReader}
@@ -42,7 +42,7 @@ object MatcherSettings {
   implicit val addressReader: ValueReader[Address] = (cfg, path) => Address.fromString(cfg.getString(path)).explicitGet()
 
   implicit val chosenCase: NameMapper = net.ceedubs.ficus.readers.namemappers.implicits.hyphenCase
-  val configPath: String              = "waves.matcher"
+  val configPath: String              = "coffe.matcher"
 
   def fromConfig(config: Config): MatcherSettings = {
     val enabled               = config.as[Boolean](s"$configPath.enable")

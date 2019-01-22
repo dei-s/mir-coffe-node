@@ -1,23 +1,23 @@
-package com.wavesplatform.matcher.market
+package mir.coffe.matcher.market
 
 import com.google.common.base.Charsets
-import com.wavesplatform.OrderOps._
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.features.{BlockchainFeature, BlockchainFeatures}
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.v1.compiler.Terms
-import com.wavesplatform.matcher.model.Events.{OrderAdded, OrderCanceled}
-import com.wavesplatform.matcher.model._
-import com.wavesplatform.matcher.{MatcherSettings, MatcherTestData}
-import com.wavesplatform.settings.Constants
-import com.wavesplatform.state.diffs.produce
-import com.wavesplatform.state.{AssetDescription, Blockchain, ByteStr, LeaseBalance, Portfolio}
-import com.wavesplatform.transaction.Proofs
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.smart.script.ScriptCompiler
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.utils.randomBytes
-import com.wavesplatform.{NoShrink, TestTime, WithDB}
+import mir.coffe.OrderOps._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.features.{BlockchainFeature, BlockchainFeatures}
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.v1.compiler.Terms
+import mir.coffe.matcher.model.Events.{OrderAdded, OrderCanceled}
+import mir.coffe.matcher.model._
+import mir.coffe.matcher.{MatcherSettings, MatcherTestData}
+import mir.coffe.settings.Constants
+import mir.coffe.state.diffs.produce
+import mir.coffe.state.{AssetDescription, Blockchain, ByteStr, LeaseBalance, Portfolio}
+import mir.coffe.transaction.Proofs
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.smart.script.ScriptCompiler
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.utils.randomBytes
+import mir.coffe.{NoShrink, TestTime, WithDB}
 import org.scalacheck.Gen
 import org.scalamock.scalatest.PathMockFactory
 import org.scalatest._
@@ -34,7 +34,7 @@ class OrderValidatorSpecification
     with NoShrink {
 
   private val wbtc         = mkAssetId("WBTC")
-  private val pairWavesBtc = AssetPair(None, Some(wbtc))
+  private val pairCoffeBtc = AssetPair(None, Some(wbtc))
   private val defaultTs    = 1000
 
   private val defaultPortfolio = Portfolio(0, LeaseBalance.empty, Map(wbtc -> 10 * Constants.UnitsInWave))
@@ -309,7 +309,7 @@ class OrderValidatorSpecification
     val order = OrderV2(
       senderPublicKey = pk,
       matcherPublicKey = MatcherAccount,
-      assetPair = pairWavesBtc,
+      assetPair = pairCoffeBtc,
       amount = 100 * Constants.UnitsInWave,
       price = (0.0022 * Order.PriceConstant).toLong,
       timestamp = System.currentTimeMillis(),
@@ -326,10 +326,10 @@ class OrderValidatorSpecification
     Some(AssetDescription(MatcherAccount, Array.emptyByteArray, Array.emptyByteArray, decimals, reissuable = false, BigInt(0), None, 0))
 
   private def newBuyOrder: Order =
-    buy(pair = pairWavesBtc, amount = 100 * Constants.UnitsInWave, price = 0.0022, matcherFee = Some((0.003 * Constants.UnitsInWave).toLong))
+    buy(pair = pairCoffeBtc, amount = 100 * Constants.UnitsInWave, price = 0.0022, matcherFee = Some((0.003 * Constants.UnitsInWave).toLong))
 
   private def newBuyOrder(ts: Long): Order =
-    buy(pair = pairWavesBtc,
+    buy(pair = pairCoffeBtc,
         amount = 100 * Constants.UnitsInWave,
         price = 0.0022,
         matcherFee = Some((0.003 * Constants.UnitsInWave).toLong),
@@ -337,7 +337,7 @@ class OrderValidatorSpecification
 
   private def newBuyOrder(pk: PrivateKeyAccount, ts: Long = System.currentTimeMillis(), version: Byte = 1) =
     buy(
-      pair = pairWavesBtc,
+      pair = pairCoffeBtc,
       amount = 100 * Constants.UnitsInWave,
       price = 0.0022,
       sender = Some(pk),

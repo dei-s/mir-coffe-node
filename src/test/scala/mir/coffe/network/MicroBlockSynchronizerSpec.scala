@@ -1,8 +1,8 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.settings.SynchronizationSettings.MicroblockSynchronizerSettings
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.{BlockGen, RxScheduler, TransactionGen}
+import mir.coffe.settings.SynchronizationSettings.MicroblockSynchronizerSettings
+import mir.coffe.state.ByteStr
+import mir.coffe.{BlockGen, RxScheduler, TransactionGen}
 import io.netty.channel.Channel
 import io.netty.channel.embedded.EmbeddedChannel
 import monix.reactive.Observable

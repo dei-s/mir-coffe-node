@@ -1,16 +1,16 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider.FeatureProviderExt
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.model.Events.OrderExecuted
-import com.wavesplatform.matcher.model.ExchangeTransactionCreator._
-import com.wavesplatform.state.Blockchain
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.{AssetId, ValidationError}
-import com.wavesplatform.utils.Time
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider.FeatureProviderExt
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.model.Events.OrderExecuted
+import mir.coffe.matcher.model.ExchangeTransactionCreator._
+import mir.coffe.state.Blockchain
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.{AssetId, ValidationError}
+import mir.coffe.utils.Time
 
 class ExchangeTransactionCreator(blockchain: Blockchain, matcherPrivateKey: PrivateKeyAccount, settings: MatcherSettings, time: Time) {
   private def calculateMatcherFee(buy: Order, sell: Order, amount: Long): (Long, Long) = {

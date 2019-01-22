@@ -1,10 +1,10 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
-import com.wavesplatform.account.Address
-import com.wavesplatform.database.{Key, RW, ReadOnlyDB}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.assets.exchange.AssetPair
-import com.wavesplatform.transaction.assets.exchange.Order.Id
+import mir.coffe.account.Address
+import mir.coffe.database.{Key, RW, ReadOnlyDB}
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.assets.exchange.AssetPair
+import mir.coffe.transaction.assets.exchange.Order.Id
 
 class FinalizedOrdersCommonIndex(address: Address, elementsLimit: Int) extends FinalizedOrdersIndex(elementsLimit, deleteOutdatedOrders = false) {
   override protected def itemKey(idx: Index): Key[Option[Id]] = MatcherKeys.finalizedCommon(address, idx)

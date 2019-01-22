@@ -1,21 +1,21 @@
-package com.wavesplatform.state.diffs.smart.predef
+package mir.coffe.state.diffs.smart.predef
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.state.EitherExt2
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.lang.{ScriptVersion, Testing}
-import com.wavesplatform.lang.ScriptVersion.Versions._
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms.{EVALUATED, TRUE}
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.state.Blockchain
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.{GenesisTransaction, Transaction}
-import com.wavesplatform.transaction.smart.script.ScriptRunner
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.utils.{EmptyBlockchain, compilerContext}
+import mir.coffe.TransactionGen
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.state.EitherExt2
+import mir.coffe.state.diffs._
+import mir.coffe.lang.{ScriptVersion, Testing}
+import mir.coffe.lang.ScriptVersion.Versions._
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms.{EVALUATED, TRUE}
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.state.Blockchain
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.{GenesisTransaction, Transaction}
+import mir.coffe.transaction.smart.script.ScriptRunner
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.utils.{EmptyBlockchain, compilerContext}
 import fastparse.core.Parsed.Success
 import org.scalatest.{FreeSpec, Matchers}
 import org.scalatest.prop.PropertyChecks
@@ -48,7 +48,7 @@ class ScriptVersionsTest extends FreeSpec with PropertyChecks with Matchers with
 
   "ScriptV1" - {
     "forbids duplicate names" in {
-      import com.wavesplatform.lagonaki.mocks.TestBlock.{create => block}
+      import mir.coffe.lagonaki.mocks.TestBlock.{create => block}
 
       val Success(expr, _)      = Parser(duplicateNames)
       val Right((typedExpr, _)) = CompilerV1(compilerContext(V1, isAssetScript = false), expr)
@@ -91,7 +91,7 @@ class ScriptVersionsTest extends FreeSpec with PropertyChecks with Matchers with
     }
 
     "only works after SmartAccountTrading feature activation" in {
-      import com.wavesplatform.lagonaki.mocks.TestBlock.{create => block}
+      import mir.coffe.lagonaki.mocks.TestBlock.{create => block}
 
       val settings = TestFunctionalitySettings.Enabled.copy(preActivatedFeatures = Map(BlockchainFeatures.SmartAccountTrading.id -> 3))
       val setup = for {

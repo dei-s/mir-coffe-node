@@ -1,22 +1,22 @@
-package com.wavesplatform.state.diffs.smart.scenarios
+package mir.coffe.state.diffs.smart.scenarios
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.assets.{IssueTransactionV1, SponsorFeeTransaction}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.ScriptCompiler
-import com.wavesplatform.transaction.transfer.{TransferTransaction, TransferTransactionV2}
-import com.wavesplatform.transaction.{GenesisTransaction, Transaction}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.transaction.assets.{IssueTransactionV1, SponsorFeeTransaction}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.ScriptCompiler
+import mir.coffe.transaction.transfer.{TransferTransaction, TransferTransactionV2}
+import mir.coffe.transaction.{GenesisTransaction, Transaction}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 
 class ScriptedSponsorTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
 
-  import com.wavesplatform.state.diffs._
+  import mir.coffe.state.diffs._
 
   val ENOUGH_FEE: Long = 100000000
 

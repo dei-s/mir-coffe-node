@@ -1,4 +1,4 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.io.File
 import java.security.Security
@@ -10,28 +10,28 @@ import akka.http.scaladsl.Http.ServerBinding
 import akka.stream.ActorMaterializer
 import cats.instances.all._
 import com.typesafe.config._
-import com.wavesplatform.account.AddressScheme
-import com.wavesplatform.actor.RootActorSystem
-import com.wavesplatform.api.http._
-import com.wavesplatform.api.http.alias.{AliasApiRoute, AliasBroadcastApiRoute}
-import com.wavesplatform.api.http.assets.{AssetsApiRoute, AssetsBroadcastApiRoute}
-import com.wavesplatform.api.http.leasing.{LeaseApiRoute, LeaseBroadcastApiRoute}
-import com.wavesplatform.consensus.PoSSelector
-import com.wavesplatform.consensus.nxt.api.http.NxtConsensusApiRoute
-import com.wavesplatform.db.openDB
-import com.wavesplatform.features.api.ActivationApiRoute
-import com.wavesplatform.history.{CheckpointServiceImpl, StorageFactory}
-import com.wavesplatform.http.{DebugApiRoute, NodeApiRoute, WavesApiRoute}
-import com.wavesplatform.matcher.Matcher
-import com.wavesplatform.metrics.Metrics
-import com.wavesplatform.mining.{Miner, MinerImpl}
-import com.wavesplatform.network.RxExtensionLoader.RxExtensionLoaderShutdownHook
-import com.wavesplatform.network._
-import com.wavesplatform.settings._
-import com.wavesplatform.state.appender.{BlockAppender, CheckpointAppender, ExtensionAppender, MicroblockAppender}
-import com.wavesplatform.utils.{NTP, ScorexLogging, SystemInformationReporter, forceStopApplication}
-import com.wavesplatform.utx.{MatcherUtxPool, UtxPool, UtxPoolImpl}
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.AddressScheme
+import mir.coffe.actor.RootActorSystem
+import mir.coffe.api.http._
+import mir.coffe.api.http.alias.{AliasApiRoute, AliasBroadcastApiRoute}
+import mir.coffe.api.http.assets.{AssetsApiRoute, AssetsBroadcastApiRoute}
+import mir.coffe.api.http.leasing.{LeaseApiRoute, LeaseBroadcastApiRoute}
+import mir.coffe.consensus.PoSSelector
+import mir.coffe.consensus.nxt.api.http.NxtConsensusApiRoute
+import mir.coffe.db.openDB
+import mir.coffe.features.api.ActivationApiRoute
+import mir.coffe.history.{CheckpointServiceImpl, StorageFactory}
+import mir.coffe.http.{DebugApiRoute, NodeApiRoute, CoffeApiRoute}
+import mir.coffe.matcher.Matcher
+import mir.coffe.metrics.Metrics
+import mir.coffe.mining.{Miner, MinerImpl}
+import mir.coffe.network.RxExtensionLoader.RxExtensionLoaderShutdownHook
+import mir.coffe.network._
+import mir.coffe.settings._
+import mir.coffe.state.appender.{BlockAppender, CheckpointAppender, ExtensionAppender, MicroblockAppender}
+import mir.coffe.utils.{NTP, ScorexLogging, SystemInformationReporter, forceStopApplication}
+import mir.coffe.utx.{MatcherUtxPool, UtxPool, UtxPoolImpl}
+import mir.coffe.wallet.Wallet
 import io.netty.channel.Channel
 import io.netty.channel.group.DefaultChannelGroup
 import io.netty.util.concurrent.GlobalEventExecutor
@@ -50,7 +50,7 @@ import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.util.Try
 
-class Application(val actorSystem: ActorSystem, val settings: WavesSettings, configRoot: ConfigObject, time: NTP) extends ScorexLogging {
+class Application(val actorSystem: ActorSystem, val settings: CoffeSettings, configRoot: ConfigObject, time: NTP) extends ScorexLogging {
 
   import monix.execution.Scheduler.Implicits.{global => scheduler}
 
@@ -250,7 +250,7 @@ class Application(val actorSystem: ActorSystem, val settings: WavesSettings, con
           scoreStatsReporter,
           configRoot
         ),
-        WavesApiRoute(settings.restAPISettings, wallet, utxStorage, allChannels, time),
+        CoffeApiRoute(settings.restAPISettings, wallet, utxStorage, allChannels, time),
         AssetsApiRoute(settings.restAPISettings, wallet, utxStorage, allChannels, blockchainUpdater, time),
         ActivationApiRoute(settings.restAPISettings, settings.blockchainSettings.functionalitySettings, settings.featuresSettings, blockchainUpdater),
         AssetsBroadcastApiRoute(settings.restAPISettings, utxStorage, allChannels),
@@ -365,10 +365,10 @@ object Application extends ScorexLogging {
       // application config needs to be resolved wrt both system properties *and* user-supplied config.
       case Some(file) =>
         val cfg = ConfigFactory.parseFile(file)
-        if (!cfg.hasPath("waves")) {
+        if (!cfg.hasPath("coffe")) {
           log.error("Malformed configuration file was provided! Aborting!")
           log.error("Please, read following article about configuration file format:")
-          log.error("https://github.com/wavesplatform/Waves/wiki/Waves-Node-configuration-file")
+          log.error("https://github.com/dei-s/mir-node-coffe/wiki/Coffe-Node-configuration-file")
           forceStopApplication()
         }
         loadConfig(cfg)
@@ -397,13 +397,13 @@ object Application extends ScorexLogging {
     val config = readConfig(args.headOption)
 
     // DO NOT LOG BEFORE THIS LINE, THIS PROPERTY IS USED IN logback.xml
-    System.setProperty("waves.directory", config.getString("waves.directory"))
+    System.setProperty("coffe.directory", config.getString("coffe.directory"))
     log.info("Starting...")
     sys.addShutdownHook {
       SystemInformationReporter.report(config)
     }
 
-    val settings = WavesSettings.fromConfig(config)
+    val settings = CoffeSettings.fromConfig(config)
 
     // Initialize global var with actual address scheme
     AddressScheme.current = new AddressScheme {
@@ -420,7 +420,7 @@ object Application extends ScorexLogging {
     val time             = new NTP(settings.ntpServer)
     val isMetricsStarted = Metrics.start(settings.metrics, time)
 
-    RootActorSystem.start("wavesplatform", config) { actorSystem =>
+    RootActorSystem.start("coffeplatform", config) { actorSystem =>
       import actorSystem.dispatcher
       isMetricsStarted.foreach { started =>
         if (started) {

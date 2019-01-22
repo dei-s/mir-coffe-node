@@ -1,13 +1,13 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
 import java.nio.file.Files
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.database.LevelDBWriter
-import com.wavesplatform.history.Domain
-import com.wavesplatform.settings.{FunctionalitySettings, WavesSettings, loadConfig}
-import com.wavesplatform.state.{Blockchain, BlockchainUpdaterImpl}
-import com.wavesplatform.{NTPTime, TestHelpers}
+import mir.coffe.database.LevelDBWriter
+import mir.coffe.history.Domain
+import mir.coffe.settings.{FunctionalitySettings, CoffeSettings, loadConfig}
+import mir.coffe.state.{Blockchain, BlockchainUpdaterImpl}
+import mir.coffe.{NTPTime, TestHelpers}
 import org.scalatest.Suite
 
 trait WithState {
@@ -27,7 +27,7 @@ trait WithState {
 trait WithDomain extends WithState with NTPTime {
   _: Suite =>
 
-  def withDomain[A](settings: WavesSettings = WavesSettings.fromConfig(loadConfig(ConfigFactory.load())))(test: Domain => A): A = {
+  def withDomain[A](settings: CoffeSettings = CoffeSettings.fromConfig(loadConfig(ConfigFactory.load())))(test: Domain => A): A = {
     try withState(settings.blockchainSettings.functionalitySettings) { blockchain =>
       val bcu = new BlockchainUpdaterImpl(blockchain, settings, ntpTime)
       try test(Domain(bcu))

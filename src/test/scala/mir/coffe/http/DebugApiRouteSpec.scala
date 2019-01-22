@@ -1,15 +1,15 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
-import com.wavesplatform.{NTPTime, TestWallet}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.api.http.ApiKeyNotValid
+import mir.coffe.{NTPTime, TestWallet}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.api.http.ApiKeyNotValid
 
 class DebugApiRouteSpec extends RouteSpec("/debug") with RestAPISettingsHelper with TestWallet with NTPTime {
   private val sampleConfig  = com.typesafe.config.ConfigFactory.load()
-  private val wavesSettings = WavesSettings.fromConfig(sampleConfig)
+  private val coffeSettings = CoffeSettings.fromConfig(sampleConfig)
   private val configObject  = sampleConfig.root()
   private val route =
-    DebugApiRoute(wavesSettings, ntpTime, null, null, null, null, null, null, null, null, null, null, null, null, null, configObject).route
+    DebugApiRoute(coffeSettings, ntpTime, null, null, null, null, null, null, null, null, null, null, null, null, null, configObject).route
 
   routePath("/configInfo") - {
     "requires api-key header" in {

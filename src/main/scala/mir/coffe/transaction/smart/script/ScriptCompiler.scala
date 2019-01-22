@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.smart.script
+package mir.coffe.transaction.smart.script
 
 import cats.implicits._
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.directives.{Directive, DirectiveKey, DirectiveParser}
-import com.wavesplatform.lang.v1.ScriptEstimator
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms.EXPR
-import com.wavesplatform.utils._
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.directives.{Directive, DirectiveKey, DirectiveParser}
+import mir.coffe.lang.v1.ScriptEstimator
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms.EXPR
+import mir.coffe.utils._
+import mir.coffe.transaction.smart.script.v1.ScriptV1
 
 import scala.util.{Failure, Success, Try}
 

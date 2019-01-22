@@ -1,14 +1,14 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
 import cats.implicits._
 import cats.kernel.Monoid
-import com.wavesplatform.account.{Address, Alias, PublicKeyAccount}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.{AssetId, Transaction}
+import mir.coffe.account.{Address, Alias, PublicKeyAccount}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.{AssetId, Transaction}
 
 case class LeaseBalance(in: Long, out: Long)
 
@@ -97,16 +97,16 @@ object Sponsorship {
       .map(h => h + fs.activationWindowSize(h))
       .getOrElse(Int.MaxValue)
 
-  def toWaves(assetFee: Long, sponsorship: Long): Long = {
-    val waves = (BigDecimal(assetFee) * BigDecimal(CommonValidation.FeeUnit)) / BigDecimal(sponsorship)
-    if (waves > Long.MaxValue) {
+  def toCoffe(assetFee: Long, sponsorship: Long): Long = {
+    val coffe = (BigDecimal(assetFee) * BigDecimal(CommonValidation.FeeUnit)) / BigDecimal(sponsorship)
+    if (coffe > Long.MaxValue) {
       throw new java.lang.ArithmeticException("Overflow")
     }
-    waves.toLong
+    coffe.toLong
   }
 
-  def fromWaves(wavesFee: Long, sponsorship: Long): Long = {
-    val assetFee = (BigDecimal(wavesFee) / BigDecimal(CommonValidation.FeeUnit)) * BigDecimal(sponsorship)
+  def fromCoffe(coffeFee: Long, sponsorship: Long): Long = {
+    val assetFee = (BigDecimal(coffeFee) / BigDecimal(CommonValidation.FeeUnit)) * BigDecimal(sponsorship)
     if (assetFee > Long.MaxValue) {
       throw new java.lang.ArithmeticException("Overflow")
     }

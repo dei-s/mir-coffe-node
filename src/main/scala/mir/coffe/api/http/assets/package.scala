@@ -1,4 +1,4 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import play.api.libs.json._
 import shapeless.{:+:, CNil, Coproduct}

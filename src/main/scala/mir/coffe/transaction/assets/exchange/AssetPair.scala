@@ -1,9 +1,9 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets.exchange.Order.assetIdBytes
-import com.wavesplatform.transaction.assets.exchange.Validation.booleanOperators
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets.exchange.Order.assetIdBytes
+import mir.coffe.transaction.assets.exchange.Validation.booleanOperators
 import io.swagger.annotations.{ApiModel, ApiModelProperty}
 import play.api.libs.json.{JsObject, Json}
 
@@ -41,12 +41,12 @@ case class AssetPair(@(ApiModelProperty @field)(
 }
 
 object AssetPair {
-  val WavesName = "WAVES"
+  val CoffeName = "WAVES"
 
-  def assetIdStr(aid: Option[AssetId]): String = aid.fold(WavesName)(_.base58)
+  def assetIdStr(aid: Option[AssetId]): String = aid.fold(CoffeName)(_.base58)
 
   def extractAssetId(a: String): Try[Option[AssetId]] = a match {
-    case `WavesName` => Success(None)
+    case `CoffeName` => Success(None)
     case other       => ByteStr.decodeBase58(other).map(Option(_))
   }
 

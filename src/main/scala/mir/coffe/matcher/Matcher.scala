@@ -1,4 +1,4 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import java.io.File
 import java.util.concurrent.ConcurrentHashMap
@@ -9,19 +9,19 @@ import akka.http.scaladsl.Http
 import akka.http.scaladsl.Http.ServerBinding
 import akka.pattern.gracefulStop
 import akka.stream.ActorMaterializer
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.api.http.CompositeHttpService
-import com.wavesplatform.db._
-import com.wavesplatform.matcher.api.{MatcherApiRoute, OrderBookSnapshotHttpCache}
-import com.wavesplatform.matcher.market.OrderBookActor.MarketStatus
-import com.wavesplatform.matcher.market.{MatcherActor, MatcherTransactionWriter, OrderHistoryActor}
-import com.wavesplatform.matcher.model.{ExchangeTransactionCreator, OrderBook, OrderValidator}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.{Blockchain, EitherExt2}
-import com.wavesplatform.transaction.assets.exchange.AssetPair
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.api.http.CompositeHttpService
+import mir.coffe.db._
+import mir.coffe.matcher.api.{MatcherApiRoute, OrderBookSnapshotHttpCache}
+import mir.coffe.matcher.market.OrderBookActor.MarketStatus
+import mir.coffe.matcher.market.{MatcherActor, MatcherTransactionWriter, OrderHistoryActor}
+import mir.coffe.matcher.model.{ExchangeTransactionCreator, OrderBook, OrderValidator}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.{Blockchain, EitherExt2}
+import mir.coffe.transaction.assets.exchange.AssetPair
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
 import io.netty.channel.group.ChannelGroup
 
 import scala.concurrent.Await
@@ -33,7 +33,7 @@ class Matcher(actorSystem: ActorSystem,
               utx: UtxPool,
               allChannels: ChannelGroup,
               blockchain: Blockchain,
-              settings: WavesSettings,
+              settings: CoffeSettings,
               matcherPrivateKey: PrivateKeyAccount)
     extends ScorexLogging {
 
@@ -156,7 +156,7 @@ object Matcher extends ScorexLogging {
             utx: UtxPool,
             allChannels: ChannelGroup,
             blockchain: Blockchain,
-            settings: WavesSettings): Option[Matcher] =
+            settings: CoffeSettings): Option[Matcher] =
     try {
       val privateKey = (for {
         address <- Address.fromString(settings.matcherSettings.account)

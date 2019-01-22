@@ -1,4 +1,4 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.Config
 import net.ceedubs.ficus.Ficus._
@@ -13,7 +13,7 @@ case class RestAPISettings(enable: Boolean,
                            distributionAddressLimit: Int)
 
 object RestAPISettings {
-  val configPath: String = "waves.rest-api"
+  val configPath: String = "coffe.rest-api"
 
   def fromConfig(config: Config): RestAPISettings = {
     RestAPISettings(

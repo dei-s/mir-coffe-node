@@ -1,22 +1,22 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.crypto.SignatureLength
-import com.wavesplatform.db.WithDomain
-import com.wavesplatform.features.BlockchainFeatures._
-import com.wavesplatform.features._
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.v1.compiler.Terms.TRUE
-import com.wavesplatform.settings.{TestFunctionalitySettings, WavesSettings}
-import com.wavesplatform.state.reader.LeaseDetails
-import com.wavesplatform.transaction.ValidationError.AliasDoesNotExist
-import com.wavesplatform.transaction.assets.{IssueTransactionV1, ReissueTransactionV1}
-import com.wavesplatform.transaction.lease.{LeaseCancelTransactionV1, LeaseTransactionV1}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.{CreateAliasTransactionV1, DataTransaction, GenesisTransaction, Transaction}
-import com.wavesplatform.{NoShrink, TestTime, TransactionGen, history}
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.crypto.SignatureLength
+import mir.coffe.db.WithDomain
+import mir.coffe.features.BlockchainFeatures._
+import mir.coffe.features._
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.v1.compiler.Terms.TRUE
+import mir.coffe.settings.{TestFunctionalitySettings, CoffeSettings}
+import mir.coffe.state.reader.LeaseDetails
+import mir.coffe.transaction.ValidationError.AliasDoesNotExist
+import mir.coffe.transaction.assets.{IssueTransactionV1, ReissueTransactionV1}
+import mir.coffe.transaction.lease.{LeaseCancelTransactionV1, LeaseTransactionV1}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.{CreateAliasTransactionV1, DataTransaction, GenesisTransaction, Transaction}
+import mir.coffe.{NoShrink, TestTime, TransactionGen, history}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Assertions, FreeSpec, Matchers}
@@ -35,7 +35,7 @@ class RollbackSpec extends FreeSpec with Matchers with WithDomain with Transacti
     TransferTransactionV1.selfSigned(None, sender, recipient, amount, nextTs, None, 1, Array.empty[Byte]).explicitGet()
 
   private def randomOp(sender: PrivateKeyAccount, recipient: Address, amount: Long, op: Int, nextTs: => Long = nextTs) = {
-    import com.wavesplatform.transaction.transfer.MassTransferTransaction.ParsedTransfer
+    import mir.coffe.transaction.transfer.MassTransferTransaction.ParsedTransfer
     op match {
       case 1 =>
         val lease = LeaseTransactionV1.selfSigned(sender, amount, 100000, nextTs, recipient).explicitGet()
@@ -75,7 +75,7 @@ class RollbackSpec extends FreeSpec with Matchers with WithDomain with Transacti
     "forget rollbacked transaction for querying" in forAll(accountGen, accountGen, Gen.nonEmptyListOf(Gen.choose(1, 10))) {
       case (sender, recipient, txCount) =>
         withDomain(createSettings(MassTransfer -> 0)) { d =>
-          d.appendBlock(genesisBlock(nextTs, sender, com.wavesplatform.state.diffs.ENOUGH_AMT))
+          d.appendBlock(genesisBlock(nextTs, sender, mir.coffe.state.diffs.ENOUGH_AMT))
 
           val genesisSignature = d.lastBlockId
 
@@ -114,7 +114,7 @@ class RollbackSpec extends FreeSpec with Matchers with WithDomain with Transacti
         }
     }
 
-    "waves balances" in forAll(accountGen, positiveLongGen, accountGen, Gen.nonEmptyListOf(Gen.choose(1, 10))) {
+    "coffe balances" in forAll(accountGen, positiveLongGen, accountGen, Gen.nonEmptyListOf(Gen.choose(1, 10))) {
       case (sender, initialBalance, recipient, txCount) =>
         withDomain() { d =>
           d.appendBlock(genesisBlock(nextTs, sender, initialBalance))
@@ -339,14 +339,14 @@ class RollbackSpec extends FreeSpec with Matchers with WithDomain with Transacti
         }
     }
 
-    def createSettings(preActivatedFeatures: (BlockchainFeature, Int)*): WavesSettings = {
+    def createSettings(preActivatedFeatures: (BlockchainFeature, Int)*): CoffeSettings = {
       val tfs = TestFunctionalitySettings.Enabled.copy(
         preActivatedFeatures = preActivatedFeatures.map { case (k, v) => k.id -> v }(collection.breakOut),
         blocksForFeatureActivation = 1,
         featureCheckBlocksPeriod = 1
       )
 
-      history.DefaultWavesSettings.copy(blockchainSettings = history.DefaultWavesSettings.blockchainSettings.copy(functionalitySettings = tfs))
+      history.DefaultCoffeSettings.copy(blockchainSettings = history.DefaultCoffeSettings.blockchainSettings.copy(functionalitySettings = tfs))
     }
 
     "asset sponsorship" in forAll(for {
@@ -462,7 +462,7 @@ class RollbackSpec extends FreeSpec with Matchers with WithDomain with Transacti
         withDomain(createSettings(MassTransfer -> 0)) { d =>
           val ts = nextTs
 
-          d.appendBlock(genesisBlock(ts, sender, com.wavesplatform.state.diffs.ENOUGH_AMT))
+          d.appendBlock(genesisBlock(ts, sender, mir.coffe.state.diffs.ENOUGH_AMT))
 
           val transferAmount = 100
 

@@ -1,6 +1,6 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.TransactionGen
+import mir.coffe.TransactionGen
 import io.netty.channel.embedded.EmbeddedChannel
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.prop.PropertyChecks

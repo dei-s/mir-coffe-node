@@ -1,4 +1,4 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
 trait VersionedStorage {
   this: PropertiesStorage =>

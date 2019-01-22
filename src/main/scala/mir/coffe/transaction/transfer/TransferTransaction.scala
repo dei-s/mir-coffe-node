@@ -1,15 +1,15 @@
-package com.wavesplatform.transaction.transfer
+package mir.coffe.transaction.transfer
 
 import cats.implicits._
 import com.google.common.primitives.{Bytes, Longs}
-import com.wavesplatform.account.{AddressOrAlias, PublicKeyAccount}
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.validation._
-import com.wavesplatform.utils.{Base58, base58Length}
+import mir.coffe.account.{AddressOrAlias, PublicKeyAccount}
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction._
+import mir.coffe.transaction.validation._
+import mir.coffe.utils.{Base58, base58Length}
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.crypto._
+import mir.coffe.crypto._
 
 trait TransferTransaction extends ProvenTransaction with VersionedTransaction {
   def assetId: Option[AssetId]
@@ -63,7 +63,7 @@ object TransferTransaction {
 
   def validate(amount: Long, feeAmount: Long, attachment: Array[Byte]): Either[ValidationError, Unit] = {
     (
-      validateAmount(amount, "waves"),
+      validateAmount(amount, "coffe"),
       validateFee(feeAmount),
       validateAttachment(attachment),
       validateSum(Seq(amount, feeAmount))

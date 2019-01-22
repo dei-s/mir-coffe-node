@@ -1,14 +1,14 @@
-package com.wavesplatform.state.diffs.smart.scenarios
+package mir.coffe.state.diffs.smart.scenarios
 
-import com.wavesplatform.account.{AddressOrAlias, PrivateKeyAccount}
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.v1.compiler.Terms.{CONST_BYTEVECTOR, CaseObj}
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.smart.predef._
-import com.wavesplatform.state.diffs.{ENOUGH_AMT, assertDiffAndState, produce}
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.{CreateAliasTransaction, GenesisTransaction}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.account.{AddressOrAlias, PrivateKeyAccount}
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.v1.compiler.Terms.{CONST_BYTEVECTOR, CaseObj}
+import mir.coffe.state._
+import mir.coffe.state.diffs.smart.predef._
+import mir.coffe.state.diffs.{ENOUGH_AMT, assertDiffAndState, produce}
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.{CreateAliasTransaction, GenesisTransaction}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}

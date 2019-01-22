@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.utils.base58Length
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.assets.exchange.{ExchangeTransactionV1, ExchangeTransactionV2}
-import com.wavesplatform.transaction.lease.{LeaseCancelTransactionV1, LeaseCancelTransactionV2, LeaseTransactionV1, LeaseTransactionV2}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.crypto._
+import mir.coffe.utils.base58Length
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.assets.exchange.{ExchangeTransactionV1, ExchangeTransactionV2}
+import mir.coffe.transaction.lease.{LeaseCancelTransactionV1, LeaseCancelTransactionV2, LeaseTransactionV1, LeaseTransactionV2}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.transfer._
+import mir.coffe.crypto._
 
 import scala.util.{Failure, Success, Try}
 

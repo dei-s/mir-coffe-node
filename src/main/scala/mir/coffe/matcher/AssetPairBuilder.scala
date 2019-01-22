@@ -1,10 +1,10 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import com.google.common.base.Charsets.UTF_8
-import com.wavesplatform.metrics._
-import com.wavesplatform.state.{Blockchain, ByteStr}
-import com.wavesplatform.transaction.AssetId
-import com.wavesplatform.transaction.assets.exchange.AssetPair
+import mir.coffe.metrics._
+import mir.coffe.state.{Blockchain, ByteStr}
+import mir.coffe.transaction.AssetId
+import mir.coffe.transaction.assets.exchange.AssetPair
 import kamon.Kamon
 import scorex.utils.ByteArray
 

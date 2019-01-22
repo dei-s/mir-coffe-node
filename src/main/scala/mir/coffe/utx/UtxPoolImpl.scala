@@ -1,4 +1,4 @@
-package com.wavesplatform.utx
+package mir.coffe.utx
 
 import java.time.Duration
 import java.time.temporal.ChronoUnit
@@ -6,19 +6,19 @@ import java.util.concurrent.ConcurrentHashMap
 
 import cats._
 import cats.implicits._
-import com.wavesplatform.account.Address
-import com.wavesplatform.consensus.TransactionsOrdering
-import com.wavesplatform.metrics.Instrumented
-import com.wavesplatform.mining.MultiDimensionalMiningConstraint
-import com.wavesplatform.settings.{FunctionalitySettings, UtxSettings}
-import com.wavesplatform.state.diffs.{CommonValidation, TransactionDiffer}
-import com.wavesplatform.state.reader.CompositeBlockchain.composite
-import com.wavesplatform.state.{Blockchain, ByteStr, Diff, Portfolio}
-import com.wavesplatform.transaction.ValidationError.{GenericError, SenderIsBlacklisted}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets.ReissueTransaction
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils.{ScorexLogging, Time}
+import mir.coffe.account.Address
+import mir.coffe.consensus.TransactionsOrdering
+import mir.coffe.metrics.Instrumented
+import mir.coffe.mining.MultiDimensionalMiningConstraint
+import mir.coffe.settings.{FunctionalitySettings, UtxSettings}
+import mir.coffe.state.diffs.{CommonValidation, TransactionDiffer}
+import mir.coffe.state.reader.CompositeBlockchain.composite
+import mir.coffe.state.{Blockchain, ByteStr, Diff, Portfolio}
+import mir.coffe.transaction.ValidationError.{GenericError, SenderIsBlacklisted}
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets.ReissueTransaction
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils.{ScorexLogging, Time}
 import kamon.Kamon
 import kamon.metric.MeasurementUnit
 import monix.eval.Task
@@ -36,7 +36,7 @@ class UtxPoolImpl(time: Time, blockchain: Blockchain, fs: FunctionalitySettings,
     with UtxPool {
   outer =>
 
-  import com.wavesplatform.utx.UtxPoolImpl._
+  import mir.coffe.utx.UtxPoolImpl._
 
   private implicit val scheduler: SchedulerService = Scheduler.singleThread("utx-pool-cleanup")
 

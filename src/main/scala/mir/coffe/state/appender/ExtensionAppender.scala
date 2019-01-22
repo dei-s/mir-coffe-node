@@ -1,21 +1,21 @@
-package com.wavesplatform.state.appender
+package mir.coffe.state.appender
 
-import com.wavesplatform.consensus.PoSSelector
-import com.wavesplatform.metrics.{BlockStats, Instrumented, Metrics}
-import com.wavesplatform.mining.Miner
-import com.wavesplatform.network.{InvalidBlockStorage, PeerDatabase, formatBlocks, id}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state._
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.consensus.PoSSelector
+import mir.coffe.metrics.{BlockStats, Instrumented, Metrics}
+import mir.coffe.mining.Miner
+import mir.coffe.network.{InvalidBlockStorage, PeerDatabase, formatBlocks, id}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state._
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.Channel
 import io.netty.channel.group.ChannelGroup
 import monix.eval.{Coeval, Task}
 import monix.execution.Scheduler
 import org.influxdb.dto.Point
-import com.wavesplatform.block.Block
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction._
+import mir.coffe.block.Block
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction._
 
 import scala.util.{Left, Right}
 
@@ -26,7 +26,7 @@ object ExtensionAppender extends ScorexLogging with Instrumented {
             utxStorage: UtxPool,
             pos: PoSSelector,
             time: Time,
-            settings: WavesSettings,
+            settings: CoffeSettings,
             invalidBlocks: InvalidBlockStorage,
             peerDatabase: PeerDatabase,
             miner: Miner,

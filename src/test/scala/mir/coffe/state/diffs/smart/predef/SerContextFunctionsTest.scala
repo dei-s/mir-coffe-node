@@ -1,15 +1,15 @@
-package com.wavesplatform.state.diffs.smart.predef
+package mir.coffe.state.diffs.smart.predef
 
-import com.wavesplatform.account.{Address, PublicKeyAccount}
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.Serde
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.state.{BinaryDataEntry, BooleanDataEntry, ByteStr, IntegerDataEntry, StringDataEntry}
-import com.wavesplatform.transaction.transfer.TransferTransactionV2
-import com.wavesplatform.transaction.{DataTransaction, Proofs}
-import com.wavesplatform.utils.{Base58, compilerContext}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.account.{Address, PublicKeyAccount}
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.Serde
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.state.{BinaryDataEntry, BooleanDataEntry, ByteStr, IntegerDataEntry, StringDataEntry}
+import mir.coffe.transaction.transfer.TransferTransactionV2
+import mir.coffe.transaction.{DataTransaction, Proofs}
+import mir.coffe.utils.{Base58, compilerContext}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 import scorex.crypto.encode.Base64

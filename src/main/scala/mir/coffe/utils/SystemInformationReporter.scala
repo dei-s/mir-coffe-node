@@ -1,4 +1,4 @@
-package com.wavesplatform.utils
+package mir.coffe.utils
 
 import com.typesafe.config.{Config, ConfigFactory, ConfigRenderOptions}
 
@@ -7,14 +7,14 @@ object SystemInformationReporter extends ScorexLogging {
     val resolved = config.resolve()
     val configForLogs = {
       val orig = Seq(
-        "waves",
+        "coffe",
         "metrics"
       ).foldLeft(ConfigFactory.empty()) { case (r, path) => r.withFallback(resolved.withOnlyPath(path)) }
 
       Seq(
-        "waves.custom.genesis",
-        "waves.wallet",
-        "waves.rest-api.api-key-hash",
+        "coffe.custom.genesis",
+        "coffe.wallet",
+        "coffe.rest-api.api-key-hash",
         "metrics.influx-db",
       ).foldLeft(orig)(_.withoutPath(_))
     }

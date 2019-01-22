@@ -1,4 +1,4 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import akka.http.scaladsl.model.headers._
 

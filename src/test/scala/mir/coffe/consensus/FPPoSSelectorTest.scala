@@ -1,17 +1,17 @@
-package com.wavesplatform.consensus
+package mir.coffe.consensus
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.Block
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.database.LevelDBWriter
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.{WavesSettings, _}
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.{ENOUGH_AMT, ProduceError}
-import com.wavesplatform.transaction.{BlockchainUpdater, GenesisTransaction}
-import com.wavesplatform.utils.Time
-import com.wavesplatform.{TransactionGen, WithDB}
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.Block
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.database.LevelDBWriter
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.{CoffeSettings, _}
+import mir.coffe.state._
+import mir.coffe.state.diffs.{ENOUGH_AMT, ProduceError}
+import mir.coffe.transaction.{BlockchainUpdater, GenesisTransaction}
+import mir.coffe.utils.Time
+import mir.coffe.{TransactionGen, WithDB}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -200,7 +200,7 @@ class FPPoSSelectorTest extends FreeSpec with Matchers with WithDB with Transact
 
   def withEnv(gen: Time => Gen[(Seq[PrivateKeyAccount], Seq[Block])])(f: Env => Unit): Unit = {
     val defaultWriter = new LevelDBWriter(db, TestFunctionalitySettings.Stub, 100000, 2000, 120 * 60 * 1000)
-    val settings0     = WavesSettings.fromConfig(loadConfig(ConfigFactory.load()))
+    val settings0     = CoffeSettings.fromConfig(loadConfig(ConfigFactory.load()))
     val settings      = settings0.copy(featuresSettings = settings0.featuresSettings.copy(autoShutdownOnUnsupportedFeature = false))
     val bcu           = new BlockchainUpdaterImpl(defaultWriter, settings, ntpTime)
     val pos           = new PoSSelector(bcu, settings.blockchainSettings)

@@ -1,12 +1,12 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
 import com.google.common.base.Charsets.UTF_8
 import com.google.common.primitives.{Ints, Longs}
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.transaction.smart.script.{Script, ScriptReader}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction
+import mir.coffe.transaction.smart.script.{Script, ScriptReader}
 
 object Keys {
   import KeyHelpers._
@@ -28,9 +28,9 @@ object Keys {
 
   def heightOf(blockId: ByteStr): Key[Option[Int]] = Key.opt[Int]("height-of", hash(4, blockId), Ints.fromByteArray, Ints.toByteArray)
 
-  def wavesBalanceHistory(addressId: BigInt): Key[Seq[Int]] = historyKey("waves-balance-history", 5, addressId.toByteArray)
-  def wavesBalance(addressId: BigInt)(height: Int): Key[Long] =
-    Key("waves-balance", hAddr(6, height, addressId), Option(_).fold(0L)(Longs.fromByteArray), Longs.toByteArray)
+  def coffeBalanceHistory(addressId: BigInt): Key[Seq[Int]] = historyKey("coffe-balance-history", 5, addressId.toByteArray)
+  def coffeBalance(addressId: BigInt)(height: Int): Key[Long] =
+    Key("coffe-balance", hAddr(6, height, addressId), Option(_).fold(0L)(Longs.fromByteArray), Longs.toByteArray)
 
   def assetList(addressId: BigInt): Key[Set[ByteStr]] =
     Key("asset-list", addr(7, addressId), readTxIds(_).toSet, assets => writeTxIds(assets.toSeq))
@@ -92,8 +92,8 @@ object Keys {
   def sponsorship(assetId: ByteStr)(height: Int): Key[SponsorshipValue] =
     Key("sponsorship", hBytes(36, height, assetId.arr), readSponsorship, writeSponsorship)
 
-  val addressesForWavesSeqNr: Key[Int]                = intKey("addresses-for-waves-seq-nr", 37)
-  def addressesForWaves(seqNr: Int): Key[Seq[BigInt]] = Key("addresses-for-waves", h(38, seqNr), readBigIntSeq, writeBigIntSeq)
+  val addressesForCoffeSeqNr: Key[Int]                = intKey("addresses-for-coffe-seq-nr", 37)
+  def addressesForCoffe(seqNr: Int): Key[Seq[BigInt]] = Key("addresses-for-coffe", h(38, seqNr), readBigIntSeq, writeBigIntSeq)
 
   def addressesForAssetSeqNr(assetId: ByteStr): Key[Int] = bytesSeqNr("addresses-for-asset-seq-nr", 39, assetId.arr)
   def addressesForAsset(assetId: ByteStr, seqNr: Int): Key[Seq[BigInt]] =

@@ -1,7 +1,7 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import play.api.libs.json.{Format, JsNumber, JsObject, Json}
-import com.wavesplatform.transaction.assets.SetAssetScriptTransaction
+import mir.coffe.transaction.assets.SetAssetScriptTransaction
 
 case class SetAssetScriptRequest(version: Byte, sender: String, assetId: String, script: Option[String], fee: Long, timestamp: Option[Long] = None) {}
 

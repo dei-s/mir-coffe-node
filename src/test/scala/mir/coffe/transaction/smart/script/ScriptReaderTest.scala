@@ -1,10 +1,10 @@
-package com.wavesplatform.transaction.smart.script
+package mir.coffe.transaction.smart.script
 
-import com.wavesplatform.crypto
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.Serde
-import com.wavesplatform.lang.v1.compiler.Terms.TRUE
-import com.wavesplatform.state.diffs.produce
+import mir.coffe.crypto
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.Serde
+import mir.coffe.lang.v1.compiler.Terms.TRUE
+import mir.coffe.state.diffs.produce
 import org.scalatest.{FreeSpec, Matchers}
 
 class ScriptReaderTest extends FreeSpec with Matchers {

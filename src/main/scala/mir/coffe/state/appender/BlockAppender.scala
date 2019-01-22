@@ -1,22 +1,22 @@
-package com.wavesplatform.state.appender
+package mir.coffe.state.appender
 
 import cats.data.EitherT
-import com.wavesplatform.consensus.PoSSelector
-import com.wavesplatform.metrics._
-import com.wavesplatform.mining.Miner
-import com.wavesplatform.network._
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.Blockchain
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.consensus.PoSSelector
+import mir.coffe.metrics._
+import mir.coffe.mining.Miner
+import mir.coffe.network._
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.Blockchain
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.Channel
 import io.netty.channel.group.ChannelGroup
 import kamon.Kamon
 import monix.eval.Task
 import monix.execution.Scheduler
-import com.wavesplatform.block.Block
-import com.wavesplatform.transaction.ValidationError.{BlockAppendError, InvalidSignature}
-import com.wavesplatform.transaction.{BlockchainUpdater, CheckpointService, ValidationError}
+import mir.coffe.block.Block
+import mir.coffe.transaction.ValidationError.{BlockAppendError, InvalidSignature}
+import mir.coffe.transaction.{BlockchainUpdater, CheckpointService, ValidationError}
 
 import scala.util.Right
 
@@ -27,7 +27,7 @@ object BlockAppender extends ScorexLogging with Instrumented {
             time: Time,
             utxStorage: UtxPool,
             pos: PoSSelector,
-            settings: WavesSettings,
+            settings: CoffeSettings,
             scheduler: Scheduler,
             verify: Boolean = true)(newBlock: Block): Task[Either[ValidationError, Option[BigInt]]] =
     Task {
@@ -49,7 +49,7 @@ object BlockAppender extends ScorexLogging with Instrumented {
             time: Time,
             utxStorage: UtxPool,
             pos: PoSSelector,
-            settings: WavesSettings,
+            settings: CoffeSettings,
             allChannels: ChannelGroup,
             peerDatabase: PeerDatabase,
             miner: Miner,

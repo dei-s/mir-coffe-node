@@ -1,10 +1,10 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.io.File
 import java.net.{InetSocketAddress, URI}
 
 import com.typesafe.config.{Config, ConfigException, ConfigFactory, ConfigValueType}
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 import net.ceedubs.ficus.readers.namemappers.HyphenNameMapper
 import net.ceedubs.ficus.readers.{NameMapper, ValueReader}
 

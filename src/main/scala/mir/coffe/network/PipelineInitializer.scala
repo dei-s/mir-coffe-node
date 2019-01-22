@@ -1,6 +1,6 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.network.PipelineInitializer.HandlerWrapper
+import mir.coffe.network.PipelineInitializer.HandlerWrapper
 import io.netty.channel.{Channel, ChannelHandler, ChannelInitializer}
 import io.netty.util.concurrent.EventExecutorGroup
 

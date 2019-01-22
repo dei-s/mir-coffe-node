@@ -1,12 +1,12 @@
-package com.wavesplatform.network.client
+package mir.coffe.network.client
 
 import java.io.IOException
 import java.net.InetSocketAddress
 
-import com.wavesplatform.Version
-import com.wavesplatform.network.Handshake
-import com.wavesplatform.settings._
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.Version
+import mir.coffe.network.Handshake
+import mir.coffe.settings._
+import mir.coffe.utils.ScorexLogging
 import io.netty.bootstrap.Bootstrap
 import io.netty.channel._
 import io.netty.channel.group.ChannelGroup

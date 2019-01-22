@@ -1,6 +1,6 @@
-package com.wavesplatform.consensus
+package mir.coffe.consensus
 
-import com.wavesplatform.crypto
+import mir.coffe.crypto
 
 trait PoSCalculator {
   def calculateBaseTarget(targetBlockDelaySeconds: Long,

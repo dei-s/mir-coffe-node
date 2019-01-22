@@ -1,4 +1,4 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import akka.http.scaladsl.model.{StatusCode, StatusCodes}
 import play.api.libs.json.JsError

@@ -1,8 +1,8 @@
-package com.wavesplatform.matcher.fixtures
+package mir.coffe.matcher.fixtures
 
 import akka.persistence.PersistentActor
 
-import com.wavesplatform.matcher.fixtures.RestartableActor.{RestartActor, RestartActorException}
+import mir.coffe.matcher.fixtures.RestartableActor.{RestartActor, RestartActorException}
 
 trait RestartableActor extends PersistentActor {
 

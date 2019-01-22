@@ -1,4 +1,4 @@
-package com.wavesplatform.metrics
+package mir.coffe.metrics
 
 import org.influxdb.dto.Point
 

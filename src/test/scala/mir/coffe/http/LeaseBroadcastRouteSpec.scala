@@ -1,10 +1,10 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.RequestGen
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.state.diffs.TransactionDiffer.TransactionValidationError
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.RequestGen
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.state.diffs.TransactionDiffer.TransactionValidationError
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 import org.scalacheck.Gen.posNum
 import org.scalacheck.{Gen => G}
@@ -12,11 +12,11 @@ import org.scalamock.scalatest.PathMockFactory
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json.Json._
 import play.api.libs.json._
-import com.wavesplatform.api.http._
-import com.wavesplatform.api.http.leasing.LeaseBroadcastApiRoute
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.transaction.lease.{LeaseCancelTransactionV1, LeaseTransactionV1}
+import mir.coffe.api.http._
+import mir.coffe.api.http.leasing.LeaseBroadcastApiRoute
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.Transaction
+import mir.coffe.transaction.lease.{LeaseCancelTransactionV1, LeaseTransactionV1}
 
 class LeaseBroadcastRouteSpec extends RouteSpec("/leasing/broadcast/") with RequestGen with PathMockFactory with PropertyChecks {
   private val settings    = RestAPISettings.fromConfig(ConfigFactory.load())
@@ -55,7 +55,7 @@ class LeaseBroadcastRouteSpec extends RouteSpec("/leasing/broadcast/") with Requ
       def posting[A: Writes](v: A): RouteTestResult = Post(routePath("lease"), v) ~> route
 
       forAll(nonPositiveLong) { q =>
-        posting(lease.copy(amount = q)) should produce(NegativeAmount(s"$q of waves"))
+        posting(lease.copy(amount = q)) should produce(NegativeAmount(s"$q of coffe"))
       }
       forAll(invalidBase58) { pk =>
         posting(lease.copy(senderPublicKey = pk)) should produce(InvalidAddress)

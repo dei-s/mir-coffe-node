@@ -1,4 +1,4 @@
-package com.wavesplatform.network.message
+package mir.coffe.network.message
 
 import scala.reflect.ClassTag
 import scala.util.Try

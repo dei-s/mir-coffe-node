@@ -1,8 +1,8 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
-import com.wavesplatform.matcher.model.MatcherModel.{Level, Price}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.matcher.model.MatcherModel.{Level, Price}
+import mir.coffe.state.ByteStr
+import mir.coffe.utils.ScorexLogging
 
 import scala.collection.immutable.TreeMap
 

@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction.lease
+package mir.coffe.transaction.lease
 
 import com.google.common.primitives.Bytes
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.transaction._
-import com.wavesplatform.crypto._
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.transaction._
+import mir.coffe.crypto._
 import scala.util.{Failure, Success, Try}
 
 case class LeaseCancelTransactionV1 private (sender: PublicKeyAccount, leaseId: ByteStr, fee: Long, timestamp: Long, signature: ByteStr)

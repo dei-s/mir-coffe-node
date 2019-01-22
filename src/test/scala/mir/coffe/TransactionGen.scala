@@ -1,27 +1,27 @@
-package com.wavesplatform
+package mir.coffe
 
 import cats.syntax.semigroup._
-import com.wavesplatform.account.PublicKeyAccount._
-import com.wavesplatform.account._
-import com.wavesplatform.lang.Global
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.testing.ScriptGen
-import com.wavesplatform.settings.Constants
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.ENOUGH_AMT
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.lease._
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer.MassTransferTransaction.ParsedTransfer
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.PublicKeyAccount._
+import mir.coffe.account._
+import mir.coffe.lang.Global
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.testing.ScriptGen
+import mir.coffe.settings.Constants
+import mir.coffe.state._
+import mir.coffe.state.diffs.ENOUGH_AMT
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.lease._
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer.MassTransferTransaction.ParsedTransfer
+import mir.coffe.transaction.transfer._
 import MassTransferTransaction.MaxTransferCount
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.ScriptVersion.Versions.V1
 import org.scalacheck.Gen.{alphaLowerChar, alphaUpperChar, frequency, numChar}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.Suite
@@ -35,7 +35,7 @@ trait TransactionGen extends TransactionGenBase { _: Suite =>
 trait TransactionGenBase extends ScriptGen with NTPTime { _: Suite =>
 
   val ScriptExtraFee                  = 400000L
-  protected def waves(n: Float): Long = (n * 100000000L).toLong
+  protected def coffe(n: Float): Long = (n * 100000000L).toLong
 
   def byteArrayGen(length: Int): Gen[Array[Byte]] = Gen.containerOfN[Array, Byte](length, Arbitrary.arbitrary[Byte])
 
@@ -91,8 +91,8 @@ trait TransactionGenBase extends ScriptGen with NTPTime { _: Suite =>
   val maxOrderTimeGen: Gen[Long] = Gen.choose(10000L, Order.MaxLiveTime).map(_ + ntpTime.correctedTime())
   val timestampGen: Gen[Long]    = Gen.choose(1, Long.MaxValue - 100)
 
-  val wavesAssetGen: Gen[Option[ByteStr]] = Gen.const(None)
-  val assetIdGen: Gen[Option[ByteStr]]    = Gen.frequency((1, wavesAssetGen), (10, Gen.option(bytes32gen.map(ByteStr(_)))))
+  val coffeAssetGen: Gen[Option[ByteStr]] = Gen.const(None)
+  val assetIdGen: Gen[Option[ByteStr]]    = Gen.frequency((1, coffeAssetGen), (10, Gen.option(bytes32gen.map(ByteStr(_)))))
 
   val assetPairGen = assetIdGen.flatMap {
     case None => bytes32gen.map(b => AssetPair(None, Some(ByteStr(b))))
@@ -283,10 +283,10 @@ trait TransactionGenBase extends ScriptGen with NTPTime { _: Suite =>
       (_, _, _, amount, _, _, feeAmount, attachment) <- transferParamGen
     } yield TransferTransactionV1.selfSigned(assetId, sender, recipient, amount, timestamp, feeAssetId, feeAmount, attachment).explicitGet()
 
-  def wavesTransferGeneratorP(sender: PrivateKeyAccount, recipient: AddressOrAlias): Gen[TransferTransactionV1] =
+  def coffeTransferGeneratorP(sender: PrivateKeyAccount, recipient: AddressOrAlias): Gen[TransferTransactionV1] =
     transferGeneratorP(sender, recipient, None, None)
 
-  def wavesTransferGeneratorP(timestamp: Long, sender: PrivateKeyAccount, recipient: AddressOrAlias): Gen[TransferTransactionV1] =
+  def coffeTransferGeneratorP(timestamp: Long, sender: PrivateKeyAccount, recipient: AddressOrAlias): Gen[TransferTransactionV1] =
     transferGeneratorP(timestamp, sender, recipient, None, None)
 
   def massTransferGeneratorP(sender: PrivateKeyAccount, transfers: List[ParsedTransfer], assetId: Option[AssetId]): Gen[MassTransferTransaction] =
@@ -295,7 +295,7 @@ trait TransactionGenBase extends ScriptGen with NTPTime { _: Suite =>
       (_, _, _, _, timestamp, _, feeAmount, attachment) <- transferParamGen
     } yield MassTransferTransaction.selfSigned(version, assetId, sender, transfers, timestamp, feeAmount, attachment).explicitGet()
 
-  def createWavesTransfer(sender: PrivateKeyAccount,
+  def createCoffeTransfer(sender: PrivateKeyAccount,
                           recipient: Address,
                           amount: Long,
                           fee: Long,
@@ -326,11 +326,11 @@ trait TransactionGenBase extends ScriptGen with NTPTime { _: Suite =>
     } yield TransferTransactionV2.create(version, None, sender, recipient, amt, timestamp, None, fee, Array.emptyByteArray, proofs).explicitGet())
       .label("VersionedTransferTransactionP")
 
-  val transferWithWavesFeeGen = for {
+  val transferWithCoffeFeeGen = for {
     (assetId, sender, recipient, amount, timestamp, _, feeAmount, attachment) <- transferParamGen
   } yield TransferTransactionV1.selfSigned(assetId, sender, recipient, amount, timestamp, None, feeAmount, attachment).explicitGet()
 
-  val selfTransferWithWavesFeeGen: Gen[TransferTransactionV1] = for {
+  val selfTransferWithCoffeFeeGen: Gen[TransferTransactionV1] = for {
     (assetId, sender, _, amount, timestamp, _, feeAmount, attachment) <- transferParamGen
   } yield TransferTransactionV1.selfSigned(assetId, sender, sender, amount, timestamp, None, feeAmount, attachment).explicitGet()
 

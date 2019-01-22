@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.primitives.{Bytes, Longs}
-import com.wavesplatform.account.{Alias, PublicKeyAccount}
-import com.wavesplatform.serialization.Deser
+import mir.coffe.account.{Alias, PublicKeyAccount}
+import mir.coffe.serialization.Deser
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.crypto._
+import mir.coffe.crypto._
 
 import scala.util.{Failure, Success, Try}
 

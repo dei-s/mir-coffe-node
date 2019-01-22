@@ -1,7 +1,7 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
-import com.wavesplatform.metrics.LevelDBStats
-import com.wavesplatform.metrics.LevelDBStats.DbHistogramExt
+import mir.coffe.metrics.LevelDBStats
+import mir.coffe.metrics.LevelDBStats.DbHistogramExt
 import org.iq80.leveldb.{DB, ReadOptions, WriteBatch}
 
 class RW(db: DB, readOptions: ReadOptions, batch: WriteBatch) extends ReadOnlyDB(db, readOptions) {

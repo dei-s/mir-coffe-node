@@ -1,12 +1,12 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import akka.http.scaladsl.model.{StatusCode, StatusCodes}
-import com.wavesplatform.lang.v1.evaluator.ctx.LazyVal
-import com.wavesplatform.state.diffs.TransactionDiffer.TransactionValidationError
+import mir.coffe.lang.v1.evaluator.ctx.LazyVal
+import mir.coffe.state.diffs.TransactionDiffer.TransactionValidationError
 import play.api.libs.json._
-import com.wavesplatform.account.{Address, AddressOrAlias, Alias}
-import com.wavesplatform.lang.ExprEvaluator.Log
-import com.wavesplatform.transaction.{Transaction, ValidationError}
+import mir.coffe.account.{Address, AddressOrAlias, Alias}
+import mir.coffe.lang.ExprEvaluator.Log
+import mir.coffe.transaction.{Transaction, ValidationError}
 
 case class ApiErrorResponse(error: Int, message: String)
 

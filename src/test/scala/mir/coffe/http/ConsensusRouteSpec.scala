@@ -1,13 +1,13 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.BlockGen
-import com.wavesplatform.api.http.BlockDoesNotExist
-import com.wavesplatform.consensus.nxt.api.http.NxtConsensusApiRoute
-import com.wavesplatform.db.WithDomain
-import com.wavesplatform.http.ApiMarshallers._
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
+import mir.coffe.BlockGen
+import mir.coffe.api.http.BlockDoesNotExist
+import mir.coffe.consensus.nxt.api.http.NxtConsensusApiRoute
+import mir.coffe.db.WithDomain
+import mir.coffe.http.ApiMarshallers._
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json.JsObject
 

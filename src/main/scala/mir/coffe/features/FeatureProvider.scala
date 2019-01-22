@@ -1,6 +1,6 @@
-package com.wavesplatform.features
+package mir.coffe.features
 
-import com.wavesplatform.state.Blockchain
+import mir.coffe.state.Blockchain
 
 object FeatureProvider {
   implicit class FeatureProviderExt(provider: Blockchain) {

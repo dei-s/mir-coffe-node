@@ -1,9 +1,9 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import akka.http.scaladsl.server.Directive1
-import com.wavesplatform.state.{Blockchain, ByteStr}
-import com.wavesplatform.block.Block
-import com.wavesplatform.transaction.TransactionParsers
+import mir.coffe.state.{Blockchain, ByteStr}
+import mir.coffe.block.Block
+import mir.coffe.transaction.TransactionParsers
 
 trait CommonApiFunctions { this: ApiRoute =>
   protected[api] def withBlock(blockchain: Blockchain, encodedSignature: String): Directive1[Block] =

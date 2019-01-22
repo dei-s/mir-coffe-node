@@ -1,12 +1,12 @@
-package com.wavesplatform.api.http.leasing
+package mir.coffe.api.http.leasing
 
 import cats.implicits._
 import io.swagger.annotations.ApiModelProperty
 import play.api.libs.json.{Format, Json}
-import com.wavesplatform.account.{AddressOrAlias, PublicKeyAccount}
-import com.wavesplatform.api.http.BroadcastRequest
-import com.wavesplatform.transaction.lease.LeaseTransactionV2
-import com.wavesplatform.transaction.{Proofs, ValidationError}
+import mir.coffe.account.{AddressOrAlias, PublicKeyAccount}
+import mir.coffe.api.http.BroadcastRequest
+import mir.coffe.transaction.lease.LeaseTransactionV2
+import mir.coffe.transaction.{Proofs, ValidationError}
 
 case class SignedLeaseV2Request(@ApiModelProperty(required = true)
                                 version: Byte,

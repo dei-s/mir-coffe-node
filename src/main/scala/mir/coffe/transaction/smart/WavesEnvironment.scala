@@ -1,17 +1,17 @@
-package com.wavesplatform.transaction.smart
+package mir.coffe.transaction.smart
 
-import com.wavesplatform.account.AddressOrAlias
-import com.wavesplatform.lang.v1.traits._
-import com.wavesplatform.lang.v1.traits.domain.Recipient._
-import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.transaction.assets.exchange.Order
+import mir.coffe.account.AddressOrAlias
+import mir.coffe.lang.v1.traits._
+import mir.coffe.lang.v1.traits.domain.Recipient._
+import mir.coffe.lang.v1.traits.domain.{Ord, Recipient, Tx}
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction
+import mir.coffe.transaction.assets.exchange.Order
 import monix.eval.Coeval
 import scodec.bits.ByteVector
 import shapeless._
 
-class WavesEnvironment(nByte: Byte, in: Coeval[Transaction :+: Order :+: CNil], h: Coeval[Int], blockchain: Blockchain) extends Environment {
+class CoffeEnvironment(nByte: Byte, in: Coeval[Transaction :+: Order :+: CNil], h: Coeval[Int], blockchain: Blockchain) extends Environment {
   override def height: Long = h()
 
   override def inputEntity: Tx :+: Ord :+: CNil = {
@@ -29,11 +29,11 @@ class WavesEnvironment(nByte: Byte, in: Coeval[Transaction :+: Order :+: CNil], 
     for {
       address <- recipient match {
         case Address(bytes) =>
-          com.wavesplatform.account.Address
+          mir.coffe.account.Address
             .fromBytes(bytes.toArray)
             .toOption
         case Alias(name) =>
-          com.wavesplatform.account.Alias
+          mir.coffe.account.Alias
             .buildWithCurrentChainId(name)
             .flatMap(blockchain.resolveAlias)
             .toOption
@@ -52,7 +52,7 @@ class WavesEnvironment(nByte: Byte, in: Coeval[Transaction :+: Order :+: CNil], 
   }
   override def resolveAlias(name: String): Either[String, Recipient.Address] =
     blockchain
-      .resolveAlias(com.wavesplatform.account.Alias.buildWithCurrentChainId(name).explicitGet())
+      .resolveAlias(mir.coffe.account.Alias.buildWithCurrentChainId(name).explicitGet())
       .left
       .map(_.toString)
       .right
@@ -64,7 +64,7 @@ class WavesEnvironment(nByte: Byte, in: Coeval[Transaction :+: Order :+: CNil], 
     (for {
       aoa <- addressOrAlias match {
         case Address(bytes) => AddressOrAlias.fromBytes(bytes.toArray, position = 0).map(_._1)
-        case Alias(name)    => com.wavesplatform.account.Alias.buildWithCurrentChainId(name)
+        case Alias(name)    => mir.coffe.account.Alias.buildWithCurrentChainId(name)
       }
       address <- blockchain.resolveAlias(aoa)
       balance = blockchain.balance(address, maybeAssetId.map(ByteStr(_)))

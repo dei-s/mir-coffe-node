@@ -1,20 +1,20 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.net.{InetAddress, InetSocketAddress}
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.settings.NetworkSettings
+import mir.coffe.settings.NetworkSettings
 import net.ceedubs.ficus.Ficus._
 import org.scalatest.{FeatureSpec, GivenWhenThen}
 
 class BlacklistSpecification extends FeatureSpec with GivenWhenThen {
-  private val config = ConfigFactory.parseString("""waves.network {
+  private val config = ConfigFactory.parseString("""coffe.network {
       |  known-peers = []
       |  file = null
       |  black-list-residence-time: 1s
       |}""".stripMargin).withFallback(ConfigFactory.load()).resolve()
 
-  private val networkSettings = config.as[NetworkSettings]("waves.network")
+  private val networkSettings = config.as[NetworkSettings]("coffe.network")
 
   info("As a Peer")
   info("I want to blacklist other peers for certain time")

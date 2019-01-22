@@ -1,17 +1,17 @@
-package com.wavesplatform.wallet
+package mir.coffe.wallet
 
 import java.io.File
 
 import com.google.common.primitives.{Bytes, Ints}
-import com.wavesplatform.crypto
-import com.wavesplatform.settings.WalletSettings
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.utils.{JsonFileStorage, _}
+import mir.coffe.crypto
+import mir.coffe.settings.WalletSettings
+import mir.coffe.state.ByteStr
+import mir.coffe.utils.{JsonFileStorage, _}
 import play.api.libs.json._
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.MissingSenderPrivateKey
-import com.wavesplatform.utils.randomBytes
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.MissingSenderPrivateKey
+import mir.coffe.utils.randomBytes
 
 import scala.collection.concurrent.TrieMap
 import scala.util.control.NonFatal

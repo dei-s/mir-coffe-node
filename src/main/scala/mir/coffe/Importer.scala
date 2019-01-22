@@ -1,21 +1,21 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.io._
 
 import com.google.common.primitives.Ints
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.{Address, AddressScheme}
-import com.wavesplatform.block.Block
-import com.wavesplatform.consensus.PoSSelector
-import com.wavesplatform.db.openDB
-import com.wavesplatform.history.{CheckpointServiceImpl, StorageFactory}
-import com.wavesplatform.mining.MultiDimensionalMiningConstraint
-import com.wavesplatform.settings.{WavesSettings, loadConfig}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.state.appender.BlockAppender
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.utils._
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.account.{Address, AddressScheme}
+import mir.coffe.block.Block
+import mir.coffe.consensus.PoSSelector
+import mir.coffe.db.openDB
+import mir.coffe.history.{CheckpointServiceImpl, StorageFactory}
+import mir.coffe.mining.MultiDimensionalMiningConstraint
+import mir.coffe.settings.{CoffeSettings, loadConfig}
+import mir.coffe.state.ByteStr
+import mir.coffe.state.appender.BlockAppender
+import mir.coffe.transaction.Transaction
+import mir.coffe.utils._
+import mir.coffe.utx.UtxPool
 import monix.execution.Scheduler
 import org.slf4j.bridge.SLF4JBridgeHandler
 
@@ -36,12 +36,12 @@ object Importer extends ScorexLogging {
         case conf                                  => (true, conf)
       }
     }
-    val configFilename     = configOpt.toOption.getOrElse("waves-testnet.conf")
+    val configFilename     = configOpt.toOption.getOrElse("coffe-testnet.conf")
     val blockchainFilename = Try(argi.next)
     val importHeight       = Try(argi.next).map(_.toInt).getOrElse(Int.MaxValue)
 
     val config   = loadConfig(ConfigFactory.parseFile(new File(configFilename)))
-    val settings = WavesSettings.fromConfig(config)
+    val settings = CoffeSettings.fromConfig(config)
     AddressScheme.current = new AddressScheme {
       override val chainId: Byte = settings.blockchainSettings.addressSchemeCharacter.toByte
     }

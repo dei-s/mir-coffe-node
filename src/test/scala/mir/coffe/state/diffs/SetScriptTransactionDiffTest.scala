@@ -1,15 +1,15 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.{NoShrink, TransactionGen, WithDB}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.{NoShrink, TransactionGen, WithDB}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.smart.SetScriptTransaction
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.smart.SetScriptTransaction
 
 class SetScriptTransactionDiffTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink with WithDB {
 

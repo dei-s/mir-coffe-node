@@ -1,11 +1,11 @@
-package com.wavesplatform.lagonaki.mocks
+package mir.coffe.lagonaki.mocks
 
-import com.wavesplatform.state._
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block._
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.crypto._
+import mir.coffe.state._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block._
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.transaction.Transaction
+import mir.coffe.crypto._
 import scala.util.{Random, Try}
 
 object TestBlock {

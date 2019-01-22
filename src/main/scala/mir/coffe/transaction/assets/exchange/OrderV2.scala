@@ -1,13 +1,13 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
 import cats.data.State
 import com.google.common.primitives.Longs
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.crypto
-import com.wavesplatform.crypto._
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction._
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.crypto
+import mir.coffe.crypto._
+import mir.coffe.serialization.Deser
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction._
 import monix.eval.Coeval
 
 import scala.util.Try

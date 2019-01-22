@@ -1,17 +1,17 @@
-package com.wavesplatform.matcher.matching
+package mir.coffe.matcher.matching
 
 import com.google.common.base.Charsets.UTF_8
-import com.wavesplatform.WithDB
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.matcher.api.DBUtils
-import com.wavesplatform.matcher.{AssetPairDecimals, MatcherTestData}
-import com.wavesplatform.matcher.model.Events.{OrderAdded, OrderExecuted}
-import com.wavesplatform.matcher.model.LimitOrder.{Filled, PartiallyFilled}
-import com.wavesplatform.matcher.model.{LimitOrder, OrderHistory}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.AssetId
-import com.wavesplatform.transaction.assets.exchange.OrderType.{BUY, SELL}
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, Order, OrderType}
+import mir.coffe.WithDB
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.matcher.api.DBUtils
+import mir.coffe.matcher.{AssetPairDecimals, MatcherTestData}
+import mir.coffe.matcher.model.Events.{OrderAdded, OrderExecuted}
+import mir.coffe.matcher.model.LimitOrder.{Filled, PartiallyFilled}
+import mir.coffe.matcher.model.{LimitOrder, OrderHistory}
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.AssetId
+import mir.coffe.transaction.assets.exchange.OrderType.{BUY, SELL}
+import mir.coffe.transaction.assets.exchange.{AssetPair, Order, OrderType}
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{BeforeAndAfterEach, Matchers, PropSpec}
 

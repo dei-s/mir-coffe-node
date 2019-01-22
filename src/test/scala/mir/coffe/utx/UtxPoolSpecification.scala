@@ -1,26 +1,26 @@
-package com.wavesplatform.utx
+package mir.coffe.utx
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform._
-import com.wavesplatform.account.{Address, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.block.Block
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.history.StorageFactory
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.v1.compiler.Terms.EXPR
-import com.wavesplatform.lang.v1.compiler.{CompilerContext, CompilerV1}
-import com.wavesplatform.mining._
-import com.wavesplatform.settings._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.state.{ByteStr, EitherExt2, _}
-import com.wavesplatform.transaction.ValidationError.SenderIsBlacklisted
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer.MassTransferTransaction.ParsedTransfer
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.utils.Time
+import mir.coffe._
+import mir.coffe.account.{Address, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.block.Block
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.history.StorageFactory
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.v1.compiler.Terms.EXPR
+import mir.coffe.lang.v1.compiler.{CompilerContext, CompilerV1}
+import mir.coffe.mining._
+import mir.coffe.settings._
+import mir.coffe.state.diffs._
+import mir.coffe.state.{ByteStr, EitherExt2, _}
+import mir.coffe.transaction.ValidationError.SenderIsBlacklisted
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer.MassTransferTransaction.ParsedTransfer
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.Transaction
+import mir.coffe.utils.Time
 import org.scalacheck.Gen
 import org.scalacheck.Gen._
 import org.scalamock.scalatest.MockFactory
@@ -36,7 +36,7 @@ class UtxPoolSpecification extends FreeSpec with Matchers with MockFactory with 
   private def mkBlockchain(senderAccount: Address, senderBalance: Long) = {
     val config          = ConfigFactory.load()
     val genesisSettings = TestHelpers.genesisSettings(Map(senderAccount -> senderBalance))
-    val origSettings    = WavesSettings.fromConfig(config)
+    val origSettings    = CoffeSettings.fromConfig(config)
     val settings = origSettings.copy(
       blockchainSettings = BlockchainSettings(
         'T',
@@ -106,7 +106,7 @@ class UtxPoolSpecification extends FreeSpec with Matchers with MockFactory with 
         UtxSettings(10, Set.empty, Set.empty, 5.minutes, allowTransactionsFromSmartAccounts = true)
       )
     val amountPart = (senderBalance - fee) / 2 - fee
-    val txs        = for (_ <- 1 to n) yield createWavesTransfer(sender, recipient, amountPart, fee, time.getTimestamp()).explicitGet()
+    val txs        = for (_ <- 1 to n) yield createCoffeTransfer(sender, recipient, amountPart, fee, time.getTimestamp()).explicitGet()
     (utx, time, txs, (offset + 1000).millis)
   }).label("twoOutOfManyValidPayments")
 
@@ -243,11 +243,11 @@ class UtxPoolSpecification extends FreeSpec with Matchers with MockFactory with 
     }
 
   private def transactionV1Gen(sender: PrivateKeyAccount, ts: Long, feeAmount: Long): Gen[TransferTransactionV1] = accountGen.map { recipient =>
-    TransferTransactionV1.selfSigned(None, sender, recipient, waves(1), ts, None, feeAmount, Array.emptyByteArray).explicitGet()
+    TransferTransactionV1.selfSigned(None, sender, recipient, coffe(1), ts, None, feeAmount, Array.emptyByteArray).explicitGet()
   }
 
   private def transactionV2Gen(sender: PrivateKeyAccount, ts: Long, feeAmount: Long): Gen[TransferTransactionV2] = accountGen.map { recipient =>
-    TransferTransactionV2.selfSigned(2, None, sender, recipient, waves(1), ts, None, feeAmount, Array.emptyByteArray).explicitGet()
+    TransferTransactionV2.selfSigned(2, None, sender, recipient, coffe(1), ts, None, feeAmount, Array.emptyByteArray).explicitGet()
   }
 
   "UTX Pool" - {

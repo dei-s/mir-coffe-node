@@ -1,9 +1,9 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import com.google.common.cache.CacheBuilder
-import com.wavesplatform.network.InvalidBlockStorageImpl._
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.ValidationError
+import mir.coffe.network.InvalidBlockStorageImpl._
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.ValidationError
 
 import scala.concurrent.duration.FiniteDuration
 

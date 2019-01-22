@@ -1,10 +1,10 @@
-package com.wavesplatform.consensus.nxt
+package mir.coffe.consensus.nxt
 
-import com.wavesplatform.state.{ByteStr, EitherExt2}
+import mir.coffe.state.{ByteStr, EitherExt2}
 import org.scalatest.{Assertions, Matchers, PropSpec}
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.consensus.TransactionsOrdering
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.consensus.TransactionsOrdering
+import mir.coffe.transaction.transfer._
 
 import scala.util.Random
 

@@ -1,6 +1,6 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.utils.ScorexLogging
 import org.iq80.leveldb.DBFactory
 
 import scala.util.Try

@@ -1,4 +1,4 @@
-package com.wavesplatform.serialization
+package mir.coffe.serialization
 
 import com.google.common.primitives.{Bytes, Shorts}
 

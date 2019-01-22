@@ -1,13 +1,13 @@
-package com.wavesplatform.block
+package mir.coffe.block
 
 import com.google.common.primitives.{Bytes, Longs}
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.serialization.{BytesSerializable, JsonSerializable}
-import com.wavesplatform.transaction.Transaction
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.utils.Base58
+import mir.coffe.serialization.{BytesSerializable, JsonSerializable}
+import mir.coffe.transaction.Transaction
 
 abstract class BlockField[T] extends BytesSerializable with JsonSerializable {
   val name: String

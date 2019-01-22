@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.assets
+package mir.coffe.transaction.assets
 
 import cats.implicits._
 import com.google.common.primitives.{Bytes, Longs}
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.transaction.validation._
-import com.wavesplatform.transaction.{AssetId, ProvenTransaction, ValidationError, _}
-import com.wavesplatform.crypto._
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.transaction.validation._
+import mir.coffe.transaction.{AssetId, ProvenTransaction, ValidationError, _}
+import mir.coffe.crypto._
 
 trait ReissueTransaction extends ProvenTransaction with VersionedTransaction {
   def assetId: ByteStr

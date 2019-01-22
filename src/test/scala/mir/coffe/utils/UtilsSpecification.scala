@@ -1,8 +1,8 @@
-package com.wavesplatform.utils
+package mir.coffe.utils
 
-import com.wavesplatform.lang.v1.compiler.Terms.{FUNCTION_CALL, TRUE}
-import com.wavesplatform.lang.v1.compiler.Types.BOOLEAN
-import com.wavesplatform.lang.v1.evaluator.ctx.{EvaluationContext, UserFunction}
+import mir.coffe.lang.v1.compiler.Terms.{FUNCTION_CALL, TRUE}
+import mir.coffe.lang.v1.compiler.Types.BOOLEAN
+import mir.coffe.lang.v1.evaluator.ctx.{EvaluationContext, UserFunction}
 import org.scalatest.{FreeSpec, Matchers}
 
 class UtilsSpecification extends FreeSpec with Matchers {

@@ -1,13 +1,13 @@
-package com.wavesplatform.api.http.leasing
+package mir.coffe.api.http.leasing
 
 import io.swagger.annotations.ApiModelProperty
 import play.api.libs.functional.syntax._
 import play.api.libs.json._
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.api.http.BroadcastRequest
-import com.wavesplatform.transaction.TransactionParsers.SignatureStringLength
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.lease.LeaseCancelTransactionV1
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.api.http.BroadcastRequest
+import mir.coffe.transaction.TransactionParsers.SignatureStringLength
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.lease.LeaseCancelTransactionV1
 
 case class SignedLeaseCancelV1Request(@ApiModelProperty(value = "Base58 encoded sender public key", required = true)
                                       senderPublicKey: String,

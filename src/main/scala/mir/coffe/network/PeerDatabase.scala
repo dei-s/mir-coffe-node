@@ -1,8 +1,8 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.net.{InetAddress, InetSocketAddress}
 
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.utils.ScorexLogging
 import io.netty.channel.Channel
 
 trait PeerDatabase extends AutoCloseable {

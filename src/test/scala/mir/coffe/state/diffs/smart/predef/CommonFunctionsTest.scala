@@ -1,13 +1,13 @@
-package com.wavesplatform.state.diffs.smart.predef
+package mir.coffe.state.diffs.smart.predef
 
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.lang.Testing._
-import com.wavesplatform.lang.v1.compiler.Terms.CONST_BYTEVECTOR
-import com.wavesplatform.lang.v1.evaluator.ctx.impl._
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.transaction.{DataTransaction, Proofs}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.lang.Testing._
+import mir.coffe.lang.v1.compiler.Terms.CONST_BYTEVECTOR
+import mir.coffe.lang.v1.evaluator.ctx.impl._
+import mir.coffe.state._
+import mir.coffe.state.diffs._
+import mir.coffe.transaction.{DataTransaction, Proofs}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Assertions, Matchers, PropSpec}

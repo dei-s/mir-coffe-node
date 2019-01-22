@@ -1,8 +1,8 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.Config
-import com.wavesplatform.network.InvalidBlockStorageImpl.InvalidBlockStorageSettings
-import com.wavesplatform.settings.SynchronizationSettings._
+import mir.coffe.network.InvalidBlockStorageImpl.InvalidBlockStorageSettings
+import mir.coffe.settings.SynchronizationSettings._
 import net.ceedubs.ficus.Ficus._
 import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 
@@ -27,7 +27,7 @@ object SynchronizationSettings {
 
   case class UtxSynchronizerSettings(networkTxCacheSize: Int, networkTxCacheTime: FiniteDuration, maxBufferSize: Int, maxBufferTime: FiniteDuration)
 
-  val configPath: String = "waves.synchronization"
+  val configPath: String = "coffe.synchronization"
 
   def fromConfig(config: Config): SynchronizationSettings = {
     val maxRollback             = config.as[Int](s"$configPath.max-rollback")

@@ -1,16 +1,16 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.database.{DBExt, Keys, LevelDBWriter}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.{BlockchainUpdaterImpl, NG}
-import com.wavesplatform.transaction.BlockchainUpdater
-import com.wavesplatform.utils.{ScorexLogging, Time, UnsupportedFeature, forceStopApplication}
+import mir.coffe.database.{DBExt, Keys, LevelDBWriter}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.{BlockchainUpdaterImpl, NG}
+import mir.coffe.transaction.BlockchainUpdater
+import mir.coffe.utils.{ScorexLogging, Time, UnsupportedFeature, forceStopApplication}
 import org.iq80.leveldb.DB
 
 object StorageFactory extends ScorexLogging {
   private val StorageVersion = 2
 
-  def apply(settings: WavesSettings, db: DB, time: Time): BlockchainUpdater with NG = {
+  def apply(settings: CoffeSettings, db: DB, time: Time): BlockchainUpdater with NG = {
     checkVersion(db)
     val levelDBWriter = new LevelDBWriter(
       db,

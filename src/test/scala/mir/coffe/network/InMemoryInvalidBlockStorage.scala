@@ -1,8 +1,8 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
 
 class InMemoryInvalidBlockStorage extends InvalidBlockStorage {
 

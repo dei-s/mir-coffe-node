@@ -1,8 +1,8 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction.ValidationError
+import mir.coffe.state.ByteStr
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction.ValidationError
 
 trait AddressOrAlias {
   def stringRepr: String

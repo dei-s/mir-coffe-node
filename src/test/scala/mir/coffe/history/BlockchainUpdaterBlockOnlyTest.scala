@@ -1,14 +1,14 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.state.EitherExt2
-import com.wavesplatform.state.diffs._
+import mir.coffe.TransactionGen
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.state.EitherExt2
+import mir.coffe.state.diffs._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.transaction._
+import mir.coffe.transaction.transfer._
 
 class BlockchainUpdaterBlockOnlyTest extends PropSpec with PropertyChecks with DomainScenarioDrivenPropertyCheck with Matchers with TransactionGen {
 
@@ -18,7 +18,7 @@ class BlockchainUpdaterBlockOnlyTest extends PropSpec with PropertyChecks with D
       recipient <- accountGen
       ts        <- positiveIntGen
       genesis: GenesisTransaction = GenesisTransaction.create(master, ENOUGH_AMT, ts).explicitGet()
-      payments <- Gen.listOfN(paymentsAmt, wavesTransferGeneratorP(master, recipient))
+      payments <- Gen.listOfN(paymentsAmt, coffeTransferGeneratorP(master, recipient))
     } yield (genesis, payments)
 
   property("can apply valid blocks") {

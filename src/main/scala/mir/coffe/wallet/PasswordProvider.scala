@@ -1,6 +1,6 @@
-package com.wavesplatform.wallet
+package mir.coffe.wallet
 
-import com.wavesplatform.utils._
+import mir.coffe.utils._
 
 object PasswordProvider extends ScorexLogging {
 
@@ -10,7 +10,7 @@ object PasswordProvider extends ScorexLogging {
       case None =>
         log.error("CANNOT GET CONSOLE TO ASK WALLET PASSWORD")
         log.error(
-          "Probably, it happens because you trying to start Waves node using supervisor service (like systemd) without specified wallet password.")
+          "Probably, it happens because you trying to start Coffe node using supervisor service (like systemd) without specified wallet password.")
         forceStopApplication(PasswordNotSpecified)
         ""
 

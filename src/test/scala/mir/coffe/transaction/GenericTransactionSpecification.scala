@@ -1,20 +1,20 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.TransactionGen
+import mir.coffe.TransactionGen
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json._
 
-abstract class GenericTransactionSpecification[T <: com.wavesplatform.transaction.Transaction]
+abstract class GenericTransactionSpecification[T <: mir.coffe.transaction.Transaction]
     extends PropSpec
     with PropertyChecks
     with Matchers
     with TransactionGen {
 
-  def transactionParser: com.wavesplatform.transaction.TransactionParserFor[T]
+  def transactionParser: mir.coffe.transaction.TransactionParserFor[T]
   def updateProofs(tx: T, p: Proofs): T
-  def generator: Gen[((Seq[com.wavesplatform.transaction.Transaction], T))]
+  def generator: Gen[((Seq[mir.coffe.transaction.Transaction], T))]
   def assertTxs(first: T, second: T): Unit
   def jsonRepr: Seq[(JsValue, T)]
   def transactionName: String

@@ -1,10 +1,10 @@
-package com.wavesplatform.api.http.leasing
+package mir.coffe.api.http.leasing
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.api.http._
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.api.http._
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 
 case class LeaseBroadcastApiRoute(settings: RestAPISettings, utx: UtxPool, allChannels: ChannelGroup) extends ApiRoute with BroadcastRoute {

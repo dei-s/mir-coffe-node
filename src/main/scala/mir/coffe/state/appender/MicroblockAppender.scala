@@ -1,20 +1,20 @@
-package com.wavesplatform.state.appender
+package mir.coffe.state.appender
 
 import cats.data.EitherT
-import com.wavesplatform.metrics.{BlockStats, Instrumented}
-import com.wavesplatform.network.MicroBlockSynchronizer.MicroblockData
-import com.wavesplatform.network._
-import com.wavesplatform.state.Blockchain
-import com.wavesplatform.utils.ScorexLogging
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.metrics.{BlockStats, Instrumented}
+import mir.coffe.network.MicroBlockSynchronizer.MicroblockData
+import mir.coffe.network._
+import mir.coffe.state.Blockchain
+import mir.coffe.utils.ScorexLogging
+import mir.coffe.utx.UtxPool
 import io.netty.channel.Channel
 import io.netty.channel.group.ChannelGroup
 import kamon.Kamon
 import monix.eval.Task
 import monix.execution.Scheduler
-import com.wavesplatform.block.MicroBlock
-import com.wavesplatform.transaction.ValidationError.{InvalidSignature, MicroBlockAppendError}
-import com.wavesplatform.transaction.{BlockchainUpdater, CheckpointService, ValidationError}
+import mir.coffe.block.MicroBlock
+import mir.coffe.transaction.ValidationError.{InvalidSignature, MicroBlockAppendError}
+import mir.coffe.transaction.{BlockchainUpdater, CheckpointService, ValidationError}
 
 import scala.util.{Left, Right}
 

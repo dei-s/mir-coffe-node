@@ -1,6 +1,6 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
-import com.wavesplatform.state.EitherExt2
+import mir.coffe.state.EitherExt2
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 

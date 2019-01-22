@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction.smart.script
+package mir.coffe.transaction.smart.script
 
-import com.wavesplatform.lang.Versioned
-import com.wavesplatform.lang.v1.compiler.Terms
-import com.wavesplatform.state.ByteStr
+import mir.coffe.lang.Versioned
+import mir.coffe.lang.v1.compiler.Terms
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
-import com.wavesplatform.utils.Base64
-import com.wavesplatform.transaction.ValidationError.ScriptParseError
+import mir.coffe.utils.Base64
+import mir.coffe.transaction.ValidationError.ScriptParseError
 
 trait Script extends Versioned {
   val expr: version.ExprT

@@ -1,19 +1,19 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.security.SecureRandom
 
 import cats.kernel.Monoid
 import com.google.common.base.Throwables
-import com.wavesplatform.account.AddressScheme
-import com.wavesplatform.db.{Storage, VersionedStorage}
-import com.wavesplatform.lang.v1.compiler.CompilerContext
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.{CTX, FunctionHeader, ScriptEstimator}
-import com.wavesplatform.lang.{Global, ScriptVersion}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.smart.WavesEnvironment
+import mir.coffe.account.AddressScheme
+import mir.coffe.db.{Storage, VersionedStorage}
+import mir.coffe.lang.v1.compiler.CompilerContext
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.{CTX, FunctionHeader, ScriptEstimator}
+import mir.coffe.lang.{Global, ScriptVersion}
+import mir.coffe.state._
+import mir.coffe.transaction.smart.CoffeEnvironment
 import monix.eval.Coeval
 import monix.execution.UncaughtExceptionReporter
 import org.joda.time.Duration
@@ -51,7 +51,7 @@ package object utils extends ScorexLogging {
   def forceStopApplication(reason: ApplicationStopReason = Default): Unit =
     new Thread(() => {
       System.exit(reason.code)
-    }, "waves-platform-shutdown-thread").start()
+    }, "coffe-platform-shutdown-thread").start()
 
   def humanReadableSize(bytes: Long, si: Boolean = true): String = {
     val (baseValue, unitStrings) =
@@ -95,8 +95,8 @@ package object utils extends ScorexLogging {
             .combineAll(Seq(
               PureContext.build(version),
               CryptoContext.build(Global),
-              WavesContext
-                .build(version, new WavesEnvironment(AddressScheme.current.chainId, Coeval(???), Coeval(???), EmptyBlockchain), isTokenContext = true)
+              CoffeContext
+                .build(version, new CoffeEnvironment(AddressScheme.current.chainId, Coeval(???), Coeval(???), EmptyBlockchain), isTokenContext = true)
             )))
       }
       .toMap
@@ -110,8 +110,8 @@ package object utils extends ScorexLogging {
             .combineAll(Seq(
               PureContext.build(version),
               CryptoContext.build(Global),
-              WavesContext.build(version,
-                                 new WavesEnvironment(AddressScheme.current.chainId, Coeval(???), Coeval(???), EmptyBlockchain),
+              CoffeContext.build(version,
+                                 new CoffeEnvironment(AddressScheme.current.chainId, Coeval(???), Coeval(???), EmptyBlockchain),
                                  isTokenContext = false)
             )))
       }

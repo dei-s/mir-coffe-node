@@ -1,4 +1,4 @@
-package com.wavesplatform
+package mir.coffe
 
 import org.scalacheck.Shrink
 

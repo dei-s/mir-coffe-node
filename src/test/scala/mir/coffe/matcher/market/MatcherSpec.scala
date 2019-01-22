@@ -1,12 +1,12 @@
-package com.wavesplatform.matcher.market
+package mir.coffe.matcher.market
 import java.io.File
 import java.nio.file.Files
 
 import akka.actor.ActorSystem
 import akka.testkit.TestKitBase
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.TestHelpers.deleteRecursively
-import com.wavesplatform.settings.loadConfig
+import mir.coffe.TestHelpers.deleteRecursively
+import mir.coffe.settings.loadConfig
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 
 abstract class MatcherSpec(actorSystemName: String) extends TestKitBase with WordSpecLike with Matchers with BeforeAndAfterAll {

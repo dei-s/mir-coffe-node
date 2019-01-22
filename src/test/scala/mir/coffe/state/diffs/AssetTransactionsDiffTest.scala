@@ -1,25 +1,25 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats._
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.smart.smartEnabledFS
-import com.wavesplatform.utils.compilerContext
-import com.wavesplatform.{NoShrink, TransactionGen, WithDB}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.state._
+import mir.coffe.state.diffs.smart.smartEnabledFS
+import mir.coffe.utils.compilerContext
+import mir.coffe.{NoShrink, TransactionGen, WithDB}
 import fastparse.core.Parsed
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.account.AddressScheme
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.AddressScheme
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer._
 
 class AssetTransactionsDiffTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink with WithDB {
 
@@ -34,7 +34,7 @@ class AssetTransactionsDiffTest extends PropSpec with PropertyChecks with Matche
       (issue, reissue, burn) <- issueReissueBurnGeneratorP(ia, ra, ba, master) suchThat (_._1.reissuable == isReissuable)
     } yield ((genesis, issue), (reissue, burn))
 
-  property("Issue+Reissue+Burn do not break waves invariant and updates state") {
+  property("Issue+Reissue+Burn do not break coffe invariant and updates state") {
     forAll(issueReissueBurnTxs(isReissuable = true)) {
       case (((gen, issue), (reissue, burn))) =>
         assertDiffAndState(Seq(TestBlock.create(Seq(gen, issue))), TestBlock.create(Seq(reissue, burn))) {
@@ -102,9 +102,9 @@ class AssetTransactionsDiffTest extends PropSpec with PropertyChecks with Matche
       genesis: GenesisTransaction = GenesisTransaction.create(issuer, ENOUGH_AMT, timestamp).explicitGet()
       (issue, _, _) <- issueReissueBurnGeneratorP(ENOUGH_AMT, issuer)
       assetTransfer <- transferGeneratorP(issuer, burner, Some(issue.assetId()), None)
-      wavesTransfer <- wavesTransferGeneratorP(issuer, burner)
-      burn = BurnTransactionV1.selfSigned(burner, issue.assetId(), assetTransfer.amount, wavesTransfer.amount, timestamp).explicitGet()
-    } yield (genesis, issue, assetTransfer, wavesTransfer, burn)
+      coffeTransfer <- coffeTransferGeneratorP(issuer, burner)
+      burn = BurnTransactionV1.selfSigned(burner, issue.assetId(), assetTransfer.amount, coffeTransfer.amount, timestamp).explicitGet()
+    } yield (genesis, issue, assetTransfer, coffeTransfer, burn)
 
     val fs =
       TestFunctionalitySettings.Enabled
@@ -113,8 +113,8 @@ class AssetTransactionsDiffTest extends PropSpec with PropertyChecks with Matche
         )
 
     forAll(setup) {
-      case (genesis, issue, assetTransfer, wavesTransfer, burn) =>
-        assertDiffAndState(Seq(TestBlock.create(Seq(genesis, issue, assetTransfer, wavesTransfer))), TestBlock.create(Seq(burn)), fs) {
+      case (genesis, issue, assetTransfer, coffeTransfer, burn) =>
+        assertDiffAndState(Seq(TestBlock.create(Seq(genesis, issue, assetTransfer, coffeTransfer))), TestBlock.create(Seq(burn)), fs) {
           case (_, newState) =>
             newState.portfolio(burn.sender).assets shouldBe Map(burn.assetId -> 0)
         }
@@ -226,12 +226,12 @@ class AssetTransactionsDiffTest extends PropSpec with PropertyChecks with Matche
     for {
       version            <- Gen.oneOf(IssueTransactionV2.supportedVersions.toSeq)
       timestamp          <- timestampGen
-      initialWavesAmount <- Gen.choose(Long.MaxValue / 1000, Long.MaxValue / 100)
+      initialCoffeAmount <- Gen.choose(Long.MaxValue / 1000, Long.MaxValue / 100)
       accountA           <- accountGen
       accountB           <- accountGen
       smallFee           <- Gen.choose(1l, 10l)
-      genesisTx1 = GenesisTransaction.create(accountA, initialWavesAmount, timestamp).explicitGet()
-      genesisTx2 = GenesisTransaction.create(accountB, initialWavesAmount, timestamp).explicitGet()
+      genesisTx1 = GenesisTransaction.create(accountA, initialCoffeAmount, timestamp).explicitGet()
+      genesisTx2 = GenesisTransaction.create(accountB, initialCoffeAmount, timestamp).explicitGet()
       reissuable = true
       (_, assetName, description, quantity, decimals, _, _, _) <- issueParamGen
       issue = IssueTransactionV2

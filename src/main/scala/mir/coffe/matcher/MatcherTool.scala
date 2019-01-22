@@ -1,4 +1,4 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import java.io.{File, PrintWriter}
 import java.util.{HashMap => JHashMap, HashSet => JHashSet}
@@ -9,17 +9,17 @@ import akka.serialization.SerializationExtension
 import com.google.common.base.Charsets.UTF_8
 import com.google.common.primitives.{Ints, Shorts}
 import com.typesafe.config.{Config, ConfigFactory}
-import com.wavesplatform.account.{Address, AddressScheme}
-import com.wavesplatform.database._
-import com.wavesplatform.db.openDB
-import com.wavesplatform.matcher.api.DBUtils
-import com.wavesplatform.matcher.market.{MatcherActor, OrderBookActor}
-import com.wavesplatform.matcher.model.{LimitOrder, OrderBook}
-import com.wavesplatform.settings.{WavesSettings, loadConfig}
-import com.wavesplatform.state.{ByteStr, EitherExt2}
-import com.wavesplatform.transaction.AssetId
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, Order}
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.account.{Address, AddressScheme}
+import mir.coffe.database._
+import mir.coffe.db.openDB
+import mir.coffe.matcher.api.DBUtils
+import mir.coffe.matcher.market.{MatcherActor, OrderBookActor}
+import mir.coffe.matcher.model.{LimitOrder, OrderBook}
+import mir.coffe.settings.{CoffeSettings, loadConfig}
+import mir.coffe.state.{ByteStr, EitherExt2}
+import mir.coffe.transaction.AssetId
+import mir.coffe.transaction.assets.exchange.{AssetPair, Order}
+import mir.coffe.utils.ScorexLogging
 import org.iq80.leveldb.DB
 
 import scala.collection.JavaConverters._
@@ -275,7 +275,7 @@ object MatcherTool extends ScorexLogging {
 
     val userConfig   = args.headOption.fold(ConfigFactory.empty())(f => ConfigFactory.parseFile(new File(f)))
     val actualConfig = loadConfig(userConfig)
-    val settings     = WavesSettings.fromConfig(actualConfig)
+    val settings     = CoffeSettings.fromConfig(actualConfig)
     val db           = openDB(settings.matcherSettings.dataDir)
 
     AddressScheme.current = new AddressScheme {

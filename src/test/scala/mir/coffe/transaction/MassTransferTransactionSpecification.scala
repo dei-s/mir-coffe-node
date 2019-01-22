@@ -1,16 +1,16 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.state.{ByteStr, EitherExt2}
+import mir.coffe.TransactionGen
+import mir.coffe.state.{ByteStr, EitherExt2}
 import org.scalacheck.Arbitrary
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json.Json
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.transfer.MassTransferTransaction.{MaxTransferCount, ParsedTransfer, Transfer}
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils.Base58
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.transfer.MassTransferTransaction.{MaxTransferCount, ParsedTransfer, Transfer}
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils.Base58
 
 class MassTransferTransactionSpecification extends PropSpec with PropertyChecks with Matchers with TransactionGen {
 

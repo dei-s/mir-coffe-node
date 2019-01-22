@@ -1,12 +1,12 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.implicits._
-import com.wavesplatform.account.Address
-import com.wavesplatform.metrics.Instrumented
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state.{Blockchain, ByteStr, Diff, Portfolio}
-import com.wavesplatform.transaction.ValidationError.AccountBalanceError
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.account.Address
+import mir.coffe.metrics.Instrumented
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state.{Blockchain, ByteStr, Diff, Portfolio}
+import mir.coffe.transaction.ValidationError.AccountBalanceError
+import mir.coffe.utils.ScorexLogging
 
 import scala.util.{Left, Right}
 
@@ -19,21 +19,21 @@ object BalanceDiffValidation extends ScorexLogging with Instrumented {
       val portfolioDiff = d.portfolios(acc)
 
       val balance       = portfolioDiff.balance
-      lazy val oldWaves = b.balance(acc, None)
+      lazy val oldCoffe = b.balance(acc, None)
       lazy val oldLease = b.leaseBalance(acc)
       lazy val lease    = cats.Monoid.combine(oldLease, portfolioDiff.lease)
       (if (balance < 0) {
-         val newB = oldWaves + balance
+         val newB = oldCoffe + balance
 
          if (newB < 0) {
-           Some(acc -> s"negative waves balance: $acc, old: ${oldWaves}, new: ${newB}")
+           Some(acc -> s"negative coffe balance: $acc, old: ${oldCoffe}, new: ${newB}")
          } else if (newB < lease.out && currentHeight > fs.allowLeasedBalanceTransferUntilHeight) {
            Some(acc -> (if (newB + lease.in - lease.out < 0) {
-                          s"negative effective balance: $acc, old: ${(oldWaves, oldLease)}, new: ${(newB, lease)}"
+                          s"negative effective balance: $acc, old: ${(oldCoffe, oldLease)}, new: ${(newB, lease)}"
                         } else if (portfolioDiff.lease.out == 0) {
                           s"$acc trying to spend leased money"
                         } else {
-                          s"leased being more than own: $acc, old: ${(oldWaves, oldLease)}, new: ${(newB, lease)}"
+                          s"leased being more than own: $acc, old: ${(oldCoffe, oldLease)}, new: ${(newB, lease)}"
                         }))
          } else {
            None

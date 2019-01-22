@@ -1,12 +1,12 @@
-package com.wavesplatform.matcher.api
+package mir.coffe.matcher.api
 
-import com.wavesplatform.account.Address
-import com.wavesplatform.database.{DBExt, RW, ReadOnlyDB}
-import com.wavesplatform.matcher._
-import com.wavesplatform.matcher.model.OrderInfo
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.AssetId
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, ExchangeTransaction, Order}
+import mir.coffe.account.Address
+import mir.coffe.database.{DBExt, RW, ReadOnlyDB}
+import mir.coffe.matcher._
+import mir.coffe.matcher.model.OrderInfo
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.AssetId
+import mir.coffe.transaction.assets.exchange.{AssetPair, ExchangeTransaction, Order}
 import org.iq80.leveldb.DB
 
 object DBUtils {

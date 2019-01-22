@@ -1,9 +1,9 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.nio.charset.StandardCharsets
 
 import com.google.common.primitives.{Ints, Longs}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.{NoShrink, TransactionGen}
 import io.netty.buffer.Unpooled
 import io.netty.channel.embedded.EmbeddedChannel
 import io.netty.channel.{ChannelHandlerContext, ChannelInboundHandlerAdapter}
@@ -28,7 +28,7 @@ class HandshakeDecoderSpec extends FreeSpec with Matchers with MockFactory with 
     )
 
     val origHandshake = new Handshake(
-      applicationName = "wavesI",
+      applicationName = "coffeI",
       applicationVersion = (1, 2, 3),
       nodeName = "test",
       nodeNonce = 4,

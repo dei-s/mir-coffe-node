@@ -1,17 +1,17 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.implicits._
-import com.wavesplatform.state.{EitherExt2, LeaseBalance, Portfolio}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.state.{EitherExt2, LeaseBalance, Portfolio}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.account.Address
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.Address
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.transfer._
 
 class TransferTransactionDiffTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
 
@@ -30,7 +30,7 @@ class TransferTransactionDiffTest extends PropSpec with PropertyChecks with Matc
     transfer                 <- Gen.oneOf(transferV1, transferV2)
   } yield (genesis, issue1, issue2, transfer)
 
-  property("transfers assets to recipient preserving waves invariant") {
+  property("transfers assets to recipient preserving coffe invariant") {
     forAll(preconditionsAndTransfer) {
       case ((genesis, issue1, issue2, transfer)) =>
         assertDiffAndState(Seq(TestBlock.create(Seq(genesis, issue1, issue2))), TestBlock.create(Seq(transfer))) {

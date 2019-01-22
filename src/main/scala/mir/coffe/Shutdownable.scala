@@ -1,4 +1,4 @@
-package com.wavesplatform
+package mir.coffe
 
 trait Shutdownable {
   def shutdown(): Unit

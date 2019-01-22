@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.primitives.{Bytes, Ints, Longs}
-import com.wavesplatform.crypto
-import com.wavesplatform.state.{ByteStr, _}
+import mir.coffe.crypto
+import mir.coffe.state.{ByteStr, _}
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.Address
-import com.wavesplatform.transaction.TransactionParsers._
+import mir.coffe.account.Address
+import mir.coffe.transaction.TransactionParsers._
 
 import scala.util.{Failure, Success, Try}
 
@@ -83,7 +83,7 @@ object GenesisTransaction extends TransactionParserFor[GenesisTransaction] with 
 
   def create(recipient: Address, amount: Long, timestamp: Long): Either[ValidationError, GenesisTransaction] = {
     if (amount < 0) {
-      Left(ValidationError.NegativeAmount(amount, "waves"))
+      Left(ValidationError.NegativeAmount(amount, "coffe"))
     } else {
       val signature = ByteStr(GenesisTransaction.generateSignature(recipient, amount, timestamp))
       Right(GenesisTransaction(recipient, amount, timestamp, signature))

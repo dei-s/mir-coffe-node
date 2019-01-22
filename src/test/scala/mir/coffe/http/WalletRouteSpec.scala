@@ -1,10 +1,10 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
-import com.wavesplatform.TestWallet
-import com.wavesplatform.http.ApiMarshallers._
+import mir.coffe.TestWallet
+import mir.coffe.http.ApiMarshallers._
 import play.api.libs.json.JsObject
-import com.wavesplatform.api.http.{ApiKeyNotValid, WalletApiRoute}
-import com.wavesplatform.utils.Base58
+import mir.coffe.api.http.{ApiKeyNotValid, WalletApiRoute}
+import mir.coffe.utils.Base58
 
 class WalletRouteSpec extends RouteSpec("/wallet") with RestAPISettingsHelper with TestWallet {
   private val route = WalletApiRoute(restAPISettings, testWallet).route

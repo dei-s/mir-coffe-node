@@ -1,4 +1,4 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 trait VersionedTransaction {
   def version: Byte

@@ -1,20 +1,20 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.network.RxExtensionLoader.ApplierState.Buffer
-import com.wavesplatform.network.RxExtensionLoader.LoaderState.WithPeer
-import com.wavesplatform.network.RxScoreObserver.{ChannelClosedAndSyncWith, SyncWith}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.network.RxExtensionLoader.ApplierState.Buffer
+import mir.coffe.network.RxExtensionLoader.LoaderState.WithPeer
+import mir.coffe.network.RxScoreObserver.{ChannelClosedAndSyncWith, SyncWith}
+import mir.coffe.state.ByteStr
+import mir.coffe.utils.ScorexLogging
 import io.netty.channel._
 import monix.eval.{Coeval, Task}
 import monix.execution.CancelableFuture
 import monix.execution.schedulers.SchedulerService
 import monix.reactive.subjects.{ConcurrentSubject, Subject}
 import monix.reactive.{Observable, Observer}
-import com.wavesplatform.block.Block
-import com.wavesplatform.block.Block.BlockId
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.block.Block
+import mir.coffe.block.Block.BlockId
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
 
 import scala.concurrent.duration._
 

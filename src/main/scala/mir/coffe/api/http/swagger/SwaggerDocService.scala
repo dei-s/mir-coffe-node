@@ -1,11 +1,11 @@
-package com.wavesplatform.api.http.swagger
+package mir.coffe.api.http.swagger
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import com.github.swagger.akka.SwaggerHttpService
 import com.github.swagger.akka.model.{Info, License}
-import com.wavesplatform.Version
-import com.wavesplatform.settings.RestAPISettings
+import mir.coffe.Version
+import mir.coffe.settings.RestAPISettings
 import io.swagger.models.{Scheme, Swagger}
 
 class SwaggerDocService(val actorSystem: ActorSystem, val materializer: ActorMaterializer, val apiClasses: Set[Class[_]], settings: RestAPISettings)
@@ -13,12 +13,12 @@ class SwaggerDocService(val actorSystem: ActorSystem, val materializer: ActorMat
 
   override val host: String = settings.bindAddress + ":" + settings.port
   override val info: Info = Info(
-    "The Web Interface to the Waves Full Node API",
+    "The Web Interface to the Coffe Full Node API",
     Version.VersionString,
-    "Waves Full Node",
+    "Coffe Full Node",
     "License: MIT License",
     None,
-    Some(License("MIT License", "https://github.com/wavesplatform/Waves/blob/master/LICENSE"))
+    Some(License("MIT License", "https://github.com/dei-s/mir-node-coffe/blob/master/LICENSE"))
   )
 
   //Let swagger-ui determine the host and port

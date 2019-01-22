@@ -1,4 +1,4 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
 import net.ceedubs.ficus.Ficus._
@@ -9,7 +9,7 @@ import scala.concurrent.duration._
 
 class UTXSettingsSpecification extends FlatSpec with Matchers {
   "UTXSettings" should "read values" in {
-    val config   = ConfigFactory.parseString("""waves {
+    val config   = ConfigFactory.parseString("""coffe {
         |  utx {
         |    max-size = 100
         |    cleanup-interval = 10m
@@ -18,7 +18,7 @@ class UTXSettingsSpecification extends FlatSpec with Matchers {
         |    allow-transactions-from-smart-accounts = false
         |  }
         |}""".stripMargin).resolve()
-    val settings = config.as[UtxSettings]("waves.utx")
+    val settings = config.as[UtxSettings]("coffe.utx")
     settings.maxSize should be(100)
     settings.cleanupInterval shouldBe 10.minutes
     settings.blacklistSenderAddresses shouldBe Set("a")

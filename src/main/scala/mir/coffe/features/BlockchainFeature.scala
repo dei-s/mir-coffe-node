@@ -1,4 +1,4 @@
-package com.wavesplatform.features
+package mir.coffe.features
 
 case class BlockchainFeature private (id: Short, description: String)
 

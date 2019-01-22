@@ -1,17 +1,17 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.TransactionGen
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.state._
+import mir.coffe.state.diffs._
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.transfer._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.crypto._
+import mir.coffe.crypto._
 
 class BlockchainUpdaterMicroblockBadSignaturesTest
     extends PropSpec
@@ -25,8 +25,8 @@ class BlockchainUpdaterMicroblockBadSignaturesTest
     recipient <- accountGen
     ts        <- positiveIntGen
     genesis: GenesisTransaction = GenesisTransaction.create(master, ENOUGH_AMT, ts).explicitGet()
-    payment: TransferTransactionV1  <- wavesTransferGeneratorP(master, recipient)
-    payment2: TransferTransactionV1 <- wavesTransferGeneratorP(master, recipient)
+    payment: TransferTransactionV1  <- coffeTransferGeneratorP(master, recipient)
+    payment2: TransferTransactionV1 <- coffeTransferGeneratorP(master, recipient)
   } yield (genesis, payment, payment2)
 
   property("bad total resulting block signature") {

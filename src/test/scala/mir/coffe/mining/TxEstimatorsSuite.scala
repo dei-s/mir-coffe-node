@@ -1,14 +1,14 @@
-package com.wavesplatform.mining
+package mir.coffe.mining
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.lang.v1.compiler.Terms
-import com.wavesplatform.state.{AssetDescription, Blockchain, ByteStr, EitherExt2}
+import mir.coffe.TransactionGen
+import mir.coffe.lang.v1.compiler.Terms
+import mir.coffe.state.{AssetDescription, Blockchain, ByteStr, EitherExt2}
 import org.scalamock.scalatest.PathMockFactory
 import org.scalatest.{FreeSpec, Matchers}
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer.TransferTransactionV1
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer.TransferTransactionV1
 
 class TxEstimatorsSuite extends FreeSpec with Matchers with PathMockFactory with TransactionGen {
   "scriptRunNumber" - {
@@ -17,14 +17,14 @@ class TxEstimatorsSuite extends FreeSpec with Matchers with PathMockFactory with
         val blockchain = stub[Blockchain]
         (blockchain.hasScript _).when(*).onCall((_: Address) => false).anyNumberOfTimes()
 
-        TxEstimators.scriptRunNumber(blockchain, transferWavesTx) shouldBe 0
+        TxEstimators.scriptRunNumber(blockchain, transferCoffeTx) shouldBe 0
       }
 
       "should count transactions going from a smart account" in {
         val blockchain = stub[Blockchain]
         (blockchain.hasScript _).when(*).onCall((_: Address) => true).anyNumberOfTimes()
 
-        TxEstimators.scriptRunNumber(blockchain, transferWavesTx) shouldBe 1
+        TxEstimators.scriptRunNumber(blockchain, transferCoffeTx) shouldBe 1
       }
     }
 
@@ -58,7 +58,7 @@ class TxEstimatorsSuite extends FreeSpec with Matchers with PathMockFactory with
   private val assetId = ByteStr("coin_id".getBytes())
   private val script  = ScriptV1(V1, Terms.TRUE, checkSize = false).explicitGet()
 
-  private val transferWavesTx = TransferTransactionV1
+  private val transferCoffeTx = TransferTransactionV1
     .selfSigned(
       assetId = None,
       sender = PrivateKeyAccount("sender".getBytes()),

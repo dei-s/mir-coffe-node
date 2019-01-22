@@ -1,16 +1,16 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
 
 class BlockchainSettingsSpecification extends FlatSpec with Matchers {
   "BlockchainSettings" should "read custom values" in {
-    val config   = loadConfig(ConfigFactory.parseString("""waves {
-        |  directory = "/waves"
-        |  data-directory = "/waves/data"
+    val config   = loadConfig(ConfigFactory.parseString("""coffe {
+        |  directory = "/coffe"
+        |  data-directory = "/coffe/data"
         |  blockchain {
         |    type = CUSTOM
         |    custom {
@@ -75,9 +75,9 @@ class BlockchainSettingsSpecification extends FlatSpec with Matchers {
   }
 
   it should "read testnet settings" in {
-    val config   = loadConfig(ConfigFactory.parseString("""waves {
-        |  directory = "/waves"
-        |  data-directory = "/waves/data"
+    val config   = loadConfig(ConfigFactory.parseString("""coffe {
+        |  directory = "/coffe"
+        |  data-directory = "/coffe/data"
         |  blockchain {
         |    type = TESTNET
         |  }
@@ -111,9 +111,9 @@ class BlockchainSettingsSpecification extends FlatSpec with Matchers {
   }
 
   it should "read mainnet settings" in {
-    val config   = loadConfig(ConfigFactory.parseString("""waves {
-        |  directory = "/waves"
-        |  data-directory = "/waves/data"
+    val config   = loadConfig(ConfigFactory.parseString("""coffe {
+        |  directory = "/coffe"
+        |  data-directory = "/coffe/data"
         |  blockchain {
         |    type = MAINNET
         |  }

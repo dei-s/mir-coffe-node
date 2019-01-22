@@ -1,9 +1,9 @@
-package com.wavesplatform.consensus
+package mir.coffe.consensus
 
-import com.wavesplatform.transaction.Transaction
+import mir.coffe.transaction.Transaction
 
 object TransactionsOrdering {
-  trait WavesOrdering extends Ordering[Transaction] {
+  trait CoffeOrdering extends Ordering[Transaction] {
     def txTimestampOrder(ts: Long): Long
     private def orderBy(t: Transaction): (Double, Long, Long) = {
       val size        = t.bytes().size
@@ -17,12 +17,12 @@ object TransactionsOrdering {
     }
   }
 
-  object InBlock extends WavesOrdering {
+  object InBlock extends CoffeOrdering {
     // sorting from network start
     override def txTimestampOrder(ts: Long): Long = -ts
   }
 
-  object InUTXPool extends WavesOrdering {
+  object InUTXPool extends CoffeOrdering {
     override def txTimestampOrder(ts: Long): Long = ts
   }
 }

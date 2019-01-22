@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.assets
+package mir.coffe.transaction.assets
 
 import com.google.common.primitives.Bytes
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
 import monix.eval.Coeval
-import com.wavesplatform.account.{AddressScheme, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction.ValidationError.{GenericError, UnsupportedVersion}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.smart.script.{Script, ScriptReader}
+import mir.coffe.account.{AddressScheme, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction.ValidationError.{GenericError, UnsupportedVersion}
+import mir.coffe.transaction._
+import mir.coffe.transaction.smart.script.{Script, ScriptReader}
 import play.api.libs.json.{JsObject, Json}
 
 import scala.util.Try

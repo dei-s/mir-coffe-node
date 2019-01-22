@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.state._
-import com.wavesplatform.utils.base58Length
+import mir.coffe.state._
+import mir.coffe.utils.base58Length
 import monix.eval.Coeval
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.utils.Base58
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction.ValidationError.GenericError
 
 import scala.util.Try
 

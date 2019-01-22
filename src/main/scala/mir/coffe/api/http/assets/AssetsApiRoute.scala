@@ -1,25 +1,25 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import java.util.concurrent._
 
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import akka.http.scaladsl.server.Route
 import com.google.common.base.Charsets
-import com.wavesplatform.account.Address
-import com.wavesplatform.api.http._
-import com.wavesplatform.api.http.assets.AssetsApiRoute.DistributionParams
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.state.{Blockchain, ByteStr}
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.assets.IssueTransaction
-import com.wavesplatform.transaction.assets.exchange.Order
-import com.wavesplatform.transaction.assets.exchange.OrderJson._
-import com.wavesplatform.transaction.smart.script.ScriptCompiler
-import com.wavesplatform.transaction.{AssetId, AssetIdStringLength, TransactionFactory, ValidationError}
-import com.wavesplatform.utils.{Base58, Time, _}
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.Address
+import mir.coffe.api.http._
+import mir.coffe.api.http.assets.AssetsApiRoute.DistributionParams
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.state.{Blockchain, ByteStr}
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.assets.IssueTransaction
+import mir.coffe.transaction.assets.exchange.Order
+import mir.coffe.transaction.assets.exchange.OrderJson._
+import mir.coffe.transaction.smart.script.ScriptCompiler
+import mir.coffe.transaction.{AssetId, AssetIdStringLength, TransactionFactory, ValidationError}
+import mir.coffe.utils.{Base58, Time, _}
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
 import io.netty.channel.group.ChannelGroup
 import io.swagger.annotations._
 import javax.ws.rs.Path

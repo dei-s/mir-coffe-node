@@ -1,13 +1,13 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
 import com.google.common.base.Charsets
-import com.wavesplatform.NoShrink
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.matcher.MatcherTestData
-import com.wavesplatform.matcher.model.Events.OrderExecuted
-import com.wavesplatform.state.diffs.produce
-import com.wavesplatform.state.{Blockchain, ByteStr, EitherExt2}
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, ExchangeTransactionV1, ExchangeTransactionV2}
+import mir.coffe.NoShrink
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.matcher.MatcherTestData
+import mir.coffe.matcher.model.Events.OrderExecuted
+import mir.coffe.state.diffs.produce
+import mir.coffe.state.{Blockchain, ByteStr, EitherExt2}
+import mir.coffe.transaction.assets.exchange.{AssetPair, ExchangeTransactionV1, ExchangeTransactionV2}
 import org.scalamock.scalatest.PathMockFactory
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks

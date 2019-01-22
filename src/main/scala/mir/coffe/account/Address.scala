@@ -1,12 +1,12 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
 import java.nio.ByteBuffer
 
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.utils.{Base58, ScorexLogging, base58Length}
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.InvalidAddress
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
+import mir.coffe.utils.{Base58, ScorexLogging, base58Length}
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.InvalidAddress
 
 sealed trait Address extends AddressOrAlias {
   val bytes: ByteStr

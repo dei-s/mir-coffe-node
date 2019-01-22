@@ -1,15 +1,15 @@
-package com.wavesplatform
+package mir.coffe
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.{BlockchainSettings, TestFunctionalitySettings, WavesSettings}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.crypto._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.{BlockchainSettings, TestFunctionalitySettings, CoffeSettings}
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction
+import mir.coffe.crypto._
 
 package object history {
   val MaxTransactionsPerBlockDiff = 10
@@ -22,14 +22,14 @@ package object history {
   )
 
   val config   = ConfigFactory.load()
-  val settings = WavesSettings.fromConfig(config)
+  val settings = CoffeSettings.fromConfig(config)
 
   val MicroblocksActivatedAt0BlockchainSettings: BlockchainSettings = DefaultBlockchainSettings.copy(
     functionalitySettings = DefaultBlockchainSettings.functionalitySettings.copy(preActivatedFeatures = Map(BlockchainFeatures.NG.id -> 0)))
 
-  val MicroblocksActivatedAt0WavesSettings: WavesSettings = settings.copy(blockchainSettings = MicroblocksActivatedAt0BlockchainSettings)
+  val MicroblocksActivatedAt0CoffeSettings: CoffeSettings = settings.copy(blockchainSettings = MicroblocksActivatedAt0BlockchainSettings)
 
-  val DefaultWavesSettings: WavesSettings = settings.copy(blockchainSettings = DefaultBlockchainSettings,
+  val DefaultCoffeSettings: CoffeSettings = settings.copy(blockchainSettings = DefaultBlockchainSettings,
                                                           featuresSettings = settings.featuresSettings.copy(autoShutdownOnUnsupportedFeature = false))
 
   val defaultSigner       = PrivateKeyAccount(Array.fill(KeyLength)(0))

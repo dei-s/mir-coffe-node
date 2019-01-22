@@ -1,6 +1,6 @@
-package com.wavesplatform
+package mir.coffe
 
-import com.wavesplatform.utils.Time
+import mir.coffe.utils.Time
 
 import scala.concurrent.duration.FiniteDuration
 

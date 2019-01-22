@@ -1,19 +1,19 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
-import com.wavesplatform.crypto
-import com.wavesplatform.http.ApiMarshallers._
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.evaluator.FunctionIds._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.PureContext
-import com.wavesplatform.state.EitherExt2
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.utils.{Base58, Time}
+import mir.coffe.crypto
+import mir.coffe.http.ApiMarshallers._
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.evaluator.FunctionIds._
+import mir.coffe.lang.v1.evaluator.ctx.impl.PureContext
+import mir.coffe.state.EitherExt2
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.utils.{Base58, Time}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json.{JsObject, JsValue}
-import com.wavesplatform.api.http.{TooBigArrayAllocation, UtilsApiRoute}
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
+import mir.coffe.api.http.{TooBigArrayAllocation, UtilsApiRoute}
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.smart.script.v1.ScriptV1
 
 class UtilsRouteSpec extends RouteSpec("/utils") with RestAPISettingsHelper with PropertyChecks {
   private val route = UtilsApiRoute(

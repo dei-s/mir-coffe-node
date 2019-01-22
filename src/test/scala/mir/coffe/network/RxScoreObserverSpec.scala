@@ -1,7 +1,7 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
-import com.wavesplatform.network.RxScoreObserver.{BestChannel, SyncWith}
-import com.wavesplatform.{RxScheduler, TransactionGen}
+import mir.coffe.network.RxScoreObserver.{BestChannel, SyncWith}
+import mir.coffe.{RxScheduler, TransactionGen}
 import io.netty.channel.Channel
 import io.netty.channel.local.LocalChannel
 import monix.eval.Coeval

@@ -1,12 +1,12 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import cats.implicits._
 import com.google.common.base.Charsets
-import com.wavesplatform.account.{AddressScheme, PublicKeyAccount}
-import com.wavesplatform.api.http.BroadcastRequest
-import com.wavesplatform.transaction.assets.IssueTransactionV2
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.{Proofs, ValidationError}
+import mir.coffe.account.{AddressScheme, PublicKeyAccount}
+import mir.coffe.api.http.BroadcastRequest
+import mir.coffe.transaction.assets.IssueTransactionV2
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.{Proofs, ValidationError}
 import io.swagger.annotations.{ApiModel, ApiModelProperty}
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{JsPath, Reads}

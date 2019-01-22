@@ -1,10 +1,10 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import com.google.common.primitives.{Bytes, Ints}
 import io.swagger.annotations.ApiModelProperty
 import play.api.libs.json._
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.crypto._
+import mir.coffe.utils.Base58
+import mir.coffe.crypto._
 import scala.collection.immutable.Stream
 import scala.util.{Failure, Success}
 

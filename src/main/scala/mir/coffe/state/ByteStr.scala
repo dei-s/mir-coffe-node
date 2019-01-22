@@ -1,7 +1,7 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
 import play.api.libs.json._
-import com.wavesplatform.utils.{Base58, Base64}
+import mir.coffe.utils.{Base58, Base64}
 
 import scala.util.Try
 

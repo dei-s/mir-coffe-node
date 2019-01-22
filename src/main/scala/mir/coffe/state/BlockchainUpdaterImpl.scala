@@ -1,34 +1,34 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
 import cats.implicits._
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.Block.BlockId
-import com.wavesplatform.block.{Block, BlockHeader, MicroBlock}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.metrics.{Instrumented, TxsInBlockchainStats}
-import com.wavesplatform.mining.{MiningConstraint, MiningConstraints, MultiDimensionalMiningConstraint}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.diffs.BlockDiffer
-import com.wavesplatform.state.reader.{CompositeBlockchain, LeaseDetails}
-import com.wavesplatform.transaction.Transaction.Type
-import com.wavesplatform.transaction.ValidationError.{BlockAppendError, GenericError, MicroBlockAppendError}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.lease._
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.utils.{ScorexLogging, Time, UnsupportedFeature, forceStopApplication}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.Block.BlockId
+import mir.coffe.block.{Block, BlockHeader, MicroBlock}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.metrics.{Instrumented, TxsInBlockchainStats}
+import mir.coffe.mining.{MiningConstraint, MiningConstraints, MultiDimensionalMiningConstraint}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.diffs.BlockDiffer
+import mir.coffe.state.reader.{CompositeBlockchain, LeaseDetails}
+import mir.coffe.transaction.Transaction.Type
+import mir.coffe.transaction.ValidationError.{BlockAppendError, GenericError, MicroBlockAppendError}
+import mir.coffe.transaction._
+import mir.coffe.transaction.lease._
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.utils.{ScorexLogging, Time, UnsupportedFeature, forceStopApplication}
 import kamon.Kamon
 import kamon.metric.MeasurementUnit
 import monix.reactive.Observable
 import monix.reactive.subjects.ConcurrentSubject
 
-class BlockchainUpdaterImpl(blockchain: Blockchain, settings: WavesSettings, time: Time)
+class BlockchainUpdaterImpl(blockchain: Blockchain, settings: CoffeSettings, time: Time)
     extends BlockchainUpdater
     with NG
     with ScorexLogging
     with Instrumented {
 
-  import com.wavesplatform.state.BlockchainUpdaterImpl._
+  import mir.coffe.state.BlockchainUpdaterImpl._
   import settings.blockchainSettings.functionalitySettings
 
   private lazy val maxBlockReadinessAge = settings.minerSettings.intervalAfterLastBlockThenGenerationIsAllowed.toMillis
@@ -422,7 +422,7 @@ class BlockchainUpdaterImpl(blockchain: Blockchain, settings: WavesSettings, tim
     ngState.fold(blockchain.filledVolumeAndFee(orderId))(
       _.bestLiquidDiff.orderFills.get(orderId).orEmpty.combine(blockchain.filledVolumeAndFee(orderId)))
 
-  /** Retrieves Waves balance snapshot in the [from, to] range (inclusive) */
+  /** Retrieves Coffe balance snapshot in the [from, to] range (inclusive) */
   override def balanceSnapshots(address: Address, from: Int, to: Int): Seq[BalanceSnapshot] =
     if (to <= blockchain.height || ngState.isEmpty) {
       blockchain.balanceSnapshots(address, from, to)
@@ -494,8 +494,8 @@ class BlockchainUpdaterImpl(blockchain: Blockchain, settings: WavesSettings, tim
     blockchain.assetDistributionAtHeight(assetId, height, count, fromAddress)
   }
 
-  override def wavesDistribution(height: Int): Map[Address, Long] = ngState.fold(blockchain.wavesDistribution(height)) { ng =>
-    val innerDistribution = blockchain.wavesDistribution(height)
+  override def coffeDistribution(height: Int): Map[Address, Long] = ngState.fold(blockchain.coffeDistribution(height)) { ng =>
+    val innerDistribution = blockchain.coffeDistribution(height)
     if (height < this.height) innerDistribution
     else {
       innerDistribution ++ changedBalances(_.balance != 0, portfolio(_).balance)
@@ -516,7 +516,7 @@ class BlockchainUpdaterImpl(blockchain: Blockchain, settings: WavesSettings, tim
 
   /** Builds a new portfolio map by applying a partial function to all portfolios on which the function is defined.
     *
-    * @note Portfolios passed to `pf` only contain Waves and Leasing balances to improve performance */
+    * @note Portfolios passed to `pf` only contain Coffe and Leasing balances to improve performance */
   override def collectLposPortfolios[A](pf: PartialFunction[(Address, Portfolio), A]): Map[Address, A] =
     ngState.fold(blockchain.collectLposPortfolios(pf)) { ng =>
       val b = Map.newBuilder[Address, A]

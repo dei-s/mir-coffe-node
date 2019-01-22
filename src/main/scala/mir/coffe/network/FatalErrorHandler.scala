@@ -1,8 +1,8 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.io.IOException
 
-import com.wavesplatform.utils.{ScorexLogging, forceStopApplication}
+import mir.coffe.utils.{ScorexLogging, forceStopApplication}
 import io.netty.channel.ChannelHandler.Sharable
 import io.netty.channel.{ChannelHandlerContext, ChannelInboundHandlerAdapter}
 

@@ -1,16 +1,16 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import cats.implicits._
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.api.http.BroadcastRequest
-import com.wavesplatform.transaction.assets.exchange.{ExchangeTransaction, ExchangeTransactionV2, Order}
-import com.wavesplatform.transaction.{Proofs, ValidationError}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.api.http.BroadcastRequest
+import mir.coffe.transaction.assets.exchange.{ExchangeTransaction, ExchangeTransactionV2, Order}
+import mir.coffe.transaction.{Proofs, ValidationError}
 import io.swagger.annotations.ApiModelProperty
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{Format, JsPath, Reads}
 
 object SignedExchangeRequestV2 {
-  implicit val orderFormat: Format[Order] = com.wavesplatform.transaction.assets.exchange.OrderJson.orderFormat
+  implicit val orderFormat: Format[Order] = mir.coffe.transaction.assets.exchange.OrderJson.orderFormat
 
   implicit val signedExchangeRequestReads: Reads[SignedExchangeRequestV2] = (
     (JsPath \ "senderPublicKey").read[String] and

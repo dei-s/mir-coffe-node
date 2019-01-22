@@ -1,16 +1,16 @@
-package com.wavesplatform.state.reader
+package mir.coffe.state.reader
 
 import cats.implicits._
 import cats.kernel.Monoid
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction.Type
-import com.wavesplatform.transaction.ValidationError.{AliasDoesNotExist, AliasIsDisabled}
-import com.wavesplatform.transaction.assets.IssueTransaction
-import com.wavesplatform.transaction.lease.LeaseTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.{AssetId, Transaction, ValidationError}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction.Type
+import mir.coffe.transaction.ValidationError.{AliasDoesNotExist, AliasIsDisabled}
+import mir.coffe.transaction.assets.IssueTransaction
+import mir.coffe.transaction.lease.LeaseTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.{AssetId, Transaction, ValidationError}
 
 class CompositeBlockchain(inner: Blockchain, maybeDiff: => Option[Diff], carry: Long = 0) extends Blockchain {
 
@@ -179,8 +179,8 @@ class CompositeBlockchain(inner: Blockchain, maybeDiff: => Option[Diff], carry: 
     inner.assetDistributionAtHeight(assetId, height, count, fromAddress)
   }
 
-  override def wavesDistribution(height: Int): Map[Address, Long] = {
-    val innerDistribution = inner.wavesDistribution(height)
+  override def coffeDistribution(height: Int): Map[Address, Long] = {
+    val innerDistribution = inner.coffeDistribution(height)
     if (height < this.height) innerDistribution
     else {
       innerDistribution ++ changedBalances(_.balance != 0, portfolio(_).balance)

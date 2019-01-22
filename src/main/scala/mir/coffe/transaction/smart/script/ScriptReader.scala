@@ -1,10 +1,10 @@
-package com.wavesplatform.transaction.smart.script
+package mir.coffe.transaction.smart.script
 
-import com.wavesplatform.crypto
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.v1.Serde
-import com.wavesplatform.transaction.ValidationError.ScriptParseError
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
+import mir.coffe.crypto
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.v1.Serde
+import mir.coffe.transaction.ValidationError.ScriptParseError
+import mir.coffe.transaction.smart.script.v1.ScriptV1
 
 object ScriptReader {
 

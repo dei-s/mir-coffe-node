@@ -1,19 +1,19 @@
-package com.wavesplatform.api
+package mir.coffe.api
 
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
-import com.wavesplatform.http.ApiMarshallers
-import com.wavesplatform.api.http.DataRequest._
-import com.wavesplatform.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request}
-import com.wavesplatform.api.http.assets.SponsorFeeRequest._
-import com.wavesplatform.api.http.assets._
-import com.wavesplatform.api.http.leasing._
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets._
-import com.wavesplatform.transaction.lease._
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.account.PublicKeyAccount
+import mir.coffe.http.ApiMarshallers
+import mir.coffe.api.http.DataRequest._
+import mir.coffe.api.http.alias.{CreateAliasV1Request, CreateAliasV2Request}
+import mir.coffe.api.http.assets.SponsorFeeRequest._
+import mir.coffe.api.http.assets._
+import mir.coffe.api.http.leasing._
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets._
+import mir.coffe.transaction.lease._
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.transfer._
+import mir.coffe.account.PublicKeyAccount
 
 import play.api.libs.json._
 

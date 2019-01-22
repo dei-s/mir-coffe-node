@@ -1,18 +1,18 @@
-package com.wavesplatform.api.http.leasing
+package mir.coffe.api.http.leasing
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.account.Address
-import com.wavesplatform.api.http._
-import com.wavesplatform.api.http.leasing.LeaseCancelV1Request.leaseCancelRequestFormat
-import com.wavesplatform.api.http.leasing.LeaseV1Request.leaseCancelRequestFormat
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.state.{Blockchain, EitherExt2}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.lease.{LeaseTransaction, LeaseTransactionV1}
-import com.wavesplatform.utils.Time
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.Address
+import mir.coffe.api.http._
+import mir.coffe.api.http.leasing.LeaseCancelV1Request.leaseCancelRequestFormat
+import mir.coffe.api.http.leasing.LeaseV1Request.leaseCancelRequestFormat
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.state.{Blockchain, EitherExt2}
+import mir.coffe.transaction._
+import mir.coffe.transaction.lease.{LeaseTransaction, LeaseTransactionV1}
+import mir.coffe.utils.Time
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
 import io.netty.channel.group.ChannelGroup
 import io.swagger.annotations._
 import javax.ws.rs.Path

@@ -1,14 +1,14 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.{Lock, ReentrantReadWriteLock}
 
 import cats.kernel.Monoid
 import com.google.common.cache.CacheBuilder
-import com.wavesplatform.utils.ScorexLogging
-import com.wavesplatform.block.Block.BlockId
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.transaction.{DiscardedMicroBlocks, Transaction}
+import mir.coffe.utils.ScorexLogging
+import mir.coffe.block.Block.BlockId
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.transaction.{DiscardedMicroBlocks, Transaction}
 
 class NgState(val base: Block, val baseBlockDiff: Diff, val baseBlockCarry: Long, val approvedFeatures: Set[Short]) extends ScorexLogging {
 

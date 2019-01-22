@@ -1,9 +1,9 @@
-package com.wavesplatform.account
+package mir.coffe.account
 
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.serialization.Deser
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
+import mir.coffe.state.ByteStr
+import mir.coffe.serialization.Deser
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
 
 sealed trait Alias extends AddressOrAlias {
   lazy val stringRepr: String = Alias.Prefix + chainId.toChar + ":" + name

@@ -1,10 +1,10 @@
-package com.wavesplatform.matcher.model
+package mir.coffe.matcher.model
 
-import com.wavesplatform.account.Address
-import com.wavesplatform.matcher.model.MatcherModel.Price
-import com.wavesplatform.state.{ByteStr, Portfolio}
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.{AssetAcc, AssetId}
+import mir.coffe.account.Address
+import mir.coffe.matcher.model.MatcherModel.Price
+import mir.coffe.state.{ByteStr, Portfolio}
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.{AssetAcc, AssetId}
 import play.api.libs.json.{JsObject, JsValue, Json}
 
 import scala.math.BigDecimal.RoundingMode

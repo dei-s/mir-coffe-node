@@ -1,15 +1,15 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
-import com.wavesplatform.Version
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.Version
+import mir.coffe.utils.ScorexLogging
 
 /**
   * System constants here.
   */
 object Constants extends ScorexLogging {
-  val ApplicationName = "waves"
-  val AgentName       = s"Waves v${Version.VersionString}"
+  val ApplicationName = "coffe"
+  val AgentName       = s"Coffe v${Version.VersionString}"
 
   val UnitsInWave = 100000000L
-  val TotalWaves  = 100000000L
+  val TotalCoffe  = 100000000L
 }

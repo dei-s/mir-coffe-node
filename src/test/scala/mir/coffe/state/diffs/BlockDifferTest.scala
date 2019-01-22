@@ -1,17 +1,17 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import java.util.concurrent.ThreadLocalRandom
 
-import com.wavesplatform.BlockGen
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.Block
-import com.wavesplatform.db.WithState
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state.{Blockchain, Diff, EitherExt2}
-import com.wavesplatform.transaction.GenesisTransaction
+import mir.coffe.BlockGen
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.Block
+import mir.coffe.db.WithState
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state.{Blockchain, Diff, EitherExt2}
+import mir.coffe.transaction.GenesisTransaction
 import org.scalatest.{FreeSpecLike, Matchers}
-import com.wavesplatform.crypto._
+import mir.coffe.crypto._
 
 class BlockDifferTest extends FreeSpecLike with Matchers with BlockGen with WithState {
 
@@ -134,7 +134,7 @@ class BlockDifferTest extends FreeSpecLike with Matchers with BlockGen with With
     val features: Set[Short] = Set[Short](2)
 
     val paymentTxs = (1 to numPayments).map { i =>
-      createWavesTransfer(
+      createCoffeTransfer(
         from,
         to,
         amount = 10000,

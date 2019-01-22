@@ -1,10 +1,10 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.state.{Blockchain, Diff, LeaseBalance, Portfolio}
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.{CreateAliasTransaction, ValidationError}
-import com.wavesplatform.features.FeatureProvider._
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.state.{Blockchain, Diff, LeaseBalance, Portfolio}
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.{CreateAliasTransaction, ValidationError}
+import mir.coffe.features.FeatureProvider._
 
 import scala.util.Right
 

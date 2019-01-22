@@ -1,4 +1,4 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import java.net.{InetAddress, InetSocketAddress, URI}
 import java.util.concurrent.ConcurrentMap
@@ -8,22 +8,22 @@ import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server.Route
 import cats.implicits._
 import com.typesafe.config.{ConfigObject, ConfigRenderOptions}
-import com.wavesplatform.account.Address
-import com.wavesplatform.api.http._
-import com.wavesplatform.block.Block
-import com.wavesplatform.block.Block.BlockId
-import com.wavesplatform.crypto
-import com.wavesplatform.mining.{Miner, MinerDebugInfo}
-import com.wavesplatform.network.{LocalScoreChanged, PeerDatabase, PeerInfo, _}
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.diffs.TransactionDiffer
-import com.wavesplatform.state.{Blockchain, ByteStr, LeaseBalance, NG, Portfolio}
-import com.wavesplatform.transaction.ValidationError.InvalidRequestSignature
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.smart.Verifier
-import com.wavesplatform.utils.{Base58, ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.Address
+import mir.coffe.api.http._
+import mir.coffe.block.Block
+import mir.coffe.block.Block.BlockId
+import mir.coffe.crypto
+import mir.coffe.mining.{Miner, MinerDebugInfo}
+import mir.coffe.network.{LocalScoreChanged, PeerDatabase, PeerInfo, _}
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.diffs.TransactionDiffer
+import mir.coffe.state.{Blockchain, ByteStr, LeaseBalance, NG, Portfolio}
+import mir.coffe.transaction.ValidationError.InvalidRequestSignature
+import mir.coffe.transaction._
+import mir.coffe.transaction.smart.Verifier
+import mir.coffe.utils.{Base58, ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
+import mir.coffe.wallet.Wallet
 import io.netty.channel.Channel
 import io.netty.channel.group.ChannelGroup
 import io.swagger.annotations._
@@ -38,7 +38,7 @@ import scala.util.{Failure, Success}
 
 @Path("/debug")
 @Api(value = "/debug")
-case class DebugApiRoute(ws: WavesSettings,
+case class DebugApiRoute(ws: CoffeSettings,
                          time: Time,
                          blockchain: Blockchain,
                          wallet: Wallet,
@@ -61,11 +61,11 @@ case class DebugApiRoute(ws: WavesSettings,
 
   private lazy val configStr             = configRoot.render(ConfigRenderOptions.concise().setJson(true).setFormatted(true))
   private lazy val fullConfig: JsValue   = Json.parse(configStr)
-  private lazy val wavesConfig: JsObject = Json.obj("waves" -> (fullConfig \ "waves").get)
+  private lazy val coffeConfig: JsObject = Json.obj("coffe" -> (fullConfig \ "coffe").get)
 
   override val settings = ws.restAPISettings
   override lazy val route: Route = pathPrefix("debug") {
-    blocks ~ state ~ info ~ stateWaves ~ rollback ~ rollbackTo ~ blacklist ~ portfolios ~ minerInfo ~ historyInfo ~ configInfo ~ print ~ validate
+    blocks ~ state ~ info ~ stateCoffe ~ rollback ~ rollbackTo ~ blacklist ~ portfolios ~ minerInfo ~ historyInfo ~ configInfo ~ print ~ validate
   }
 
   @Path("/blocks/{howMany}")
@@ -96,7 +96,7 @@ case class DebugApiRoute(ws: WavesSettings,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.http.DebugMessage",
+        dataType = "mir.coffe.http.DebugMessage",
         defaultValue = "{\n\t\"message\": \"foo\"\n}"
       )
     ))
@@ -147,17 +147,17 @@ case class DebugApiRoute(ws: WavesSettings,
   @ApiOperation(value = "State", notes = "Get current state", httpMethod = "GET")
   @ApiResponses(Array(new ApiResponse(code = 200, message = "Json state")))
   def state: Route = (path("state") & get & withAuth) {
-    complete(ng.wavesDistribution(ng.height).map { case (a, b) => a.stringRepr -> b })
+    complete(ng.coffeDistribution(ng.height).map { case (a, b) => a.stringRepr -> b })
   }
 
-  @Path("/stateWaves/{height}")
+  @Path("/stateCoffe/{height}")
   @ApiOperation(value = "State at block", notes = "Get state at specified height", httpMethod = "GET")
   @ApiImplicitParams(
     Array(
       new ApiImplicitParam(name = "height", value = "height", required = true, dataType = "integer", paramType = "path")
     ))
-  def stateWaves: Route = (path("stateWaves" / IntNumber) & get & withAuth) { height =>
-    complete(ng.wavesDistribution(height).map { case (a, b) => a.stringRepr -> b })
+  def stateCoffe: Route = (path("stateCoffe" / IntNumber) & get & withAuth) { height =>
+    complete(ng.coffeDistribution(height).map { case (a, b) => a.stringRepr -> b })
   }
 
   private def rollbackToBlock(blockId: ByteStr, returnTransactionsToUtx: Boolean): Future[ToResponseMarshallable] = {
@@ -186,7 +186,7 @@ case class DebugApiRoute(ws: WavesSettings,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.http.RollbackParams",
+        dataType = "mir.coffe.http.RollbackParams",
         defaultValue = "{\n\t\"rollbackTo\": 3,\n\t\"returnTransactionsToUTX\": false\n}"
       )
     ))
@@ -270,7 +270,7 @@ case class DebugApiRoute(ws: WavesSettings,
       new ApiResponse(code = 200, message = "Json state")
     ))
   def configInfo: Route = (path("configInfo") & get & parameter('full.as[Boolean]) & withAuth) { full =>
-    complete(if (full) fullConfig else wavesConfig)
+    complete(if (full) fullConfig else coffeConfig)
   }
 
   @Path("/rollback-to/{signature}")

@@ -1,4 +1,4 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
 sealed trait OrderType {
   def bytes: Array[Byte]

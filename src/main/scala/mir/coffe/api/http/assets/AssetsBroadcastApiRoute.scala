@@ -1,13 +1,13 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.api.http._
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.network._
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.state.diffs.TransactionDiffer.TransactionValidationError
-import com.wavesplatform.transaction.{Transaction, ValidationError}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.api.http._
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.network._
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.state.diffs.TransactionDiffer.TransactionValidationError
+import mir.coffe.transaction.{Transaction, ValidationError}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 
 import scala.concurrent.ExecutionContext.Implicits.global

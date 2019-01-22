@@ -1,12 +1,12 @@
-package com.wavesplatform
+package mir.coffe
 
-import com.wavesplatform.utils.base58Length
-import com.wavesplatform.block.{Block, MicroBlock}
+import mir.coffe.utils.base58Length
+import mir.coffe.block.{Block, MicroBlock}
 
 package object transaction {
 
-  type AssetId = com.wavesplatform.state.ByteStr
-  val AssetIdLength: Int       = com.wavesplatform.crypto.DigestSize
+  type AssetId = mir.coffe.state.ByteStr
+  val AssetIdLength: Int       = mir.coffe.crypto.DigestSize
   val AssetIdStringLength: Int = base58Length(AssetIdLength)
   type DiscardedTransactions = Seq[Transaction]
   type DiscardedBlocks       = Seq[Block]

@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
 import cats.data.State
 import com.google.common.primitives.{Ints, Longs}
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.crypto
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets.exchange.ExchangeTransaction._
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.crypto
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets.exchange.ExchangeTransaction._
 import io.swagger.annotations.ApiModelProperty
 import monix.eval.Coeval
 

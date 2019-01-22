@@ -1,8 +1,8 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.nio.file.Files
 
-import com.wavesplatform.db.LevelDBFactory
+import mir.coffe.db.LevelDBFactory
 import org.iq80.leveldb.{DB, Options}
 import org.scalatest.{BeforeAndAfterEach, TestSuite}
 

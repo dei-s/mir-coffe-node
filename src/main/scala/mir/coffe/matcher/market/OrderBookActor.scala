@@ -1,23 +1,23 @@
-package com.wavesplatform.matcher.market
+package mir.coffe.matcher.market
 
 import akka.actor.{ActorRef, Props, Status}
 import akka.http.scaladsl.model._
 import akka.persistence._
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.api._
-import com.wavesplatform.matcher.market.OrderBookActor._
-import com.wavesplatform.matcher.model.Events.{Event, ExchangeTransactionCreated, OrderAdded, OrderExecuted}
-import com.wavesplatform.matcher.model.MatcherModel.{Level, Price}
-import com.wavesplatform.matcher.model._
-import com.wavesplatform.metrics.TimerExt
-import com.wavesplatform.network._
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.state.diffs.TransactionDiffer.TransactionValidationError
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.{AccountBalanceError, HasScriptType, NegativeAmount, OrderValidationError}
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.api._
+import mir.coffe.matcher.market.OrderBookActor._
+import mir.coffe.matcher.model.Events.{Event, ExchangeTransactionCreated, OrderAdded, OrderExecuted}
+import mir.coffe.matcher.model.MatcherModel.{Level, Price}
+import mir.coffe.matcher.model._
+import mir.coffe.metrics.TimerExt
+import mir.coffe.network._
+import mir.coffe.state.ByteStr
+import mir.coffe.state.diffs.TransactionDiffer.TransactionValidationError
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.{AccountBalanceError, HasScriptType, NegativeAmount, OrderValidationError}
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 import kamon.Kamon
 import play.api.libs.json._

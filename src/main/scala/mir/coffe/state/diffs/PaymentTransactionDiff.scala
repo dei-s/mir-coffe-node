@@ -1,11 +1,11 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.implicits._
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state.{Blockchain, Diff, LeaseBalance, Portfolio}
-import com.wavesplatform.account.Address
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.{PaymentTransaction, ValidationError}
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state.{Blockchain, Diff, LeaseBalance, Portfolio}
+import mir.coffe.account.Address
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.{PaymentTransaction, ValidationError}
 
 import scala.util.{Left, Right}
 

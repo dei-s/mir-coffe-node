@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.smart.script
+package mir.coffe.transaction.smart.script
 
 import cats.implicits._
-import com.wavesplatform.account.AddressScheme
-import com.wavesplatform.lang.v1.compiler.Terms.EVALUATED
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.lang.{ExecutionError, ExprEvaluator}
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction
-import com.wavesplatform.transaction.assets.exchange.Order
-import com.wavesplatform.transaction.smart.BlockchainContext
+import mir.coffe.account.AddressScheme
+import mir.coffe.lang.v1.compiler.Terms.EVALUATED
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.lang.{ExecutionError, ExprEvaluator}
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction
+import mir.coffe.transaction.assets.exchange.Order
+import mir.coffe.transaction.smart.BlockchainContext
 import monix.eval.Coeval
 import shapeless._
 

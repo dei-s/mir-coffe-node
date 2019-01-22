@@ -1,20 +1,20 @@
-package com.wavesplatform.matcher.market
+package mir.coffe.matcher.market
 
 import java.util.concurrent.atomic.AtomicReference
 
 import akka.actor.{Actor, ActorRef, PoisonPill, Props, Terminated}
 import akka.persistence.{PersistentActor, RecoveryCompleted, _}
 import com.google.common.base.Charsets
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.api.{DuringShutdown, OrderBookUnavailable}
-import com.wavesplatform.matcher.market.OrderBookActor._
-import com.wavesplatform.matcher.model.Events.OrderExecuted
-import com.wavesplatform.matcher.model.OrderBook
-import com.wavesplatform.state.{AssetDescription, ByteStr}
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, ExchangeTransaction, Order}
-import com.wavesplatform.transaction.{AssetId, ValidationError}
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.api.{DuringShutdown, OrderBookUnavailable}
+import mir.coffe.matcher.market.OrderBookActor._
+import mir.coffe.matcher.model.Events.OrderExecuted
+import mir.coffe.matcher.model.OrderBook
+import mir.coffe.state.{AssetDescription, ByteStr}
+import mir.coffe.transaction.assets.exchange.{AssetPair, ExchangeTransaction, Order}
+import mir.coffe.transaction.{AssetId, ValidationError}
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 import play.api.libs.json._
 import scorex.utils._
@@ -42,7 +42,7 @@ class MatcherActor(orderBooks: AtomicReference[Map[AssetPair, Either[Unit, Actor
   private def orderBook(pair: AssetPair) = Option(orderBooks.get()).flatMap(_.get(pair))
 
   private def getAssetName(asset: Option[AssetId], desc: Option[AssetDescription]): String =
-    asset.fold(AssetPair.WavesName) { _ =>
+    asset.fold(AssetPair.CoffeName) { _ =>
       desc.fold("Unknown")(d => new String(d.name, Charsets.UTF_8))
     }
 

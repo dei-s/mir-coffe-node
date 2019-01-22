@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.smart.script.v1
+package mir.coffe.transaction.smart.script.v1
 
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.evaluator.FunctionIds._
-import com.wavesplatform.lang.v1.{FunctionHeader, ScriptEstimator, Serde}
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.crypto
-import com.wavesplatform.utils.{functionCosts, varNames}
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.evaluator.FunctionIds._
+import mir.coffe.lang.v1.{FunctionHeader, ScriptEstimator, Serde}
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.crypto
+import mir.coffe.utils.{functionCosts, varNames}
 import monix.eval.Coeval
 
 object ScriptV1 {

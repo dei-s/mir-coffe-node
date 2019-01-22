@@ -1,4 +1,4 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
 import org.scalatest.{FlatSpec, Matchers}
@@ -6,7 +6,7 @@ import org.scalatest.{FlatSpec, Matchers}
 class RestAPISettingsSpecification extends FlatSpec with Matchers {
   "RestAPISettings" should "read values" in {
     val config   = ConfigFactory.parseString("""
-        |waves {
+        |coffe {
         |  rest-api {
         |    enable: yes
         |    bind-address: "127.0.0.1"

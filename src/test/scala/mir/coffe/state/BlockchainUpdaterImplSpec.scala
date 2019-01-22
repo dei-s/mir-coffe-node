@@ -1,16 +1,16 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.block.Block
-import com.wavesplatform.database.LevelDBWriter
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.{TestFunctionalitySettings, WavesSettings, loadConfig}
-import com.wavesplatform.state.diffs.ENOUGH_AMT
-import com.wavesplatform.transaction.{GenesisTransaction, Transaction}
-import com.wavesplatform.transaction.transfer.{TransferTransaction, TransferTransactionV1}
-import com.wavesplatform.utils.Time
-import com.wavesplatform.{WithDB, RequestGen, NTPTime}
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.block.Block
+import mir.coffe.database.LevelDBWriter
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.{TestFunctionalitySettings, CoffeSettings, loadConfig}
+import mir.coffe.state.diffs.ENOUGH_AMT
+import mir.coffe.transaction.{GenesisTransaction, Transaction}
+import mir.coffe.transaction.transfer.{TransferTransaction, TransferTransactionV1}
+import mir.coffe.utils.Time
+import mir.coffe.{WithDB, RequestGen, NTPTime}
 import org.scalacheck.Gen
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -18,7 +18,7 @@ class BlockchainUpdaterImplSpec extends FreeSpec with Matchers with WithDB with 
 
   def baseTest(gen: Time => Gen[(PrivateKeyAccount, Seq[Block])])(f: (BlockchainUpdaterImpl, PrivateKeyAccount) => Unit): Unit = {
     val defaultWriter = new LevelDBWriter(db, TestFunctionalitySettings.Stub, 100000, 2000, 120 * 60 * 1000)
-    val settings      = WavesSettings.fromConfig(loadConfig(ConfigFactory.load()))
+    val settings      = CoffeSettings.fromConfig(loadConfig(ConfigFactory.load()))
     val bcu           = new BlockchainUpdaterImpl(defaultWriter, settings, ntpTime)
     try {
       val (account, blocks) = gen(ntpTime).sample.get

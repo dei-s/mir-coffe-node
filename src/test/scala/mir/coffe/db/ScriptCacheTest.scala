@@ -1,17 +1,17 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.Block
-import com.wavesplatform.database.LevelDBWriter
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.settings.{TestFunctionalitySettings, WavesSettings, loadConfig}
-import com.wavesplatform.state.{BlockchainUpdaterImpl, _}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.{Script, ScriptCompiler}
-import com.wavesplatform.transaction.{BlockchainUpdater, GenesisTransaction}
-import com.wavesplatform.utils.Time
-import com.wavesplatform.{TransactionGen, WithDB}
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.Block
+import mir.coffe.database.LevelDBWriter
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.settings.{TestFunctionalitySettings, CoffeSettings, loadConfig}
+import mir.coffe.state.{BlockchainUpdaterImpl, _}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.{Script, ScriptCompiler}
+import mir.coffe.transaction.{BlockchainUpdater, GenesisTransaction}
+import mir.coffe.utils.Time
+import mir.coffe.{TransactionGen, WithDB}
 import org.scalacheck.Gen
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -129,7 +129,7 @@ class ScriptCacheTest extends FreeSpec with Matchers with WithDB with Transactio
 
   def withBlockchain(gen: Time => Gen[(Seq[PrivateKeyAccount], Seq[Block])])(f: (Seq[PrivateKeyAccount], BlockchainUpdater with NG) => Unit): Unit = {
     val defaultWriter = new LevelDBWriter(db, TestFunctionalitySettings.Stub, CACHE_SIZE, 2000, 120 * 60 * 1000)
-    val settings0     = WavesSettings.fromConfig(loadConfig(ConfigFactory.load()))
+    val settings0     = CoffeSettings.fromConfig(loadConfig(ConfigFactory.load()))
     val settings      = settings0.copy(featuresSettings = settings0.featuresSettings.copy(autoShutdownOnUnsupportedFeature = false))
     val bcu           = new BlockchainUpdaterImpl(defaultWriter, settings, ntpTime)
     try {

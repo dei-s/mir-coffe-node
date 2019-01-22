@@ -1,4 +1,4 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import play.api.libs.json.{Format, Json}
 

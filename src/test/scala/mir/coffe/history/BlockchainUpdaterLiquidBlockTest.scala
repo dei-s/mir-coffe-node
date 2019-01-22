@@ -1,18 +1,18 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform._
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.ENOUGH_AMT
+import mir.coffe._
+import mir.coffe.state._
+import mir.coffe.state.diffs.ENOUGH_AMT
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.{Block, MicroBlock, SignerData}
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.{GenesisTransaction, Transaction}
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.{Block, MicroBlock, SignerData}
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.{GenesisTransaction, Transaction}
 
 class BlockchainUpdaterLiquidBlockTest extends PropSpec with PropertyChecks with DomainScenarioDrivenPropertyCheck with Matchers with TransactionGen {
 
@@ -50,7 +50,7 @@ class BlockchainUpdaterLiquidBlockTest extends PropSpec with PropertyChecks with
     import Block.{MaxTransactionsPerBlockVer3 => Max}
     forAll(preconditionsAndPayments(Max + 1, Max + 100)) {
       case (prevBlock, keyBlock, microBlocks) =>
-        withDomain(MicroblocksActivatedAt0WavesSettings) { d =>
+        withDomain(MicroblocksActivatedAt0CoffeSettings) { d =>
           val blocksApplied = for {
             _ <- d.blockchainUpdater.processBlock(prevBlock)
             _ <- d.blockchainUpdater.processBlock(keyBlock)
@@ -77,9 +77,9 @@ class BlockchainUpdaterLiquidBlockTest extends PropSpec with PropertyChecks with
   }
 
   property("miner settings don't interfere with micro block processing") {
-    val oneTxPerMicroSettings = MicroblocksActivatedAt0WavesSettings
+    val oneTxPerMicroSettings = MicroblocksActivatedAt0CoffeSettings
       .copy(
-        minerSettings = MicroblocksActivatedAt0WavesSettings.minerSettings.copy(
+        minerSettings = MicroblocksActivatedAt0CoffeSettings.minerSettings.copy(
           maxTransactionsInMicroBlock = 1
         )
       )

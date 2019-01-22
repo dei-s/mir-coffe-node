@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction.lease
+package mir.coffe.transaction.lease
 
 import com.google.common.primitives.Bytes
-import com.wavesplatform.crypto
-import com.wavesplatform.state._
+import mir.coffe.crypto
+import mir.coffe.state._
 import monix.eval.Coeval
-import com.wavesplatform.account.{AddressScheme, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.transaction.ValidationError.{GenericError, UnsupportedVersion}
-import com.wavesplatform.transaction._
+import mir.coffe.account.{AddressScheme, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.transaction.ValidationError.{GenericError, UnsupportedVersion}
+import mir.coffe.transaction._
 
 import scala.util.{Failure, Success, Try}
 

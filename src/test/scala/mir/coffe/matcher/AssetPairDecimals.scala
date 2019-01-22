@@ -1,4 +1,4 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 import scala.math.BigDecimal.RoundingMode.CEILING
 
 class AssetPairDecimals(amountDecimals: Byte, priceDecimals: Byte) {

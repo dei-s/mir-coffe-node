@@ -1,20 +1,20 @@
-package com.wavesplatform.database
+package mir.coffe.database
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.{Address, PrivateKeyAccount}
-import com.wavesplatform.block.Block
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.v1.compiler.Terms
-import com.wavesplatform.settings.{TestFunctionalitySettings, WavesSettings, loadConfig}
-import com.wavesplatform.state.diffs.ENOUGH_AMT
-import com.wavesplatform.state.{BlockchainUpdaterImpl, EitherExt2}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer.{TransferTransaction, TransferTransactionV1}
-import com.wavesplatform.transaction.{GenesisTransaction, Transaction}
-import com.wavesplatform.utils.Time
-import com.wavesplatform.{RequestGen, WithDB}
+import mir.coffe.account.{Address, PrivateKeyAccount}
+import mir.coffe.block.Block
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.v1.compiler.Terms
+import mir.coffe.settings.{TestFunctionalitySettings, CoffeSettings, loadConfig}
+import mir.coffe.state.diffs.ENOUGH_AMT
+import mir.coffe.state.{BlockchainUpdaterImpl, EitherExt2}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer.{TransferTransaction, TransferTransactionV1}
+import mir.coffe.transaction.{GenesisTransaction, Transaction}
+import mir.coffe.utils.Time
+import mir.coffe.{RequestGen, WithDB}
 import org.scalacheck.Gen
 import org.scalatest.{FreeSpec, Matchers}
 
@@ -113,7 +113,7 @@ class LevelDBWriterSpec extends FreeSpec with Matchers with WithDB with RequestG
 
   def baseTest(gen: Time => Gen[(PrivateKeyAccount, Seq[Block])])(f: (LevelDBWriter, PrivateKeyAccount) => Unit): Unit = {
     val defaultWriter = new LevelDBWriter(db, TestFunctionalitySettings.Stub, 100000, 2000, 120 * 60 * 1000)
-    val settings0     = WavesSettings.fromConfig(loadConfig(ConfigFactory.load()))
+    val settings0     = CoffeSettings.fromConfig(loadConfig(ConfigFactory.load()))
     val settings      = settings0.copy(featuresSettings = settings0.featuresSettings.copy(autoShutdownOnUnsupportedFeature = false))
     val bcu           = new BlockchainUpdaterImpl(defaultWriter, settings, ntpTime)
     try {

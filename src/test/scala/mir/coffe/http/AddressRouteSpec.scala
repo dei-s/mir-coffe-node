@@ -1,21 +1,21 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
-import com.wavesplatform.http.ApiMarshallers._
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.state.{Blockchain, EitherExt2}
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.utx.UtxPool
-import com.wavesplatform.{NoShrink, TestTime, TestWallet, crypto}
+import mir.coffe.http.ApiMarshallers._
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.state.{Blockchain, EitherExt2}
+import mir.coffe.utils.Base58
+import mir.coffe.utx.UtxPool
+import mir.coffe.{NoShrink, TestTime, TestWallet, crypto}
 import io.netty.channel.group.ChannelGroup
 import org.scalacheck.Gen
 import org.scalamock.scalatest.PathMockFactory
 import org.scalatest.prop.PropertyChecks
 import play.api.libs.json._
-import com.wavesplatform.account.Address
-import com.wavesplatform.api.http.{AddressApiRoute, ApiKeyNotValid}
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
+import mir.coffe.account.Address
+import mir.coffe.api.http.{AddressApiRoute, ApiKeyNotValid}
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.transaction.smart.script.v1.ScriptV1
 
 class AddressRouteSpec
     extends RouteSpec("/addresses")

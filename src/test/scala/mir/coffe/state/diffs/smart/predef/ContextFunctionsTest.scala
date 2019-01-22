@@ -1,25 +1,25 @@
-package com.wavesplatform.state.diffs.smart.predef
+package mir.coffe.state.diffs.smart.predef
 
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.lang.Global
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.Testing._
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.state._
-//import com.wavesplatform.state.diffs.smart.smartEnabledFS
-//import com.wavesplatform.state.diffs.{ENOUGH_AMT, assertDiffAndState}
-import com.wavesplatform.state.diffs.ENOUGH_AMT
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.utils.{Base58, compilerContext}
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.lang.Global
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.Testing._
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.state._
+//import mir.coffe.state.diffs.smart.smartEnabledFS
+//import mir.coffe.state.diffs.{ENOUGH_AMT, assertDiffAndState}
+import mir.coffe.state.diffs.ENOUGH_AMT
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.utils.{Base58, compilerContext}
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.GenesisTransaction
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.GenesisTransaction
 import org.scalacheck.Gen
 import shapeless.Coproduct
 
@@ -47,7 +47,7 @@ class ContextFunctionsTest extends PropSpec with PropertyChecks with Matchers wi
       .choose(1, 3)
       .map {
         case 1 => scriptWithPureFunctions(dataTransaction, transfer)
-        case 2 => scriptWithWavesFunctions(dataTransaction, transfer)
+        case 2 => scriptWithCoffeFunctions(dataTransaction, transfer)
         case 3 => scriptWithCryptoFunctions
       }
       .map(x => Parser(x).get.value)

@@ -1,11 +1,11 @@
-package com.wavesplatform.transaction.lease
+package mir.coffe.transaction.lease
 
 import com.google.common.primitives.{Bytes, Longs}
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.{Address, AddressOrAlias, PublicKeyAccount}
-import com.wavesplatform.transaction.{AssetId, ProvenTransaction, ValidationError, VersionedTransaction}
-import com.wavesplatform.crypto._
+import mir.coffe.account.{Address, AddressOrAlias, PublicKeyAccount}
+import mir.coffe.transaction.{AssetId, ProvenTransaction, ValidationError, VersionedTransaction}
+import mir.coffe.crypto._
 import scala.util.Try
 
 trait LeaseTransaction extends ProvenTransaction with VersionedTransaction {
@@ -38,7 +38,7 @@ object LeaseTransaction {
 
   def validateLeaseParams(amount: Long, fee: Long, recipient: AddressOrAlias, sender: PublicKeyAccount) =
     if (amount <= 0) {
-      Left(ValidationError.NegativeAmount(amount, "waves"))
+      Left(ValidationError.NegativeAmount(amount, "coffe"))
     } else if (Try(Math.addExact(amount, fee)).isFailure) {
       Left(ValidationError.OverflowError)
     } else if (fee <= 0) {

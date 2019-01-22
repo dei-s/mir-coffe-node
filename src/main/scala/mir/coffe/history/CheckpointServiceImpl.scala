@@ -1,12 +1,12 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.crypto
-import com.wavesplatform.db.{CheckpointCodec, PropertiesStorage, SubStorage}
-import com.wavesplatform.network.Checkpoint
-import com.wavesplatform.settings.CheckpointsSettings
+import mir.coffe.crypto
+import mir.coffe.db.{CheckpointCodec, PropertiesStorage, SubStorage}
+import mir.coffe.network.Checkpoint
+import mir.coffe.settings.CheckpointsSettings
 import org.iq80.leveldb.DB
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.{CheckpointService, ValidationError}
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.{CheckpointService, ValidationError}
 
 class CheckpointServiceImpl(db: DB, settings: CheckpointsSettings)
     extends SubStorage(db, "checkpoints")

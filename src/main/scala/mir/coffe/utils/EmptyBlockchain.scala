@@ -1,14 +1,14 @@
-package com.wavesplatform.utils
+package mir.coffe.utils
 
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.state.reader.LeaseDetails
-import com.wavesplatform.state._
-import com.wavesplatform.transaction.Transaction.Type
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.lease.LeaseTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.{AssetId, Transaction, ValidationError}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.state.reader.LeaseDetails
+import mir.coffe.state._
+import mir.coffe.transaction.Transaction.Type
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.lease.LeaseTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.{AssetId, Transaction, ValidationError}
 import cats.kernel.Monoid
 
 object EmptyBlockchain extends Blockchain {
@@ -66,7 +66,7 @@ object EmptyBlockchain extends Blockchain {
 
   override def filledVolumeAndFee(orderId: ByteStr): VolumeAndFee = VolumeAndFee(0, 0)
 
-  /** Retrieves Waves balance snapshot in the [from, to] range (inclusive) */
+  /** Retrieves Coffe balance snapshot in the [from, to] range (inclusive) */
   override def balanceSnapshots(address: Address, from: Int, to: Int): Seq[BalanceSnapshot] = Seq.empty
 
   override def accountScript(address: Address): Option[Script] = None
@@ -87,7 +87,7 @@ object EmptyBlockchain extends Blockchain {
 
   override def assetDistribution(assetId: ByteStr): AssetDistribution = Monoid.empty[AssetDistribution]
 
-  override def wavesDistribution(height: Int): Map[Address, Long] = Map.empty
+  override def coffeDistribution(height: Int): Map[Address, Long] = Map.empty
 
   override def allActiveLeases: Set[LeaseTransaction] = Set.empty
 
@@ -99,7 +99,7 @@ object EmptyBlockchain extends Blockchain {
 
   /** Builds a new portfolio map by applying a partial function to all portfolios on which the function is defined.
     *
-    * @note Portfolios passed to `pf` only contain Waves and Leasing balances to improve performance */
+    * @note Portfolios passed to `pf` only contain Coffe and Leasing balances to improve performance */
   override def collectLposPortfolios[A](pf: PartialFunction[(Address, Portfolio), A]): Map[Address, A] = Map.empty
   override def append(diff: Diff, carryFee: Long, block: Block): Unit                                  = ()
   override def rollbackTo(targetBlockId: ByteStr): Either[String, Seq[Block]]                          = Right(Seq.empty)

@@ -1,9 +1,9 @@
-package com.wavesplatform.network
+package mir.coffe.network
 
 import java.net.InetAddress
 
-import com.wavesplatform.settings.UPnPSettings
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.settings.UPnPSettings
+import mir.coffe.utils.ScorexLogging
 import org.bitlet.weupnp.{GatewayDevice, GatewayDiscover}
 
 import scala.collection.JavaConverters._

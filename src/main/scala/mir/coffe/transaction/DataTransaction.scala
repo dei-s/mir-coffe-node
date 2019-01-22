@@ -1,12 +1,12 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
 import com.google.common.primitives.{Bytes, Longs, Shorts}
-import com.wavesplatform.crypto
-import com.wavesplatform.state._
+import mir.coffe.crypto
+import mir.coffe.state._
 import monix.eval.Coeval
 import play.api.libs.json._
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.crypto._
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.crypto._
 import scala.util.{Failure, Success, Try}
 
 case class DataTransaction private (version: Byte, sender: PublicKeyAccount, data: List[DataEntry[_]], fee: Long, timestamp: Long, proofs: Proofs)

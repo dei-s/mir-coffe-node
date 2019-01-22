@@ -1,26 +1,26 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import java.nio.charset.StandardCharsets
 
 import javax.ws.rs.Path
 import akka.http.scaladsl.marshalling.ToResponseMarshallable
 import akka.http.scaladsl.server.Route
-import com.wavesplatform.consensus.GeneratingBalanceProvider
-import com.wavesplatform.crypto
-import com.wavesplatform.settings.{FunctionalitySettings, RestAPISettings}
-import com.wavesplatform.state.Blockchain
-import com.wavesplatform.state.diffs.CommonValidation
-import com.wavesplatform.utils.{Base58, Time}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.consensus.GeneratingBalanceProvider
+import mir.coffe.crypto
+import mir.coffe.settings.{FunctionalitySettings, RestAPISettings}
+import mir.coffe.state.Blockchain
+import mir.coffe.state.diffs.CommonValidation
+import mir.coffe.utils.{Base58, Time}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 import io.swagger.annotations._
 import play.api.libs.json._
-import com.wavesplatform.account.{Address, PublicKeyAccount}
-import com.wavesplatform.http.BroadcastRoute
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.smart.script.ScriptCompiler
-import com.wavesplatform.transaction.{TransactionFactory, ValidationError}
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.{Address, PublicKeyAccount}
+import mir.coffe.http.BroadcastRoute
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.smart.script.ScriptCompiler
+import mir.coffe.transaction.{TransactionFactory, ValidationError}
+import mir.coffe.wallet.Wallet
 
 import scala.util.{Failure, Success, Try}
 
@@ -127,7 +127,7 @@ case class AddressApiRoute(settings: RestAPISettings,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.api.http.SignedMessage",
+        dataType = "mir.coffe.api.http.SignedMessage",
         defaultValue =
           "{\n\t\"message\":\"Base58-encoded message\",\n\t\"signature\":\"Base58-encoded signature\",\n\t\"publickey\":\"Base58-encoded public key\"\n}"
       )
@@ -148,7 +148,7 @@ case class AddressApiRoute(settings: RestAPISettings,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.api.http.SignedMessage",
+        dataType = "mir.coffe.api.http.SignedMessage",
         defaultValue =
           "{\n\t\"message\":\"Plain message\",\n\t\"signature\":\"Base58-encoded signature\",\n\t\"publickey\":\"Base58-encoded public key\"\n}"
       )
@@ -260,7 +260,7 @@ case class AddressApiRoute(settings: RestAPISettings,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.api.http.DataRequest",
+        dataType = "mir.coffe.api.http.DataRequest",
         defaultValue =
           "{\n\t\"version\": 1,\n\t\"sender\": \"3Mx2afTZ2KbRrLNbytyzTtXukZvqEB8SkW7\",\n\t\"fee\": 100000,\n\t\"data\": [{\"key\":\"intValue\", \"type\":\"integer\", \"value\":17},{\"key\":\"stringValue\", \"type\":\"string\", \"value\":\"seventeen\"},{\"key\":\"boolValue\", \"type\":\"boolean\", \"value\":false},{\"key\":\"binaryArray\", \"type\":\"binary\", \"value\":\"EQ==\"}]\n}"
       )

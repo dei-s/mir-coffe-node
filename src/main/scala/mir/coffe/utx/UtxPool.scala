@@ -1,9 +1,9 @@
-package com.wavesplatform.utx
+package mir.coffe.utx
 
-import com.wavesplatform.mining.MultiDimensionalMiningConstraint
-import com.wavesplatform.state.{ByteStr, Diff, Portfolio}
-import com.wavesplatform.account.Address
-import com.wavesplatform.transaction._
+import mir.coffe.mining.MultiDimensionalMiningConstraint
+import mir.coffe.state.{ByteStr, Diff, Portfolio}
+import mir.coffe.account.Address
+import mir.coffe.transaction._
 
 trait UtxPool extends AutoCloseable {
   self =>

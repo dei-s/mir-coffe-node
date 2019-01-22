@@ -1,4 +1,4 @@
-package com.wavesplatform.matcher.api
+package mir.coffe.matcher.api
 
 import java.util.concurrent.Executors
 
@@ -9,21 +9,21 @@ import akka.http.scaladsl.server.{Directive1, Route}
 import akka.pattern.ask
 import akka.util.Timeout
 import com.google.common.primitives.Longs
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.api.http._
-import com.wavesplatform.crypto
-import com.wavesplatform.matcher.AssetPairBuilder
-import com.wavesplatform.matcher.market.MatcherActor.{GetMarkets, MarketData}
-import com.wavesplatform.matcher.market.OrderBookActor._
-import com.wavesplatform.matcher.market.OrderHistoryActor
-import com.wavesplatform.matcher.model._
-import com.wavesplatform.metrics.TimerExt
-import com.wavesplatform.settings.WavesSettings
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.AssetAcc
-import com.wavesplatform.transaction.assets.exchange.OrderJson._
-import com.wavesplatform.transaction.assets.exchange.{AssetPair, Order}
-import com.wavesplatform.utils.{Base58, ScorexLogging, Time}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.api.http._
+import mir.coffe.crypto
+import mir.coffe.matcher.AssetPairBuilder
+import mir.coffe.matcher.market.MatcherActor.{GetMarkets, MarketData}
+import mir.coffe.matcher.market.OrderBookActor._
+import mir.coffe.matcher.market.OrderHistoryActor
+import mir.coffe.matcher.model._
+import mir.coffe.metrics.TimerExt
+import mir.coffe.settings.CoffeSettings
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.AssetAcc
+import mir.coffe.transaction.assets.exchange.OrderJson._
+import mir.coffe.transaction.assets.exchange.{AssetPair, Order}
+import mir.coffe.utils.{Base58, ScorexLogging, Time}
 import io.netty.util.concurrent.DefaultThreadFactory
 import io.swagger.annotations._
 import javax.ws.rs.Path
@@ -45,7 +45,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
                            orderBook: AssetPair => Option[Either[Unit, ActorRef]],
                            getMarketStatus: AssetPair => Option[MarketStatus],
                            orderBookSnapshot: OrderBookSnapshotHttpCache,
-                           wavesSettings: WavesSettings,
+                           coffeSettings: CoffeSettings,
                            db: DB,
                            time: Time)
     extends ApiRoute
@@ -53,7 +53,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
 
   import MatcherApiRoute._
   import PathMatchers._
-  import wavesSettings._
+  import coffeSettings._
 
   override val settings = restAPISettings
 
@@ -145,7 +145,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.transaction.assets.exchange.Order"
+        dataType = "mir.coffe.transaction.assets.exchange.Order"
       )
     ))
   def place: Route = path("orderbook") {
@@ -239,7 +239,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.matcher.api.CancelOrderRequest"
+        dataType = "mir.coffe.matcher.api.CancelOrderRequest"
       )
     ))
   def cancel: Route = (path("orderbook" / AssetPairPM / "cancel") & post) { p =>
@@ -273,7 +273,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.matcher.api.CancelOrderRequest"
+        dataType = "mir.coffe.matcher.api.CancelOrderRequest"
       )
     ))
   def cancelAll: Route = (path("orderbook" / "cancel") & post) {
@@ -303,7 +303,7 @@ case class MatcherApiRoute(assetPairBuilder: AssetPairBuilder,
         value = "Json with data",
         required = true,
         paramType = "body",
-        dataType = "com.wavesplatform.matcher.api.CancelOrderRequest"
+        dataType = "mir.coffe.matcher.api.CancelOrderRequest"
       )
     ))
   def historyDelete: Route = (path("orderbook" / AssetPairPM / "delete") & post) { _ =>

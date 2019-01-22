@@ -1,12 +1,12 @@
-package com.wavesplatform.matcher
+package mir.coffe.matcher
 
 import com.google.common.base.Charsets
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.settings.loadConfig
-import com.wavesplatform.state.diffs.produce
-import com.wavesplatform.state.{AssetDescription, Blockchain, ByteStr}
-import com.wavesplatform.transaction.assets.exchange.AssetPair
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.settings.loadConfig
+import mir.coffe.state.diffs.produce
+import mir.coffe.state.{AssetDescription, Blockchain, ByteStr}
+import mir.coffe.transaction.assets.exchange.AssetPair
 import org.scalamock.scalatest.MockFactory
 import org.scalatest.prop.TableDrivenPropertyChecks._
 import org.scalatest.{FreeSpec, Matchers}
@@ -34,7 +34,7 @@ class AssetPairBuilderSpec extends FreeSpec with Matchers with MockFactory {
       b("8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS"),
     )
 
-  private val priceAssets = ConfigFactory.parseString(s"""waves.matcher {
+  private val priceAssets = ConfigFactory.parseString(s"""coffe.matcher {
        |  blacklisted-assets = [$Asset3]
        |  blacklisted-names = ["name$$"]
        |  price-assets = [${predefinedPriceAssets.mkString(",")}]

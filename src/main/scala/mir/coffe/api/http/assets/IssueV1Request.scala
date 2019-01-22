@@ -1,4 +1,4 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import io.swagger.annotations.ApiModelProperty
 import play.api.libs.json.{Format, Json}

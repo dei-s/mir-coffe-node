@@ -1,29 +1,29 @@
-package com.wavesplatform.mining
+package mir.coffe.mining
 
 import cats.data.EitherT
 import cats.implicits._
-import com.wavesplatform.consensus.{GeneratingBalanceProvider, PoSSelector}
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.features.FeatureProvider._
-import com.wavesplatform.metrics.{BlockStats, HistogramExt, Instrumented}
-import com.wavesplatform.network._
-import com.wavesplatform.settings.{FunctionalitySettings, WavesSettings}
-import com.wavesplatform.state._
-import com.wavesplatform.state.appender.{BlockAppender, MicroblockAppender}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.consensus.{GeneratingBalanceProvider, PoSSelector}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.features.FeatureProvider._
+import mir.coffe.metrics.{BlockStats, HistogramExt, Instrumented}
+import mir.coffe.network._
+import mir.coffe.settings.{FunctionalitySettings, CoffeSettings}
+import mir.coffe.state._
+import mir.coffe.state.appender.{BlockAppender, MicroblockAppender}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.group.ChannelGroup
 import kamon.Kamon
 import kamon.metric.MeasurementUnit
 import monix.eval.Task
 import monix.execution.cancelables.{CompositeCancelable, SerialCancelable}
 import monix.execution.schedulers.SchedulerService
-import com.wavesplatform.account.{Address, PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.block.Block._
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.utils.{ScorexLogging, Time}
-import com.wavesplatform.transaction._
-import com.wavesplatform.wallet.Wallet
+import mir.coffe.account.{Address, PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.block.Block._
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.utils.{ScorexLogging, Time}
+import mir.coffe.transaction._
+import mir.coffe.wallet.Wallet
 
 import scala.collection.mutable.{Map => MMap}
 import scala.concurrent.Await
@@ -56,7 +56,7 @@ object MinerDebugInfo {
 class MinerImpl(allChannels: ChannelGroup,
                 blockchainUpdater: BlockchainUpdater with NG,
                 checkpoint: CheckpointService,
-                settings: WavesSettings,
+                settings: CoffeSettings,
                 timeService: Time,
                 utx: UtxPool,
                 wallet: Wallet,

@@ -1,8 +1,8 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
-import com.wavesplatform.state.ByteStr
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.Validation
+import mir.coffe.state.ByteStr
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.Validation
 
 trait BroadcastRequest {
   protected def parseBase58(v: String, error: String, maxLength: Int): Validation[ByteStr] =

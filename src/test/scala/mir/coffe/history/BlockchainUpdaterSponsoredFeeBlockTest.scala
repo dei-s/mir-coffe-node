@@ -1,18 +1,18 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.settings.{BlockchainSettings, WavesSettings}
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
+import mir.coffe.TransactionGen
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.settings.{BlockchainSettings, CoffeSettings}
+import mir.coffe.state._
+import mir.coffe.state.diffs._
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.assets.{IssueTransaction, SponsorFeeTransaction}
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.crypto._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.assets.{IssueTransaction, SponsorFeeTransaction}
+import mir.coffe.transaction.transfer._
+import mir.coffe.crypto._
 
 class BlockchainUpdaterSponsoredFeeBlockTest
     extends PropSpec
@@ -36,21 +36,21 @@ class BlockchainUpdaterSponsoredFeeBlockTest
 
     master                      <- accountGen
     ts                          <- timestampGen
-    transferAssetWavesFee       <- smallFeeGen
+    transferAssetCoffeFee       <- smallFeeGen
     sponsor                     <- accountGen
     alice                       <- accountGen
     bob                         <- accountGen
     (feeAsset, sponsorTx, _, _) <- sponsorFeeCancelSponsorFeeGen(alice)
-    wavesFee                    = Sponsorship.toWaves(sponsorTx.minSponsoredAssetFee.get, sponsorTx.minSponsoredAssetFee.get)
+    coffeFee                    = Sponsorship.toCoffe(sponsorTx.minSponsoredAssetFee.get, sponsorTx.minSponsoredAssetFee.get)
     genesis: GenesisTransaction = GenesisTransaction.create(master, ENOUGH_AMT, ts).explicitGet()
     masterToAlice: TransferTransactionV1 = TransferTransactionV1
       .selfSigned(None,
                   master,
                   alice,
-                  feeAsset.fee + sponsorTx.fee + transferAssetWavesFee + wavesFee,
+                  feeAsset.fee + sponsorTx.fee + transferAssetCoffeFee + coffeFee,
                   ts + 1,
                   None,
-                  transferAssetWavesFee,
+                  transferAssetCoffeFee,
                   Array.emptyByteArray)
       .right
       .get
@@ -62,7 +62,7 @@ class BlockchainUpdaterSponsoredFeeBlockTest
         feeAsset.quantity / 2,
         ts + 2,
         None,
-        transferAssetWavesFee,
+        transferAssetCoffeFee,
         Array.emptyByteArray
       )
       .right
@@ -101,10 +101,10 @@ class BlockchainUpdaterSponsoredFeeBlockTest
             blocksForFeatureActivation = 1,
             preActivatedFeatures = Map(BlockchainFeatures.FeeSponsorship.id -> 0, BlockchainFeatures.NG.id -> 0)))
 
-  val SponsoredActivatedAt0WavesSettings: WavesSettings = settings.copy(blockchainSettings = SponsoredFeeActivatedAt0BlockchainSettings)
+  val SponsoredActivatedAt0CoffeSettings: CoffeSettings = settings.copy(blockchainSettings = SponsoredFeeActivatedAt0BlockchainSettings)
 
-  property("not enough waves to sponsor sponsored tx") {
-    scenario(sponsorPreconditions, SponsoredActivatedAt0WavesSettings) {
+  property("not enough coffe to sponsor sponsored tx") {
+    scenario(sponsorPreconditions, SponsoredActivatedAt0CoffeSettings) {
       case (domain, (genesis, masterToAlice, feeAsset, sponsor, aliceToBob, bobToMaster, bobToMaster2)) =>
         val (block0, microBlocks) = chainBaseAndMicro(randomSig, genesis, Seq(masterToAlice, feeAsset, sponsor).map(Seq(_)))
         val block1 = customBuildBlockOfTxs(microBlocks.last.totalResBlockSig,
@@ -123,7 +123,7 @@ class BlockchainUpdaterSponsoredFeeBlockTest
         domain.blockchainUpdater.processBlock(block1).explicitGet()
         domain.blockchainUpdater.processBlock(block2).explicitGet()
         domain.blockchainUpdater.processBlock(block3).explicitGet()
-        domain.blockchainUpdater.processBlock(block4) should produce("negative waves balance" /*"unavailable funds"*/ )
+        domain.blockchainUpdater.processBlock(block4) should produce("negative coffe balance" /*"unavailable funds"*/ )
 
     }
   }

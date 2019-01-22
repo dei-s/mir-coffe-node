@@ -1,4 +1,4 @@
-package com.wavesplatform.utils
+package mir.coffe.utils
 
 import play.api.libs.json._
 

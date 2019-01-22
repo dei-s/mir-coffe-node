@@ -1,13 +1,13 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats._
 import cats.implicits._
-import com.wavesplatform.settings.FunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.account.Address
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.ValidationError.GenericError
-import com.wavesplatform.transaction.lease._
+import mir.coffe.settings.FunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.account.Address
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.ValidationError.GenericError
+import mir.coffe.transaction.lease._
 
 import scala.util.{Left, Right}
 

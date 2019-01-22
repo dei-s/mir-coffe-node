@@ -1,8 +1,8 @@
-package com.wavesplatform.state.patch
+package mir.coffe.state.patch
 
-import com.wavesplatform.state.{Blockchain, Diff, LeaseBalance, Portfolio, EitherExt2}
-import com.wavesplatform.utils.ScorexLogging
-import com.wavesplatform.transaction.lease.{LeaseTransaction, LeaseTransactionV1}
+import mir.coffe.state.{Blockchain, Diff, LeaseBalance, Portfolio, EitherExt2}
+import mir.coffe.utils.ScorexLogging
+import mir.coffe.transaction.lease.{LeaseTransaction, LeaseTransactionV1}
 
 object CancelLeaseOverflow extends ScorexLogging {
   def apply(blockchain: Blockchain): Diff = {

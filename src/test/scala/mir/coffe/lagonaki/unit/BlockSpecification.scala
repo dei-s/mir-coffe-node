@@ -1,18 +1,18 @@
-package com.wavesplatform.lagonaki.unit
+package mir.coffe.lagonaki.unit
 
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.metrics.Instrumented
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.produce
-import com.wavesplatform.{NoShrink, TransactionGen, crypto}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.metrics.Instrumented
+import mir.coffe.state._
+import mir.coffe.state.diffs.produce
+import mir.coffe.{NoShrink, TransactionGen, crypto}
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.block.{Block, SignerData}
-import com.wavesplatform.consensus.nxt.NxtLikeConsensusBlockData
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.block.{Block, SignerData}
+import mir.coffe.consensus.nxt.NxtLikeConsensusBlockData
+import mir.coffe.transaction._
+import mir.coffe.transaction.transfer._
 
 class BlockSpecification extends PropSpec with PropertyChecks with TransactionGen with Matchers with NoShrink {
 
@@ -26,9 +26,9 @@ class BlockSpecification extends PropSpec with PropertyChecks with TransactionGe
     assetId = Some(ByteStr(assetBytes))
     sender                    <- accountGen
     recipient                 <- accountGen
-    paymentTransaction        <- wavesTransferGeneratorP(time, sender, recipient)
+    paymentTransaction        <- coffeTransferGeneratorP(time, sender, recipient)
     transferTrancation        <- transferGeneratorP(1 + time, sender, recipient, assetId, None)
-    anotherPaymentTransaction <- wavesTransferGeneratorP(2 + time, sender, recipient)
+    anotherPaymentTransaction <- coffeTransferGeneratorP(2 + time, sender, recipient)
     transactionData = Seq(paymentTransaction, transferTrancation, anotherPaymentTransaction)
   } yield (baseTarget, reference, ByteStr(generationSignature), recipient, transactionData)
 
@@ -41,7 +41,7 @@ class BlockSpecification extends PropSpec with PropertyChecks with TransactionGe
       assetId = Some(ByteStr(assetBytes))
       sender                                    <- accountGen
       recipient                                 <- accountGen
-      paymentTransaction: TransferTransactionV1 <- wavesTransferGeneratorP(time, sender, recipient)
+      paymentTransaction: TransferTransactionV1 <- coffeTransferGeneratorP(time, sender, recipient)
     } yield
       Block
         .buildAndSign(3,

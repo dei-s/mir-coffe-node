@@ -1,27 +1,27 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
 import cats.{Order => _, _}
-import com.wavesplatform.OrderOps._
-import com.wavesplatform.account.{AddressScheme, PrivateKeyAccount}
-import com.wavesplatform.features.{BlockchainFeature, BlockchainFeatures}
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.directives.DirectiveParser
-import com.wavesplatform.lang.v1.ScriptEstimator
-import com.wavesplatform.lang.v1.compiler.{CompilerContext, CompilerV1}
-import com.wavesplatform.settings.{Constants, FunctionalitySettings, TestFunctionalitySettings}
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.TransactionDiffer.TransactionValidationError
-import com.wavesplatform.transaction.ValidationError.AccountBalanceError
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.assets.exchange.{Order, _}
-import com.wavesplatform.transaction.assets.{IssueTransaction, IssueTransactionV1, IssueTransactionV2}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.smart.script.{Script, ScriptCompiler}
-import com.wavesplatform.transaction.transfer.TransferTransaction
-import com.wavesplatform.utils.functionCosts
-import com.wavesplatform.{NoShrink, TransactionGen, crypto}
+import mir.coffe.OrderOps._
+import mir.coffe.account.{AddressScheme, PrivateKeyAccount}
+import mir.coffe.features.{BlockchainFeature, BlockchainFeatures}
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.directives.DirectiveParser
+import mir.coffe.lang.v1.ScriptEstimator
+import mir.coffe.lang.v1.compiler.{CompilerContext, CompilerV1}
+import mir.coffe.settings.{Constants, FunctionalitySettings, TestFunctionalitySettings}
+import mir.coffe.state._
+import mir.coffe.state.diffs.TransactionDiffer.TransactionValidationError
+import mir.coffe.transaction.ValidationError.AccountBalanceError
+import mir.coffe.transaction._
+import mir.coffe.transaction.assets.exchange.{Order, _}
+import mir.coffe.transaction.assets.{IssueTransaction, IssueTransactionV1, IssueTransactionV2}
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.smart.script.{Script, ScriptCompiler}
+import mir.coffe.transaction.transfer.TransferTransaction
+import mir.coffe.utils.functionCosts
+import mir.coffe.{NoShrink, TransactionGen, crypto}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Inside, Matchers, PropSpec}
@@ -38,7 +38,7 @@ class ExchangeTransactionDiffTest extends PropSpec with PropertyChecks with Matc
     )
   )
 
-  property("preserves waves invariant, stores match info, rewards matcher") {
+  property("preserves coffe invariant, stores match info, rewards matcher") {
 
     val preconditionsAndExchange: Gen[(GenesisTransaction, GenesisTransaction, IssueTransaction, IssueTransaction, ExchangeTransaction)] = for {
       buyer  <- accountGen
@@ -67,7 +67,7 @@ class ExchangeTransactionDiffTest extends PropSpec with PropertyChecks with Matc
     }
   }
 
-  property("buy waves without enough money for fee") {
+  property("buy coffe without enough money for fee") {
     val preconditions: Gen[(GenesisTransaction, GenesisTransaction, IssueTransactionV1, ExchangeTransaction)] = for {
       buyer  <- accountGen
       seller <- accountGen
@@ -404,8 +404,8 @@ class ExchangeTransactionDiffTest extends PropSpec with PropertyChecks with Matc
       seller <- accountGen
       ts     <- timestampGen
       genesis = GenesisTransaction.create(MATCHER, Long.MaxValue, ts).explicitGet()
-      tr1     = createWavesTransfer(MATCHER, buyer.toAddress, Long.MaxValue / 3, enoughFee, ts + 1).explicitGet()
-      tr2     = createWavesTransfer(MATCHER, seller.toAddress, Long.MaxValue / 3, enoughFee, ts + 2).explicitGet()
+      tr1     = createCoffeTransfer(MATCHER, buyer.toAddress, Long.MaxValue / 3, enoughFee, ts + 1).explicitGet()
+      tr2     = createCoffeTransfer(MATCHER, seller.toAddress, Long.MaxValue / 3, enoughFee, ts + 2).explicitGet()
       asset1 = IssueTransactionV2
         .selfSigned(2: Byte, chainId, buyer, "Asset#1".getBytes, "".getBytes, 1000000, 8, false, None, enoughFee, ts + 3)
         .explicitGet()
@@ -519,8 +519,8 @@ class ExchangeTransactionDiffTest extends PropSpec with PropertyChecks with Matc
       seller <- accountGen
       ts     <- timestampGen
       genesis = GenesisTransaction.create(MATCHER, Long.MaxValue, ts).explicitGet()
-      tr1     = createWavesTransfer(MATCHER, buyer.toAddress, Long.MaxValue / 3, enoughFee, ts + 1).explicitGet()
-      tr2     = createWavesTransfer(MATCHER, seller.toAddress, Long.MaxValue / 3, enoughFee, ts + 2).explicitGet()
+      tr1     = createCoffeTransfer(MATCHER, buyer.toAddress, Long.MaxValue / 3, enoughFee, ts + 1).explicitGet()
+      tr2     = createCoffeTransfer(MATCHER, seller.toAddress, Long.MaxValue / 3, enoughFee, ts + 2).explicitGet()
       asset1 = IssueTransactionV2
         .selfSigned(2: Byte, chainId, buyer, "Asset#1".getBytes, "".getBytes, 1000000, 8, false, None, enoughFee, ts + 3)
         .explicitGet()

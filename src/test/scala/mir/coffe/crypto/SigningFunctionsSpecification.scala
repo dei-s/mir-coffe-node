@@ -1,9 +1,9 @@
-package com.wavesplatform.crypto
+package mir.coffe.crypto
 
-import com.wavesplatform.crypto
+import mir.coffe.crypto
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.account.PrivateKeyAccount
+import mir.coffe.account.PrivateKeyAccount
 
 class SigningFunctionsSpecification extends PropSpec with PropertyChecks with Matchers {
 

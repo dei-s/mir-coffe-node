@@ -1,13 +1,13 @@
-package com.wavesplatform.api.http.assets
+package mir.coffe.api.http.assets
 
 import com.google.common.base.Charsets
 import io.swagger.annotations.{ApiModel, ApiModelProperty}
 import play.api.libs.json.{Format, Json}
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.api.http.BroadcastRequest
-import com.wavesplatform.transaction.TransactionParsers.SignatureStringLength
-import com.wavesplatform.transaction.ValidationError
-import com.wavesplatform.transaction.assets.IssueTransactionV1
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.api.http.BroadcastRequest
+import mir.coffe.transaction.TransactionParsers.SignatureStringLength
+import mir.coffe.transaction.ValidationError
+import mir.coffe.transaction.assets.IssueTransactionV1
 
 object SignedIssueV1Request {
   implicit val assetIssueRequestReads: Format[SignedIssueV1Request] = Json.format

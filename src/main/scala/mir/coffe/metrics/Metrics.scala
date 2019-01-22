@@ -1,9 +1,9 @@
-package com.wavesplatform.metrics
+package mir.coffe.metrics
 
 import java.net.URI
 import java.util.concurrent.TimeUnit
 
-import com.wavesplatform.utils.{ScorexLogging, Time}
+import mir.coffe.utils.{ScorexLogging, Time}
 import monix.eval.Task
 import monix.execution.Scheduler
 import monix.execution.schedulers.SchedulerService

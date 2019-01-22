@@ -1,20 +1,20 @@
-package com.wavesplatform.state.diffs.smart.performance
+package mir.coffe.state.diffs.smart.performance
 
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.metrics.Instrumented
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.state.diffs.smart._
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.utils._
-import com.wavesplatform.{NoShrink, TransactionGen, WithDB}
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.metrics.Instrumented
+import mir.coffe.state._
+import mir.coffe.state.diffs._
+import mir.coffe.state.diffs.smart._
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer._
+import mir.coffe.utils._
+import mir.coffe.{NoShrink, TransactionGen, WithDB}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}

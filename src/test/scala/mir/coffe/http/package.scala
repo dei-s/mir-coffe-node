@@ -1,15 +1,15 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.nio.charset.StandardCharsets
 
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 import org.scalatest.matchers.{HavePropertyMatchResult, HavePropertyMatcher}
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
-import com.wavesplatform.account.{AddressOrAlias, PublicKeyAccount}
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.transaction.{AssetId, Proofs}
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.{AddressOrAlias, PublicKeyAccount}
+import mir.coffe.utils.Base58
+import mir.coffe.transaction.{AssetId, Proofs}
+import mir.coffe.transaction.transfer._
 import shapeless.{:+:, CNil, Coproduct}
 
 import scala.reflect.ClassTag
@@ -17,8 +17,8 @@ import scala.util.{Failure, Success}
 
 package object http {
 
-  val Waves: Long  = 100000000L
-  val ApiKeyHeader = api_key("ridethewaves!")
+  val Coffe: Long  = 100000000L
+  val ApiKeyHeader = api_key("ridethecoffe!")
 
   def sameSignature(target: Array[Byte])(actual: Array[Byte]): Boolean = target sameElements actual
 

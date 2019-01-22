@@ -1,12 +1,12 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import cats.implicits._
-import com.wavesplatform.state.DataEntry
+import mir.coffe.state.DataEntry
 import io.swagger.annotations.{ApiModel, ApiModelProperty}
 import scala.annotation.meta.field
 import play.api.libs.json.Json
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.transaction.{DataTransaction, Proofs, ValidationError}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.transaction.{DataTransaction, Proofs, ValidationError}
 
 object DataRequest {
   implicit val unsignedDataRequestReads = Json.reads[DataRequest]

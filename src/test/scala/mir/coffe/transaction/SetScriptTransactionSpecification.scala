@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction
+package mir.coffe.transaction
 
-import com.wavesplatform.state._
+import mir.coffe.state._
 import org.scalacheck.Gen
 import play.api.libs.json._
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.transaction.smart.SetScriptTransaction
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.transaction.smart.SetScriptTransaction
 
 class SetScriptTransactionSpecification extends GenericTransactionSpecification[SetScriptTransaction] {
 
-  def transactionParser: com.wavesplatform.transaction.TransactionParserFor[SetScriptTransaction] = SetScriptTransaction
+  def transactionParser: mir.coffe.transaction.TransactionParserFor[SetScriptTransaction] = SetScriptTransaction
 
   def updateProofs(tx: SetScriptTransaction, p: Proofs): SetScriptTransaction = {
     tx.copy(proofs = p)
@@ -24,7 +24,7 @@ class SetScriptTransactionSpecification extends GenericTransactionSpecification[
     first.script shouldEqual second.script
   }
 
-  def generator: Gen[((Seq[com.wavesplatform.transaction.Transaction], SetScriptTransaction))] = setScriptTransactionGen.map(t => (Seq(), t))
+  def generator: Gen[((Seq[mir.coffe.transaction.Transaction], SetScriptTransaction))] = setScriptTransactionGen.map(t => (Seq(), t))
 
   def jsonRepr: Seq[(JsValue, SetScriptTransaction)] =
     Seq(

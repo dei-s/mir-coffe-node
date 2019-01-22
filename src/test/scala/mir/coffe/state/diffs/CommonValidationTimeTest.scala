@@ -1,9 +1,9 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.db.WithState
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.state._
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.db.WithState
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.state._
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
@@ -19,7 +19,7 @@ class CommonValidationTimeTest extends PropSpec with PropertyChecks with Matcher
       recipient   <- accountGen
       amount      <- positiveLongGen
       fee         <- smallFeeGen
-      transfer1 = createWavesTransfer(master, recipient, amount, fee, prevBlockTs - CommonValidation.MaxTimePrevBlockOverTransactionDiff.toMillis - 1)
+      transfer1 = createCoffeTransfer(master, recipient, amount, fee, prevBlockTs - CommonValidation.MaxTimePrevBlockOverTransactionDiff.toMillis - 1)
         .explicitGet()
     } yield (prevBlockTs, blockTs, height, transfer1)) {
       case (prevBlockTs, blockTs, height, transfer1) =>
@@ -38,7 +38,7 @@ class CommonValidationTimeTest extends PropSpec with PropertyChecks with Matcher
       recipient   <- accountGen
       amount      <- positiveLongGen
       fee         <- smallFeeGen
-      transfer1 = createWavesTransfer(master, recipient, amount, fee, blockTs + CommonValidation.MaxTimeTransactionOverBlockDiff.toMillis + 1)
+      transfer1 = createCoffeTransfer(master, recipient, amount, fee, blockTs + CommonValidation.MaxTimeTransactionOverBlockDiff.toMillis + 1)
         .explicitGet()
     } yield (prevBlockTs, blockTs, height, transfer1)) {
       case (prevBlockTs, blockTs, height, transfer1) =>

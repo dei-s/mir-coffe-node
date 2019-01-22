@@ -1,18 +1,18 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
-import com.wavesplatform.consensus.{GeneratingBalanceProvider, PoSSelector}
-import com.wavesplatform.mining._
-import com.wavesplatform.network._
-import com.wavesplatform.settings.{FunctionalitySettings, WavesSettings}
-import com.wavesplatform.utx.UtxPool
+import mir.coffe.consensus.{GeneratingBalanceProvider, PoSSelector}
+import mir.coffe.mining._
+import mir.coffe.network._
+import mir.coffe.settings.{FunctionalitySettings, CoffeSettings}
+import mir.coffe.utx.UtxPool
 import io.netty.channel.Channel
 import io.netty.channel.group.ChannelGroup
 import monix.eval.Task
-import com.wavesplatform.block.Block
-import com.wavesplatform.transaction.ValidationError.{BlockAppendError, BlockFromFuture, GenericError}
-import com.wavesplatform.transaction._
+import mir.coffe.block.Block
+import mir.coffe.transaction.ValidationError.{BlockAppendError, BlockFromFuture, GenericError}
+import mir.coffe.transaction._
 import cats.implicits._
-import com.wavesplatform.utils.{ScorexLogging, Time}
+import mir.coffe.utils.{ScorexLogging, Time}
 
 import scala.util.{Left, Right}
 
@@ -53,7 +53,7 @@ package object appender extends ScorexLogging {
                                     utxStorage: UtxPool,
                                     pos: PoSSelector,
                                     time: Time,
-                                    settings: WavesSettings,
+                                    settings: CoffeSettings,
                                     verify: Boolean)(block: Block): Either[ValidationError, Option[Int]] = {
     val append =
       if (verify) appendBlock(checkpoint, blockchainUpdater, utxStorage, pos, time, settings) _
@@ -66,7 +66,7 @@ package object appender extends ScorexLogging {
                                     utxStorage: UtxPool,
                                     pos: PoSSelector,
                                     time: Time,
-                                    settings: WavesSettings)(block: Block): Either[ValidationError, Option[Int]] =
+                                    settings: CoffeSettings)(block: Block): Either[ValidationError, Option[Int]] =
     for {
       _ <- Either.cond(
         checkpoint.isBlockValid(block.signerData.signature, blockchainUpdater.height + 1),
@@ -103,7 +103,7 @@ package object appender extends ScorexLogging {
       maybeDiscardedTxs.map(_ => blockchainUpdater.height)
     }
 
-  private def blockConsensusValidation(blockchain: Blockchain, settings: WavesSettings, pos: PoSSelector, currentTs: Long, block: Block)(
+  private def blockConsensusValidation(blockchain: Blockchain, settings: CoffeSettings, pos: PoSSelector, currentTs: Long, block: Block)(
       genBalance: Int => Either[String, Long]): Either[ValidationError, Unit] = {
 
     val blockTime = block.timestamp

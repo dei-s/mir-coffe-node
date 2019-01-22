@@ -1,4 +1,4 @@
-package com.wavesplatform.api.http
+package mir.coffe.api.http
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.model.HttpMethods._
@@ -9,9 +9,9 @@ import akka.http.scaladsl.server.RouteResult.Complete
 import akka.http.scaladsl.server.directives.{DebuggingDirectives, LoggingMagnet}
 import akka.http.scaladsl.server.{Directive0, Route, RouteResult}
 import akka.stream.ActorMaterializer
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.api.http.swagger.SwaggerDocService
-import com.wavesplatform.utils.ScorexLogging
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.api.http.swagger.SwaggerDocService
+import mir.coffe.utils.ScorexLogging
 
 case class CompositeHttpService(system: ActorSystem, apiTypes: Set[Class[_]], routes: Seq[ApiRoute], settings: RestAPISettings)
     extends ScorexLogging {

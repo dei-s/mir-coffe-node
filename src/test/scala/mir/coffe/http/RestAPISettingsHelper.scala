@@ -1,9 +1,9 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.crypto
-import com.wavesplatform.settings.RestAPISettings
-import com.wavesplatform.utils.Base58
+import mir.coffe.crypto
+import mir.coffe.settings.RestAPISettings
+import mir.coffe.utils.Base58
 
 trait RestAPISettingsHelper {
   def apiKey: String = "test_api_key"
@@ -17,7 +17,7 @@ trait RestAPISettingsHelper {
       ConfigFactory
         .parseString(
           s"""
-             |waves.rest-api {
+             |coffe.rest-api {
              |  api-key-hash = $keyHash
              |  transactions-by-address-limit = $MaxTransactionsPerRequest
              |  distribution-by-address-limit = $MaxAddressesPerRequest

@@ -1,23 +1,23 @@
-package com.wavesplatform.state.diffs.smart.predef
+package mir.coffe.state.diffs.smart.predef
 
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.lang.Global
-import com.wavesplatform.lang.ScriptVersion.Versions.V2
-import com.wavesplatform.lang.Testing.evaluated
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms.{CONST_BOOLEAN, CONST_LONG, EVALUATED}
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs.ProduceError._
-import com.wavesplatform.transaction.assets.exchange.{Order, OrderType}
-import com.wavesplatform.transaction.smart.BlockchainContext.In
-import com.wavesplatform.transaction.smart.WavesEnvironment
-import com.wavesplatform.transaction.{Proofs, ProvenTransaction, VersionedTransaction}
-import com.wavesplatform.utils.EmptyBlockchain
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.lang.Global
+import mir.coffe.lang.ScriptVersion.Versions.V2
+import mir.coffe.lang.Testing.evaluated
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms.{CONST_BOOLEAN, CONST_LONG, EVALUATED}
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.state._
+import mir.coffe.state.diffs.ProduceError._
+import mir.coffe.transaction.assets.exchange.{Order, OrderType}
+import mir.coffe.transaction.smart.BlockchainContext.In
+import mir.coffe.transaction.smart.CoffeEnvironment
+import mir.coffe.transaction.{Proofs, ProvenTransaction, VersionedTransaction}
+import mir.coffe.utils.EmptyBlockchain
+import mir.coffe.{NoShrink, TransactionGen}
 import fastparse.core.Parsed.Success
 import monix.eval.Coeval
 import org.scalacheck.Gen
@@ -531,7 +531,7 @@ class TransactionBindingsTest extends PropSpec with PropertyChecks with Matchers
 
   def runForAsset(script: String): Either[String, EVALUATED] = {
     import cats.syntax.monoid._
-    import com.wavesplatform.lang.v1.CTX._
+    import mir.coffe.lang.v1.CTX._
 
     val Success(expr, _) = Parser(script)
     val ctx =
@@ -539,8 +539,8 @@ class TransactionBindingsTest extends PropSpec with PropertyChecks with Matchers
         .build(V2) |+|
         CryptoContext
           .build(Global) |+|
-        WavesContext
-          .build(V2, new WavesEnvironment(chainId, Coeval(null), null, EmptyBlockchain), isTokenContext = true)
+        CoffeContext
+          .build(V2, new CoffeEnvironment(chainId, Coeval(null), null, EmptyBlockchain), isTokenContext = true)
 
     for {
       compileResult <- CompilerV1(ctx.compilerContext, expr)
@@ -551,15 +551,15 @@ class TransactionBindingsTest extends PropSpec with PropertyChecks with Matchers
 
   def runWithSmartTradingActivated(script: String, t: In = null, chainId: Byte = chainId): Either[String, EVALUATED] = {
     import cats.syntax.monoid._
-    import com.wavesplatform.lang.v1.CTX._
+    import mir.coffe.lang.v1.CTX._
 
     val Success(expr, _) = Parser(script)
     val ctx =
       PureContext.build(V2) |+|
         CryptoContext
           .build(Global) |+|
-        WavesContext
-          .build(V2, new WavesEnvironment(chainId, Coeval(t), null, EmptyBlockchain), isTokenContext = false)
+        CoffeContext
+          .build(V2, new CoffeEnvironment(chainId, Coeval(t), null, EmptyBlockchain), isTokenContext = false)
 
     for {
       compileResult <- CompilerV1(ctx.compilerContext, expr)

@@ -1,15 +1,15 @@
-package com.wavesplatform.history
+package mir.coffe.history
 
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.state._
+import mir.coffe.state.diffs._
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest._
 import org.scalatest.prop.PropertyChecks
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.block.{Block, MicroBlock}
-import com.wavesplatform.transaction._
-import com.wavesplatform.transaction.transfer._
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.block.{Block, MicroBlock}
+import mir.coffe.transaction._
+import mir.coffe.transaction.transfer._
 
 class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
     extends PropSpec
@@ -28,7 +28,7 @@ class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
       case (gen, rest) =>
         val finalMinerBalances = rest.map {
           case (a @ (bmb: BlockAndMicroblockSequence, last: Block)) =>
-            withDomain(MicroblocksActivatedAt0WavesSettings) { d =>
+            withDomain(MicroblocksActivatedAt0CoffeSettings) { d =>
               d.blockchainUpdater.processBlock(gen).explicitGet()
               bmb.foreach {
                 case (b, mbs) =>
@@ -51,9 +51,9 @@ class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
       fee    <- smallFeeGen
       amt    <- smallFeeGen
       genesis: GenesisTransaction    = GenesisTransaction.create(master, ENOUGH_AMT, ts).explicitGet()
-      payment: TransferTransactionV1 = createWavesTransfer(master, master, amt, fee, ts).explicitGet()
+      payment: TransferTransactionV1 = createCoffeTransfer(master, master, amt, fee, ts).explicitGet()
     } yield (miner, genesis, payment, ts)
-    scenario(preconditionsAndPayments, MicroblocksActivatedAt0WavesSettings) {
+    scenario(preconditionsAndPayments, MicroblocksActivatedAt0CoffeSettings) {
       case (domain, (miner, genesis, payment, ts)) =>
         val genBlock       = buildBlockOfTxs(randomSig, Seq(genesis))
         val (base, micros) = chainBaseAndMicro(genBlock.uniqueId, Seq.empty, Seq(Seq(payment)), miner, 3, ts)
@@ -74,7 +74,7 @@ class BlockchainUpdaterBlockMicroblockSequencesSameTransactionsTest
       to   <- Gen.oneOf(accs)
       fee  <- smallFeeGen
       amt  <- smallFeeGen
-    } yield createWavesTransfer(from, to, amt, fee, ts).explicitGet()
+    } yield createCoffeTransfer(from, to, amt, fee, ts).explicitGet()
 
   def randomPayments(accs: Seq[PrivateKeyAccount], ts: Long, amt: Int): Gen[Seq[TransferTransactionV1]] =
     if (amt == 0)

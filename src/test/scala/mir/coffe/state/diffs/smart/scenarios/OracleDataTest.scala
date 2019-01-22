@@ -1,23 +1,23 @@
-package com.wavesplatform.state.diffs.smart.scenarios
+package mir.coffe.state.diffs.smart.scenarios
 
-import com.wavesplatform.lang.Global.MaxBase58Bytes
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.state._
-import com.wavesplatform.state.diffs._
-import com.wavesplatform.state.diffs.smart.smartEnabledFS
-import com.wavesplatform.utils.compilerContext
-import com.wavesplatform.{NoShrink, TransactionGen}
+import mir.coffe.lang.Global.MaxBase58Bytes
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.state._
+import mir.coffe.state.diffs._
+import mir.coffe.state.diffs.smart.smartEnabledFS
+import mir.coffe.utils.compilerContext
+import mir.coffe.{NoShrink, TransactionGen}
 import org.scalacheck.Gen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.api.http.ScriptExecutionError
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.transaction.smart.SetScriptTransaction
-import com.wavesplatform.transaction.smart.script.v1.ScriptV1
-import com.wavesplatform.transaction.transfer._
-import com.wavesplatform.transaction.{CreateAliasTransaction, DataTransaction, GenesisTransaction, Proofs}
+import mir.coffe.api.http.ScriptExecutionError
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.transaction.smart.SetScriptTransaction
+import mir.coffe.transaction.smart.script.v1.ScriptV1
+import mir.coffe.transaction.transfer._
+import mir.coffe.transaction.{CreateAliasTransaction, DataTransaction, GenesisTransaction, Proofs}
 
 class OracleDataTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink {
   val preconditions

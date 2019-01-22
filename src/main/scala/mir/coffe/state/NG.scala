@@ -1,7 +1,7 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
-import com.wavesplatform.block.Block.BlockId
-import com.wavesplatform.block.MicroBlock
+import mir.coffe.block.Block.BlockId
+import mir.coffe.block.MicroBlock
 
 trait NG extends Blockchain {
   def microBlock(id: ByteStr): Option[MicroBlock]

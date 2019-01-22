@@ -1,11 +1,11 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
-import com.wavesplatform.account.{Address, Alias}
-import com.wavesplatform.block.{Block, BlockHeader}
-import com.wavesplatform.state.reader.LeaseDetails
-import com.wavesplatform.transaction.lease.LeaseTransaction
-import com.wavesplatform.transaction.smart.script.Script
-import com.wavesplatform.transaction.{AssetId, Transaction, ValidationError}
+import mir.coffe.account.{Address, Alias}
+import mir.coffe.block.{Block, BlockHeader}
+import mir.coffe.state.reader.LeaseDetails
+import mir.coffe.transaction.lease.LeaseTransaction
+import mir.coffe.transaction.smart.script.Script
+import mir.coffe.transaction.{AssetId, Transaction, ValidationError}
 
 trait Blockchain {
   def height: Int
@@ -55,7 +55,7 @@ trait Blockchain {
 
   def filledVolumeAndFee(orderId: ByteStr): VolumeAndFee
 
-  /** Retrieves Waves balance snapshot in the [from, to] range (inclusive) */
+  /** Retrieves Coffe balance snapshot in the [from, to] range (inclusive) */
   def balanceSnapshots(address: Address, from: Int, to: Int): Seq[BalanceSnapshot]
 
   def accountScript(address: Address): Option[Script]
@@ -76,13 +76,13 @@ trait Blockchain {
                                 height: Int,
                                 count: Int,
                                 fromAddress: Option[Address]): Either[ValidationError, AssetDistributionPage]
-  def wavesDistribution(height: Int): Map[Address, Long]
+  def coffeDistribution(height: Int): Map[Address, Long]
 
   // the following methods are used exclusively by patches
   def allActiveLeases: Set[LeaseTransaction]
 
   /** Builds a new portfolio map by applying a partial function to all portfolios on which the function is defined.
-    * @note Portfolios passed to `pf` only contain Waves and Leasing balances to improve performance */
+    * @note Portfolios passed to `pf` only contain Coffe and Leasing balances to improve performance */
   def collectLposPortfolios[A](pf: PartialFunction[(Address, Portfolio), A]): Map[Address, A]
 
   def append(diff: Diff, carryFee: Long, block: Block): Unit

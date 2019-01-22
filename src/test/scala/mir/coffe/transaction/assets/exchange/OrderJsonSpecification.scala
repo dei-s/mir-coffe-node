@@ -1,14 +1,14 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
-import com.wavesplatform.TransactionGen
-import com.wavesplatform.state.ByteStr
+import mir.coffe.TransactionGen
+import mir.coffe.state.ByteStr
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 import play.api.libs.json._
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.utils.Base58
-import com.wavesplatform.transaction.assets.exchange.OrderJson._
-import com.wavesplatform.transaction.smart.Verifier
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.utils.Base58
+import mir.coffe.transaction.assets.exchange.OrderJson._
+import mir.coffe.transaction.smart.Verifier
 
 class OrderJsonSpecification extends PropSpec with PropertyChecks with Matchers with TransactionGen {
 

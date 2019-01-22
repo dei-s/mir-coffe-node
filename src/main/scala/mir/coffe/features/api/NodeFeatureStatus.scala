@@ -1,4 +1,4 @@
-package com.wavesplatform.features.api
+package mir.coffe.features.api
 
 sealed trait NodeFeatureStatus
 

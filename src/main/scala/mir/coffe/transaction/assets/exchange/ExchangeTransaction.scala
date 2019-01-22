@@ -1,13 +1,13 @@
-package com.wavesplatform.transaction.assets.exchange
+package mir.coffe.transaction.assets.exchange
 
 import io.swagger.annotations.ApiModelProperty
 import monix.eval.Coeval
 import play.api.libs.json.{JsObject, Json}
-import com.wavesplatform.account.PublicKeyAccount
-import com.wavesplatform.transaction.ValidationError.{GenericError, OrderValidationError}
+import mir.coffe.account.PublicKeyAccount
+import mir.coffe.transaction.ValidationError.{GenericError, OrderValidationError}
 
 import scala.util.Failure
-import com.wavesplatform.transaction._
+import mir.coffe.transaction._
 
 import scala.util.Try
 

@@ -1,11 +1,11 @@
-package com.wavesplatform.state
+package mir.coffe.state
 
-import com.wavesplatform.account.Address
-import com.wavesplatform.crypto.SignatureLength
-import com.wavesplatform.db.WithDomain
-import com.wavesplatform.lagonaki.mocks.TestBlock
-import com.wavesplatform.transaction.GenesisTransaction
-import com.wavesplatform.{NoShrink, TestTime, TransactionGen}
+import mir.coffe.account.Address
+import mir.coffe.crypto.SignatureLength
+import mir.coffe.db.WithDomain
+import mir.coffe.lagonaki.mocks.TestBlock
+import mir.coffe.transaction.GenesisTransaction
+import mir.coffe.{NoShrink, TestTime, TransactionGen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
 

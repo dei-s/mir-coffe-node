@@ -1,16 +1,16 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.matcher.MatcherSettings
-import com.wavesplatform.matcher.api.OrderBookSnapshotHttpCache
+import mir.coffe.matcher.MatcherSettings
+import mir.coffe.matcher.api.OrderBookSnapshotHttpCache
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
 
 class MatcherSettingsSpecification extends FlatSpec with Matchers {
   "MatcherSettings" should "read values" in {
-    val config = loadConfig(ConfigFactory.parseString("""waves {
-        |  directory = /waves
+    val config = loadConfig(ConfigFactory.parseString("""coffe {
+        |  directory = /coffe
         |  matcher {
         |    enable = yes
         |    account = 3Mqjki7bLtMEBRCYeQis39myp9B4cnooDEX
@@ -49,8 +49,8 @@ class MatcherSettingsSpecification extends FlatSpec with Matchers {
     settings.port should be(6886)
     settings.minOrderFee should be(100000)
     settings.orderMatchTxFee should be(100000)
-    settings.journalDataDir should be("/waves/matcher/journal")
-    settings.snapshotsDataDir should be("/waves/matcher/snapshots")
+    settings.journalDataDir should be("/coffe/matcher/journal")
+    settings.snapshotsDataDir should be("/coffe/matcher/snapshots")
     settings.snapshotsInterval should be(999)
     settings.makeSnapshotsAtStart should be(true)
     settings.orderCleanupInterval should be(5.minute)

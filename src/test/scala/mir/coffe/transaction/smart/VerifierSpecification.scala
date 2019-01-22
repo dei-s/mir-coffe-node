@@ -1,10 +1,10 @@
-package com.wavesplatform.transaction.smart
+package mir.coffe.transaction.smart
 
-import com.wavesplatform.account.{PrivateKeyAccount, PublicKeyAccount}
-import com.wavesplatform.state.{AssetDescription, Blockchain}
-import com.wavesplatform.transaction.assets.exchange._
-import com.wavesplatform.transaction.smart.script.ScriptCompiler
-import com.wavesplatform.{NTPTime, TransactionGen}
+import mir.coffe.account.{PrivateKeyAccount, PublicKeyAccount}
+import mir.coffe.state.{AssetDescription, Blockchain}
+import mir.coffe.transaction.assets.exchange._
+import mir.coffe.transaction.smart.script.ScriptCompiler
+import mir.coffe.{NTPTime, TransactionGen}
 import org.scalacheck.Gen
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._

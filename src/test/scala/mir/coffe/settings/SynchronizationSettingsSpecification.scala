@@ -1,8 +1,8 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.network.InvalidBlockStorageImpl.InvalidBlockStorageSettings
-import com.wavesplatform.settings.SynchronizationSettings.{HistoryReplierSettings, MicroblockSynchronizerSettings, UtxSynchronizerSettings}
+import mir.coffe.network.InvalidBlockStorageImpl.InvalidBlockStorageSettings
+import mir.coffe.settings.SynchronizationSettings.{HistoryReplierSettings, MicroblockSynchronizerSettings, UtxSynchronizerSettings}
 import org.scalatest.{FlatSpec, Matchers}
 
 import scala.concurrent.duration._
@@ -10,7 +10,7 @@ import scala.concurrent.duration._
 class SynchronizationSettingsSpecification extends FlatSpec with Matchers {
   "SynchronizationSettings" should "read values" in {
     val config = ConfigFactory.parseString("""
-        |waves {
+        |coffe {
         |  synchronization {
         |    max-rollback = 100
         |    max-chain-length = 101

@@ -1,4 +1,4 @@
-package com.wavesplatform.db
+package mir.coffe.db
 
 import java.nio.charset.StandardCharsets
 

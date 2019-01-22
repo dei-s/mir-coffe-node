@@ -1,4 +1,4 @@
-package com.wavesplatform.http
+package mir.coffe.http
 
 import scala.util.control.Exception.nonFatalCatch
 import scala.util.control.NoStackTrace
@@ -8,8 +8,8 @@ import akka.http.scaladsl.model.StatusCode
 import akka.http.scaladsl.unmarshalling.{FromEntityUnmarshaller, PredefinedFromEntityUnmarshallers, Unmarshaller}
 import akka.util.ByteString
 import play.api.libs.json._
-import com.wavesplatform.api.http.ApiError
-import com.wavesplatform.transaction.{Transaction, ValidationError}
+import mir.coffe.api.http.ApiError
+import mir.coffe.transaction.{Transaction, ValidationError}
 
 case class PlayJsonException(cause: Option[Throwable] = None, errors: Seq[(JsPath, Seq[JsonValidationError])] = Seq.empty)
     extends IllegalArgumentException

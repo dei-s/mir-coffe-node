@@ -1,15 +1,15 @@
-package com.wavesplatform.state.diffs
+package mir.coffe.state.diffs
 
-import com.wavesplatform.features.BlockchainFeatures
-import com.wavesplatform.state.{BinaryDataEntry, BooleanDataEntry, ByteStr, DataEntry, EitherExt2, IntegerDataEntry}
-import com.wavesplatform.{NoShrink, TransactionGen, WithDB}
+import mir.coffe.features.BlockchainFeatures
+import mir.coffe.state.{BinaryDataEntry, BooleanDataEntry, ByteStr, DataEntry, EitherExt2, IntegerDataEntry}
+import mir.coffe.{NoShrink, TransactionGen, WithDB}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
-import com.wavesplatform.account.PrivateKeyAccount
-import com.wavesplatform.settings.TestFunctionalitySettings
-import com.wavesplatform.lagonaki.mocks.TestBlock.{create => block}
-import com.wavesplatform.transaction.{DataTransaction, GenesisTransaction}
+import mir.coffe.account.PrivateKeyAccount
+import mir.coffe.settings.TestFunctionalitySettings
+import mir.coffe.lagonaki.mocks.TestBlock.{create => block}
+import mir.coffe.transaction.{DataTransaction, GenesisTransaction}
 
 class DataTransactionDiffTest extends PropSpec with PropertyChecks with Matchers with TransactionGen with NoShrink with WithDB {
 
@@ -101,7 +101,7 @@ class DataTransactionDiffTest extends PropSpec with PropertyChecks with Matchers
     forAll(setup) {
       case (genesis, dataTx) =>
         assertDiffEi(Seq(block(Seq(genesis))), block(Seq(dataTx)), fs) { blockDiffEi =>
-          blockDiffEi should produce("negative waves balance")
+          blockDiffEi should produce("negative coffe balance")
         }
     }
   }

@@ -1,21 +1,21 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import java.io.File
 
 import com.typesafe.config.ConfigFactory
 import org.scalatest.{FlatSpec, Matchers}
 
-class WavesSettingsSpecification extends FlatSpec with Matchers {
+class CoffeSettingsSpecification extends FlatSpec with Matchers {
   private val home = System.getProperty("user.home")
 
   private def config(configName: String) =
-    WavesSettings.fromConfig(ConfigFactory.parseFile(new File(s"waves-$configName.conf")).withFallback(ConfigFactory.load()))
+    CoffeSettings.fromConfig(ConfigFactory.parseFile(new File(s"coffe-$configName.conf")).withFallback(ConfigFactory.load()))
 
-  def testConfig(configName: String)(additionalChecks: WavesSettings => Unit = _ => ()) {
-    "WavesSettings" should s"read values from default config with $configName overrides" in {
+  def testConfig(configName: String)(additionalChecks: CoffeSettings => Unit = _ => ()) {
+    "CoffeSettings" should s"read values from default config with $configName overrides" in {
       val settings = config(configName)
 
-      settings.directory should be(home + "/waves")
+      settings.directory should be(home + "/coffe")
       settings.networkSettings should not be null
       settings.walletSettings should not be null
       settings.blockchainSettings should not be null
@@ -33,14 +33,14 @@ class WavesSettingsSpecification extends FlatSpec with Matchers {
   testConfig("testnet")()
   testConfig("devnet")()
 
-  "WavesSettings" should "resolve folders correctly" in {
-    val config = loadConfig(ConfigFactory.parseString(s"""waves {
+  "CoffeSettings" should "resolve folders correctly" in {
+    val config = loadConfig(ConfigFactory.parseString(s"""coffe {
          |  directory = "/xxx"
          |  data-directory = "/xxx/data"
          |  ntp-server = "example.com"
          |}""".stripMargin))
 
-    val settings = WavesSettings.fromConfig(config.resolve())
+    val settings = CoffeSettings.fromConfig(config.resolve())
 
     settings.directory should be("/xxx")
     settings.dataDirectory should be("/xxx/data")

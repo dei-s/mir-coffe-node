@@ -1,7 +1,7 @@
-package com.wavesplatform.settings
+package mir.coffe.settings
 
 import java.io.File
 
-import com.wavesplatform.state.ByteStr
+import mir.coffe.state.ByteStr
 
 case class WalletSettings(file: Option[File], password: Option[String], seed: Option[ByteStr])

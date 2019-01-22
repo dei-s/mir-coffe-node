@@ -1,16 +1,16 @@
-package com.wavesplatform
+package mir.coffe
 
 import java.io.File
 import java.nio.ByteBuffer
 import java.util
 
 import com.typesafe.config.ConfigFactory
-import com.wavesplatform.account.{Address, AddressScheme}
-import com.wavesplatform.database.{Keys, LevelDBWriter}
-import com.wavesplatform.db.openDB
-import com.wavesplatform.settings.{WavesSettings, loadConfig}
-import com.wavesplatform.state.{ByteStr, EitherExt2}
-import com.wavesplatform.utils.{Base58, Base64, ScorexLogging}
+import mir.coffe.account.{Address, AddressScheme}
+import mir.coffe.database.{Keys, LevelDBWriter}
+import mir.coffe.db.openDB
+import mir.coffe.settings.{CoffeSettings, loadConfig}
+import mir.coffe.state.{ByteStr, EitherExt2}
+import mir.coffe.utils.{Base58, Base64, ScorexLogging}
 import org.slf4j.bridge.SLF4JBridgeHandler
 
 import scala.collection.JavaConverters._
@@ -25,8 +25,8 @@ object Explorer extends ScorexLogging {
     "score",
     "block-at-height",
     "height-of",
-    "waves-balance-history",
-    "waves-balance",
+    "coffe-balance-history",
+    "coffe-balance",
     "assets-for-address",
     "asset-balance-history",
     "asset-balance",
@@ -57,8 +57,8 @@ object Explorer extends ScorexLogging {
     "data",
     "sponsorship-history",
     "sponsorship",
-    "addresses-for-waves-seq-nr",
-    "addresses-for-waves",
+    "addresses-for-coffe-seq-nr",
+    "addresses-for-coffe",
     "addresses-for-asset-seq-nr",
     "addresses-for-asset",
     "address-transaction-ids-seq-nr",
@@ -74,9 +74,9 @@ object Explorer extends ScorexLogging {
     SLF4JBridgeHandler.removeHandlersForRootLogger()
     SLF4JBridgeHandler.install()
 
-    val configFilename = Try(args(0)).toOption.getOrElse("waves-testnet.conf")
+    val configFilename = Try(args(0)).toOption.getOrElse("coffe-testnet.conf")
 
-    val settings = WavesSettings.fromConfig(loadConfig(ConfigFactory.parseFile(new File(configFilename))))
+    val settings = CoffeSettings.fromConfig(loadConfig(ConfigFactory.parseFile(new File(configFilename))))
     AddressScheme.current = new AddressScheme {
       override val chainId: Byte = settings.blockchainSettings.addressSchemeCharacter.toByte
     }
@@ -138,11 +138,11 @@ object Explorer extends ScorexLogging {
           val addressId = aid.parse(db.get(aid.keyBytes)).get
           log.info(s"Address id = $addressId")
 
-          val kwbh = Keys.wavesBalanceHistory(addressId)
+          val kwbh = Keys.coffeBalanceHistory(addressId)
           val wbh  = kwbh.parse(db.get(kwbh.keyBytes))
 
           val balances = wbh.map { h =>
-            val k = Keys.wavesBalance(addressId)(h)
+            val k = Keys.coffeBalance(addressId)(h)
             h -> k.parse(db.get(k.keyBytes))
           }
           balances.foreach(b => log.info(s"h = ${b._1}: balance = ${b._2}"))
