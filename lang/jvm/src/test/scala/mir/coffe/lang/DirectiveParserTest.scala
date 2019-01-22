@@ -1,7 +1,7 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.directives.DirectiveKey.LANGUAGE_VERSION
-import com.wavesplatform.lang.directives.{Directive, DirectiveParser}
+import mir.coffe.lang.directives.DirectiveKey.LANGUAGE_VERSION
+import mir.coffe.lang.directives.{Directive, DirectiveParser}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 

@@ -1,8 +1,8 @@
 package mir.coffe.lang.v1.compiler
 
-import com.wavesplatform.lang.v1.compiler.Types.CASETYPEREF
+import mir.coffe.lang.v1.compiler.Types.CASETYPEREF
 
-import com.wavesplatform.lang.v1.FunctionHeader
+import mir.coffe.lang.v1.FunctionHeader
 import scodec.bits.ByteVector
 
 object

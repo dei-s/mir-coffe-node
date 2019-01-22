@@ -2,18 +2,18 @@ package mir.coffe.lang
 
 import cats.data.EitherT
 import cats.kernel.Monoid
-import com.wavesplatform.lang.Common._
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.Testing._
-import com.wavesplatform.lang.v1.CTX
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types.{FINAL, LONG}
-import com.wavesplatform.lang.v1.compiler.{CompilerV1, Terms}
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{PureContext, _}
-import com.wavesplatform.lang.v1.parser.Parser
-import com.wavesplatform.lang.v1.testing.ScriptGen
+import mir.coffe.lang.Common._
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.Testing._
+import mir.coffe.lang.v1.CTX
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types.{FINAL, LONG}
+import mir.coffe.lang.v1.compiler.{CompilerV1, Terms}
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.{PureContext, _}
+import mir.coffe.lang.v1.parser.Parser
+import mir.coffe.lang.v1.testing.ScriptGen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 

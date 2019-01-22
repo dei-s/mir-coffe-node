@@ -1,6 +1,6 @@
 package mir.coffe.lang.v1.traits
 
-import com.wavesplatform.lang.v1.traits.domain._
+import mir.coffe.lang.v1.traits.domain._
 import shapeless._
 
 trait Environment {

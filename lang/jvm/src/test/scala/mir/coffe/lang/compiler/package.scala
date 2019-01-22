@@ -2,14 +2,14 @@ package mir.coffe.lang
 
 import cats.data.EitherT
 import cats.kernel.Monoid
-import com.wavesplatform.lang.Common.multiplierFunction
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.CTX
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.PureContext
-import com.wavesplatform.lang.v1.evaluator.ctx.{CaseType, LazyVal, NativeFunction}
-import com.wavesplatform.lang.v1.evaluator.ctx.impl._
+import mir.coffe.lang.Common.multiplierFunction
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.CTX
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.ctx.impl.PureContext
+import mir.coffe.lang.v1.evaluator.ctx.{CaseType, LazyVal, NativeFunction}
+import mir.coffe.lang.v1.evaluator.ctx.impl._
 
 package object compiler {
 

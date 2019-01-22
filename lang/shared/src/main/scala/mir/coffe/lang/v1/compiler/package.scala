@@ -1,8 +1,8 @@
 package mir.coffe.lang.v1
 
 import cats.implicits._
-import com.wavesplatform.lang.v1.task.TaskM
-import com.wavesplatform.lang.v1.task.imports._
+import mir.coffe.lang.v1.task.TaskM
+import mir.coffe.lang.v1.task.imports._
 
 package object compiler {
   type CompileM[A] = TaskM[CompilerContext, CompilationError, A]

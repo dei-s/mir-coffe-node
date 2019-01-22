@@ -2,20 +2,20 @@ package mir.coffe.lang.v1.compiler
 
 import cats.Show
 import cats.implicits._
-import com.wavesplatform.lang.ExprCompiler
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.directives.Directive
-import com.wavesplatform.lang.v1.compiler.CompilationError._
-import com.wavesplatform.lang.v1.compiler.CompilerContext._
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types.{FINAL, _}
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.PureContext
-import com.wavesplatform.lang.v1.parser.BinaryOperation._
-import com.wavesplatform.lang.v1.parser.Expressions.Pos.AnyPos
-import com.wavesplatform.lang.v1.parser.Expressions.{BINARY_OP, MATCH_CASE, PART, Pos}
-import com.wavesplatform.lang.v1.parser.{BinaryOperation, Expressions, Parser}
-import com.wavesplatform.lang.v1.task.imports._
+import mir.coffe.lang.ExprCompiler
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.directives.Directive
+import mir.coffe.lang.v1.compiler.CompilationError._
+import mir.coffe.lang.v1.compiler.CompilerContext._
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types.{FINAL, _}
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.PureContext
+import mir.coffe.lang.v1.parser.BinaryOperation._
+import mir.coffe.lang.v1.parser.Expressions.Pos.AnyPos
+import mir.coffe.lang.v1.parser.Expressions.{BINARY_OP, MATCH_CASE, PART, Pos}
+import mir.coffe.lang.v1.parser.{BinaryOperation, Expressions, Parser}
+import mir.coffe.lang.v1.task.imports._
 
 class CompilerV1(ctx: CompilerContext) extends ExprCompiler {
   override type Ver = V1.type

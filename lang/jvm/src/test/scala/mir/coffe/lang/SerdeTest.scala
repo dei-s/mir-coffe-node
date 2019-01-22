@@ -1,13 +1,13 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.Common._
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.PureContext
-import com.wavesplatform.lang.v1.parser.Expressions
-import com.wavesplatform.lang.v1.testing.ScriptGen
-import com.wavesplatform.lang.v1.{FunctionHeader, Serde}
+import mir.coffe.lang.Common._
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.evaluator.ctx.impl.PureContext
+import mir.coffe.lang.v1.parser.Expressions
+import mir.coffe.lang.v1.testing.ScriptGen
+import mir.coffe.lang.v1.{FunctionHeader, Serde}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Assertion, FreeSpec, Matchers}

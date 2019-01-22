@@ -1,14 +1,14 @@
 package mir.coffe.lang
 
 import cats.data.EitherT
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{EnvironmentFunctions, PureContext, _}
-import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
-import com.wavesplatform.lang.v1.traits.{DataType, Environment}
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.{EnvironmentFunctions, PureContext, _}
+import mir.coffe.lang.v1.traits.domain.{Ord, Recipient, Tx}
+import mir.coffe.lang.v1.traits.{DataType, Environment}
 import monix.eval.Coeval
 import org.scalacheck.Shrink
 import org.scalatest.matchers.{MatchResult, Matcher}
@@ -17,7 +17,7 @@ import shapeless.{:+:, CNil}
 import scala.util.{Left, Right, Try}
 
 object Common {
-  import com.wavesplatform.lang.v1.evaluator.ctx.impl.converters._
+  import mir.coffe.lang.v1.evaluator.ctx.impl.converters._
 
   def ev[T <: EVALUATED](context: EvaluationContext = PureContext.build(V1).evaluationContext, expr: EXPR): Either[ExecutionError, T] =
     EvaluatorV1[T](context, expr)

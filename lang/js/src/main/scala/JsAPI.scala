@@ -1,15 +1,15 @@
 import cats.kernel.Monoid
-import com.wavesplatform.lang.Global
-import com.wavesplatform.lang.v1.FunctionHeader.{Native, User}
-import com.wavesplatform.lang.v1.{Serde, CTX}
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.parser.{Expressions, Parser}
-import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
-import com.wavesplatform.lang.v1.traits.{DataType, Environment}
+import mir.coffe.lang.Global
+import mir.coffe.lang.v1.FunctionHeader.{Native, User}
+import mir.coffe.lang.v1.{Serde, CTX}
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.parser.{Expressions, Parser}
+import mir.coffe.lang.v1.traits.domain.{Ord, Recipient, Tx}
+import mir.coffe.lang.v1.traits.{DataType, Environment}
 import fastparse.core.Parsed.{Failure, Success}
 import shapeless.{:+:, CNil}
 
@@ -43,9 +43,9 @@ object JsAPI {
     r(ast)
   }
 
-  val version = com.wavesplatform.lang.ScriptVersion.Versions.V1
+  val version = mir.coffe.lang.ScriptVersion.Versions.V1
 
-  val wavesContext = WavesContext.build(
+  val coffeContext = CoffeContext.build(
     version,
     new Environment {
       override def height: Long                                                                                    = 0
@@ -71,7 +71,7 @@ object JsAPI {
   }
 
   @JSExportTopLevel("fullContext")
-  val fullContext: CTX = Monoid.combineAll(Seq(PureContext.build(version), cryptoContext, wavesContext))
+  val fullContext: CTX = Monoid.combineAll(Seq(PureContext.build(version), cryptoContext, coffeContext))
 
   @JSExportTopLevel("getTypes")
   def getTypes() = fullContext.types.map(v => js.Dynamic.literal("name" -> v.name, "type" -> typeRepr(v.typeRef))).toJSArray

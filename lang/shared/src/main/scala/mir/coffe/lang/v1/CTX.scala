@@ -1,9 +1,9 @@
 package mir.coffe.lang.v1
 
 import cats.Monoid
-import com.wavesplatform.lang.v1.compiler.CompilerContext
-import com.wavesplatform.lang.v1.compiler.Types.FINAL
-import com.wavesplatform.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.compiler.CompilerContext
+import mir.coffe.lang.v1.compiler.Types.FINAL
+import mir.coffe.lang.v1.evaluator.ctx._
 import scala.annotation.meta.field
 import scala.scalajs.js.annotation._
 

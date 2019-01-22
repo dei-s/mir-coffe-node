@@ -1,6 +1,6 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Terms._
 import scodec.bits.ByteVector
 
 import scala.util.{Left, Right}

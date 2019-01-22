@@ -1,6 +1,6 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.v1.BaseGlobal
+import mir.coffe.lang.v1.BaseGlobal
 
 import scala.scalajs.js.JSConverters._
 import scala.scalajs.js.typedarray.{ArrayBuffer, Int8Array}

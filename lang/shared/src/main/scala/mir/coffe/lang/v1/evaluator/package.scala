@@ -1,9 +1,9 @@
 package mir.coffe.lang.v1
 
 import cats.data.EitherT
-import com.wavesplatform.lang.v1.evaluator.ctx.LoggedEvaluationContext
-import com.wavesplatform.lang.v1.task.TaskM
-import com.wavesplatform.lang.{ExecutionError, TrampolinedExecResult}
+import mir.coffe.lang.v1.evaluator.ctx.LoggedEvaluationContext
+import mir.coffe.lang.v1.task.TaskM
+import mir.coffe.lang.{ExecutionError, TrampolinedExecResult}
 import monix.eval.Coeval
 
 package object evaluator {

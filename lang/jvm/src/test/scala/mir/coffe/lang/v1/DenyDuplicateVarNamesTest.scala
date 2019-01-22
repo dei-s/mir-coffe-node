@@ -1,9 +1,9 @@
 package mir.coffe.lang.v1
 
-import com.wavesplatform.lang.Common._
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.testing.ScriptGen
+import mir.coffe.lang.Common._
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.testing.ScriptGen
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
 

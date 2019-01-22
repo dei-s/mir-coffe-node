@@ -1,7 +1,7 @@
 package mir.coffe.lang;
 
-import com.wavesplatform.lang.v1.Serde;
-import com.wavesplatform.lang.v1.compiler.Terms;
+import mir.coffe.lang.v1.Serde;
+import mir.coffe.lang.v1.compiler.Terms;
 
 /**
  * This class provides static methods to interact with the RIDE compiler.

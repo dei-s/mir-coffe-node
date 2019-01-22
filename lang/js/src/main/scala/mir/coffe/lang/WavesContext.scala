@@ -1,10 +1,10 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
-import com.wavesplatform.lang.v1.traits.{DataType, Environment}
+import mir.coffe.lang.v1.traits.domain.{Ord, Recipient, Tx}
+import mir.coffe.lang.v1.traits.{DataType, Environment}
 import shapeless.{:+:, CNil}
 
-object WavesContext {
+object CoffeContext {
   val env = new Environment {
     override def height: Long                                         = impl.Environment.height
     override def chainId: Byte                                        = impl.Environment.chainId

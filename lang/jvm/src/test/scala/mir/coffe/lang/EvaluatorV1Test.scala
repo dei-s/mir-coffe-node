@@ -4,24 +4,24 @@ import java.nio.ByteBuffer
 
 import cats.data.EitherT
 import cats.kernel.Monoid
-import com.wavesplatform.lang.Common._
-import com.wavesplatform.lang.ExprEvaluator.Log
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.Testing._
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.EvaluatorV1
-import com.wavesplatform.lang.v1.evaluator.FunctionIds._
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.PureContext._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.converters._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, EnvironmentFunctions, PureContext, _}
-import com.wavesplatform.lang.v1.testing.ScriptGen
-import com.wavesplatform.lang.v1.traits.Environment
-import com.wavesplatform.lang.v1.{CTX, FunctionHeader}
-import com.wavesplatform.utils.{Base58, Base64}
+import mir.coffe.lang.Common._
+import mir.coffe.lang.ExprEvaluator.Log
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.Testing._
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.EvaluatorV1
+import mir.coffe.lang.v1.evaluator.FunctionIds._
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.PureContext._
+import mir.coffe.lang.v1.evaluator.ctx.impl.converters._
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, EnvironmentFunctions, PureContext, _}
+import mir.coffe.lang.v1.testing.ScriptGen
+import mir.coffe.lang.v1.traits.Environment
+import mir.coffe.lang.v1.{CTX, FunctionHeader}
+import mir.coffe.utils.{Base58, Base64}
 import org.scalacheck.{Arbitrary, Gen}
 import org.scalatest.prop.PropertyChecks
 import org.scalatest.{Matchers, PropSpec}
@@ -41,7 +41,7 @@ class EvaluatorV1Test extends PropSpec with PropertyChecks with Matchers with Sc
     Seq(
       defaultCryptoContext,
       pureContext,
-      WavesContext.build(V1, environment, isTokenContext = false)
+      CoffeContext.build(V1, environment, isTokenContext = false)
     )
   )
 

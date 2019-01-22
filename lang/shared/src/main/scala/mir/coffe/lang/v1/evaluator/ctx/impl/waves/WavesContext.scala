@@ -1,24 +1,24 @@
-package com.wavesplatform.lang.v1.evaluator.ctx.impl.waves
+package mir.coffe.lang.v1.evaluator.ctx.impl.coffe
 
 import cats.data.EitherT
 import cats.implicits._
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.compiler.Types.{BYTEVECTOR, LONG, STRING, _}
-import com.wavesplatform.lang.v1.evaluator.FunctionIds._
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{EnvironmentFunctions, PureContext, _}
-import com.wavesplatform.lang.v1.traits._
-import com.wavesplatform.lang.v1.traits.domain.{OrdType, Recipient}
-import com.wavesplatform.lang.v1.{CTX, FunctionHeader}
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Types.{BYTEVECTOR, LONG, STRING, _}
+import mir.coffe.lang.v1.evaluator.FunctionIds._
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.evaluator.ctx.impl.{EnvironmentFunctions, PureContext, _}
+import mir.coffe.lang.v1.traits._
+import mir.coffe.lang.v1.traits.domain.{OrdType, Recipient}
+import mir.coffe.lang.v1.{CTX, FunctionHeader}
 import monix.eval.Coeval
 import scodec.bits.ByteVector
 
-object WavesContext {
+object CoffeContext {
 
   import Bindings._
   import Types._
-  import com.wavesplatform.lang.v1.evaluator.ctx.impl.converters._
+  import mir.coffe.lang.v1.evaluator.ctx.impl.converters._
 
   def build(version: ScriptVersion, env: Environment, isTokenContext: Boolean): CTX = {
     val environmentFunctions = new EnvironmentFunctions(env)
@@ -269,7 +269,7 @@ object WavesContext {
           buildActiveTransactionTypes(proofsEnabled)).map(_.typeRef))
 
     val txByIdF: BaseFunction = {
-      val returnType = com.wavesplatform.lang.v1.compiler.Types.UNION.create(UNIT +: anyTransactionType.l)
+      val returnType = mir.coffe.lang.v1.compiler.Types.UNION.create(UNIT +: anyTransactionType.l)
       NativeFunction("transactionById", 100, GETTRANSACTIONBYID, returnType, "Lookup transaction", ("id", BYTEVECTOR, "transaction Id")) {
         case CONST_BYTEVECTOR(id: ByteVector) :: Nil =>
           val maybeDomainTx: Option[CaseObj] = env.transactionById(id.toArray).map(transactionObject(_, proofsEnabled))
@@ -292,7 +292,7 @@ object WavesContext {
         LONG,
         "get asset balance for account",
         ("addressOrAlias", addressOrAliasType, "account"),
-        ("assetId", UNION(UNIT, BYTEVECTOR), "assetId (WAVES if none)")
+        ("assetId", UNION(UNIT, BYTEVECTOR), "assetId (COFFE if none)")
       ) {
         case (c: CaseObj) :: u :: Nil if u == unit => env.accountBalanceOf(caseObjToRecipient(c), None).map(CONST_LONG)
         case (c: CaseObj) :: CONST_BYTEVECTOR(assetId: ByteVector) :: Nil =>
@@ -301,8 +301,8 @@ object WavesContext {
         case _ => ???
       }
 
-    val wavesBalanceF: UserFunction =
-      UserFunction("wavesBalance", LONG, "get WAVES balanse for account", ("@addressOrAlias", addressOrAliasType, "account")) {
+    val coffeBalanceF: UserFunction =
+      UserFunction("coffeBalance", LONG, "get COFFE balanse for account", ("@addressOrAlias", addressOrAliasType, "account")) {
         FUNCTION_CALL(assetBalanceF.header, List(REF("@addressOrAlias"), REF("unit")))
 
       }
@@ -329,7 +329,7 @@ object WavesContext {
         UNION((buildOrderType(proofsEnabled) :: buildActiveTransactionTypes(proofsEnabled)).map(_.typeRef))
 
     val commonVars = Map(
-      ("height", ((com.wavesplatform.lang.v1.compiler.Types.LONG, "Current blockchain height"), LazyVal(EitherT(heightCoeval)))),
+      ("height", ((mir.coffe.lang.v1.compiler.Types.LONG, "Current blockchain height"), LazyVal(EitherT(heightCoeval)))),
       ("tx", ((scriptInputType, "Processing transaction"), LazyVal(EitherT(inputEntityCoeval))))
     )
 
@@ -360,7 +360,7 @@ object WavesContext {
       addressFromStringF,
       addressFromRecipientF,
       assetBalanceF,
-      wavesBalanceF
+      coffeBalanceF
     )
 
     val activeTxTypes   = buildActiveTransactionTypes(proofsEnabled)
@@ -380,7 +380,7 @@ object WavesContext {
       transactionsCommonType
     ) ++ transactionTypes
 
-    val types = buildWavesTypes(proofsEnabled)
+    val types = buildCoffeTypes(proofsEnabled)
 
     CTX(types, commonVars ++ vars(version.value), functions)
   }

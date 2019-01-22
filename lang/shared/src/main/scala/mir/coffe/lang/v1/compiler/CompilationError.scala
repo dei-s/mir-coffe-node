@@ -1,8 +1,8 @@
 package mir.coffe.lang.v1.compiler
 
 import cats.Show
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.FunctionTypeSignature
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.ctx.FunctionTypeSignature
 
 sealed trait CompilationError {
   def start: Int

@@ -1,11 +1,11 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.Common._
-import com.wavesplatform.lang.v1.parser.BinaryOperation._
-import com.wavesplatform.lang.v1.parser.Expressions.Pos.AnyPos
-import com.wavesplatform.lang.v1.parser.Expressions._
-import com.wavesplatform.lang.v1.parser.{BinaryOperation, Parser}
-import com.wavesplatform.lang.v1.testing.ScriptGenParser
+import mir.coffe.lang.Common._
+import mir.coffe.lang.v1.parser.BinaryOperation._
+import mir.coffe.lang.v1.parser.Expressions.Pos.AnyPos
+import mir.coffe.lang.v1.parser.Expressions._
+import mir.coffe.lang.v1.parser.{BinaryOperation, Parser}
+import mir.coffe.lang.v1.testing.ScriptGenParser
 import fastparse.core.Parsed.{Failure, Success}
 import org.scalacheck.Gen
 import org.scalatest.exceptions.TestFailedException

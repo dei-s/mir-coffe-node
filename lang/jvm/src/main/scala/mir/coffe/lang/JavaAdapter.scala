@@ -1,11 +1,11 @@
 package mir.coffe.lang
 
 import cats.kernel.Monoid
-import com.wavesplatform.lang.ScriptVersion.Versions.V1
-import com.wavesplatform.lang.v1.compiler.CompilerV1
-import com.wavesplatform.lang.v1.compiler.Terms.EXPR
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
+import mir.coffe.lang.ScriptVersion.Versions.V1
+import mir.coffe.lang.v1.compiler.CompilerV1
+import mir.coffe.lang.v1.compiler.Terms.EXPR
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
 
 object JavaAdapter {
   private val version = V1
@@ -13,8 +13,8 @@ object JavaAdapter {
   lazy val compiler =
     new CompilerV1(
       Monoid.combineAll(Seq(
-        CryptoContext.compilerContext(com.wavesplatform.lang.Global),
-        WavesContext.build(version, null, false).compilerContext,
+        CryptoContext.compilerContext(mir.coffe.lang.Global),
+        CoffeContext.build(version, null, false).compilerContext,
         PureContext.build(version).compilerContext
       )))
 

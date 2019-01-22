@@ -1,9 +1,9 @@
 package mir.coffe.lang.v1
 
 import cats.data.EitherT
-import com.wavesplatform.lang.ScriptVersion
-import com.wavesplatform.lang.ScriptVersion.Versions._
-import com.wavesplatform.lang.v1.compiler.Terms._
+import mir.coffe.lang.ScriptVersion
+import mir.coffe.lang.ScriptVersion.Versions._
+import mir.coffe.lang.v1.compiler.Terms._
 import monix.eval.Coeval
 
 object DenyDuplicateVarNames {

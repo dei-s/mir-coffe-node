@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 
-import com.wavesplatform.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.compiler.Terms._
 import monix.eval.Coeval
 import scodec.bits.ByteVector
 

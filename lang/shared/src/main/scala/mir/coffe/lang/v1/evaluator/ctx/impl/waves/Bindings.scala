@@ -1,9 +1,9 @@
-package com.wavesplatform.lang.v1.evaluator.ctx.impl.waves
+package mir.coffe.lang.v1.evaluator.ctx.impl.coffe
 
-import com.wavesplatform.lang.v1.compiler.Terms._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.converters
-import com.wavesplatform.lang.v1.traits.domain.Tx._
-import com.wavesplatform.lang.v1.traits.domain._
+import mir.coffe.lang.v1.compiler.Terms._
+import mir.coffe.lang.v1.evaluator.ctx.impl.converters
+import mir.coffe.lang.v1.traits.domain.Tx._
+import mir.coffe.lang.v1.traits.domain._
 import scodec.bits.ByteVector
 
 object Bindings {

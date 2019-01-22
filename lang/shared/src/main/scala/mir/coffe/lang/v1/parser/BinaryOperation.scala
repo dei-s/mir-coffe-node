@@ -1,6 +1,6 @@
 package mir.coffe.lang.v1.parser
 
-import com.wavesplatform.lang.v1.parser.Expressions._
+import mir.coffe.lang.v1.parser.Expressions._
 import fastparse.all._
 
 sealed abstract class BinaryOperation {

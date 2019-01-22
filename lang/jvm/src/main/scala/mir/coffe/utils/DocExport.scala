@@ -1,14 +1,14 @@
 import cats.kernel.Monoid
 import shapeless.{:+:, CNil}
-import com.wavesplatform.lang.{Global, ScriptVersion}
-import com.wavesplatform.lang.v1.CTX
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.waves.WavesContext
-import com.wavesplatform.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
-import com.wavesplatform.lang.v1.evaluator.ctx._
-import com.wavesplatform.lang.v1.traits.domain.{Ord, Recipient, Tx}
-import com.wavesplatform.lang.v1.traits.{DataType, Environment}
-import com.wavesplatform.lang.v1.evaluator.ctx.impl._
+import mir.coffe.lang.{Global, ScriptVersion}
+import mir.coffe.lang.v1.CTX
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.ctx.impl.coffe.CoffeContext
+import mir.coffe.lang.v1.evaluator.ctx.impl.{CryptoContext, PureContext}
+import mir.coffe.lang.v1.evaluator.ctx._
+import mir.coffe.lang.v1.traits.domain.{Ord, Recipient, Tx}
+import mir.coffe.lang.v1.traits.{DataType, Environment}
+import mir.coffe.lang.v1.evaluator.ctx.impl._
 
 import scala.collection.JavaConverters._
 import com.github.mustachejava._
@@ -19,7 +19,7 @@ object DocExport {
       System.err.println("Expected args: --gen-doc <version> <template> <output>")
     } else {
       val version = ScriptVersion.fromInt(args(1).toByte).get
-      val wavesContext = WavesContext.build(
+      val coffeContext = CoffeContext.build(
         version,
         new Environment {
           override def height: Long                                                                                    = ???
@@ -67,7 +67,7 @@ object DocExport {
         case t       => nativeTypeDoc(t.toString)
       }
 
-      val fullContext: CTX = Monoid.combineAll(Seq(PureContext.build(version), cryptoContext, wavesContext))
+      val fullContext: CTX = Monoid.combineAll(Seq(PureContext.build(version), cryptoContext, coffeContext))
 
       def getTypes() = fullContext.types.map(v => typeRepr(v.typeRef)(v.name))
 

@@ -1,6 +1,6 @@
 package mir.coffe.lang
 
-import com.wavesplatform.lang.v1.compiler.Terms.EVALUATED
+import mir.coffe.lang.v1.compiler.Terms.EVALUATED
 
 trait ExprEvaluator extends Versioned {
   def apply[A <: EVALUATED](ctx: version.CtxT, expr: version.ExprT): Either[ExecutionError, A]

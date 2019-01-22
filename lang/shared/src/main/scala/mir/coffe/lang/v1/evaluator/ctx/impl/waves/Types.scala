@@ -1,8 +1,8 @@
-package com.wavesplatform.lang.v1.evaluator.ctx.impl.waves
+package mir.coffe.lang.v1.evaluator.ctx.impl.coffe
 
-import com.wavesplatform.lang.v1.compiler.Types._
-import com.wavesplatform.lang.v1.evaluator.ctx.impl._
-import com.wavesplatform.lang.v1.evaluator.ctx.{CaseType, DefinedType, UnionType}
+import mir.coffe.lang.v1.compiler.Types._
+import mir.coffe.lang.v1.evaluator.ctx.impl._
+import mir.coffe.lang.v1.evaluator.ctx.{CaseType, DefinedType, UnionType}
 
 object Types {
 
@@ -262,7 +262,7 @@ object Types {
       )
   }
 
-  def buildWavesTypes(proofsEnabled: Boolean): Seq[DefinedType] = {
+  def buildCoffeTypes(proofsEnabled: Boolean): Seq[DefinedType] = {
 
     val activeTxTypes                    = buildActiveTransactionTypes(proofsEnabled)
     val obsoleteTxTypes                  = buildObsoleteTransactionTypes(proofsEnabled)
