@@ -17,7 +17,7 @@ val versionSource = Def.task {
   // In case of not updating the version nodes build from headless sources will fail to connect to newer versions
   val FallbackVersion = (1, 0, 0)
 
-  val versionFile = (sourceManaged in Compile).value / "com" / "wavesplatform" / "Version.scala"
+  val versionFile = (sourceManaged in Compile).value / "mir" / "coffe" / "Version.scala"
   val versionExtractor = """(\d+)\.(\d+)\.(\d+).*""".r
   val (major, minor, patch) = version.value match {
     case versionExtractor(ma, mi, pa) => (ma.toInt, mi.toInt, pa.toInt)
@@ -25,7 +25,7 @@ val versionSource = Def.task {
   }
   IO.write(
     versionFile,
-    s"""package com.wavesplatform
+    s"""package mir.coffe
        |
        |object Version {
        |  val VersionString = "${version.value}"
@@ -37,7 +37,7 @@ val versionSource = Def.task {
 }
 val network = SettingKey[Network]("network")
 network := { Network(sys.props.get("network")) }
-name := "waves"
+name := "coffe"
 normalizedName := s"${name.value}${network.value.packageSuffix}"
 
 git.useGitDescribe := true
@@ -47,7 +47,7 @@ logBuffered := false
 inThisBuild(
   Seq(
     scalaVersion := "2.12.7",
-    organization := "com.wavesplatform",
+    organization := "mir.coffe",
     crossPaths := false,
     scalacOptions ++= Seq("-feature", "-deprecation", "-language:higherKinds", "-language:implicitConversions", "-Ywarn-unused:-implicits", "-Xlint")
   ))
@@ -96,7 +96,7 @@ val aopMerge: MergeStrategy = new MergeStrategy {
 inTask(assembly)(
   Seq(
     test := {},
-    assemblyJarName := s"waves-all-${version.value}.jar",
+    assemblyJarName := s"mir-coffe-node-${version.value}.jar",
     assemblyMergeStrategy := {
       case PathList("META-INF", "io.netty.versions.properties") => MergeStrategy.concat
       case PathList("META-INF", "aop.xml")                      => aopMerge
@@ -106,7 +106,7 @@ inTask(assembly)(
 
 inConfig(Compile)(
   Seq(
-    mainClass := Some("com.wavesplatform.Application"),
+    mainClass := Some("mir.coffe.Application"),
     publishArtifact in packageDoc := false,
     publishArtifact in packageSrc := false,
     sourceGenerators += versionSource
@@ -122,19 +122,19 @@ inConfig(Test)(
 
 inConfig(Linux)(
   Seq(
-    maintainer := "wavesplatform.com",
-    packageSummary := "Waves node",
-    packageDescription := "Waves node"
+    maintainer := "dei.su",
+    packageSummary := "Coffe node",
+    packageDescription := "Coffe node"
   ))
 
-bashScriptExtraDefines += s"""addJava "-Dwaves.directory=/var/lib/${normalizedName.value}""""
+bashScriptExtraDefines += s"""addJava "-Dcoffe.directory=/var/lib/${normalizedName.value}""""
 
 val linuxScriptPattern = "bin/(.+)".r
 val batScriptPattern   = "bin/([^.]+)\\.bat".r
 
 inConfig(Universal)(
   Seq(
-    mappings += (baseDirectory.value / s"waves-${network.value}.conf" -> "doc/waves.conf.sample"),
+    mappings += (baseDirectory.value / s"coffe-${network.value}.conf" -> "doc/coffe.conf.sample"),
     mappings := {
       val scriptSuffix = network.value.packageSuffix
       mappings.value.map {
@@ -263,13 +263,13 @@ lazy val lang =
       name := "RIDE Compiler",
       normalizedName := "lang",
       description := "The RIDE smart contract language compiler",
-      homepage := Some(url("https://docs.wavesplatform.com/en/technical-details/waves-contracts-language-description/maven-compiler-package.html")),
-      licenses := Seq(("MIT", url("https://github.com/wavesplatform/Waves/blob/master/LICENSE"))),
-      organization := "com.wavesplatform",
-      organizationName := "Waves Platform",
-      organizationHomepage := Some(url("https://wavesplatform.com")),
-      scmInfo := Some(ScmInfo(url("https://github.com/wavesplatform/Waves"), "git@github.com:wavesplatform/Waves.git", None)),
-      developers := List(Developer("petermz", "Peter Zhelezniakov", "peterz@rambler.ru", url("https://wavesplatform.com"))),
+      homepage := Some(url("https://docs.dei.su/en/technical-details/coffe-contracts-language-description/maven-compiler-package.html")),
+      licenses := Seq(("MIT", url("https://github.com/dei-s/mir-coffe-node/blob/master/LICENSE"))),
+      organization := "mir.coffe",
+      organizationName := "Coffe Platform",
+      organizationHomepage := Some(url("https://dei.su")),
+      scmInfo := Some(ScmInfo(url("https://github.com/dei-s/mir-coffe-node"), "git@github.com:dei-s/mir-coffe-node.git", None)),
+      developers := List(Developer("petermz", "Peter Zhelezniakov", "peterz@rambler.ru", url("https://dei.su"))),
       libraryDependencies ++= Seq(
         "org.scala-js"                      %% "scalajs-stubs" % "1.0.0-RC1" % "provided",
         "com.github.spullara.mustache.java" % "compiler" % "0.9.5"
