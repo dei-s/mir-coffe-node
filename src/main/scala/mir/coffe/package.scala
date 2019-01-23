@@ -1,4 +1,4 @@
-package com
+package mir
 
 import mir.coffe.block.Block
 import mir.coffe.settings.CoffeSettings

@@ -1,4 +1,4 @@
-package mir.coffe.lang.v1
+package mir.coffe.lang
 
 import mir.coffe.lang.v1.BaseGlobal
 
