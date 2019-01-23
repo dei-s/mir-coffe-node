@@ -8,7 +8,7 @@ import scodec.bits.ByteVector
 
 object Parser {
 
-  private val Global                 = mir.coffe.lang.hacks.Global // Hack for IDEA
+  private val Global = mir.coffe.lang.hacks.Global // Hack for IDEA
   private val Whitespaces: Set[Char] = " \t\r\n".toSet
 
   private val White = WhitespaceApi.Wrapper {
